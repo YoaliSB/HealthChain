@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">HealthChain</string>
+    <string name="chain">Chain</string>
+    <string name="health">Health</string>
+    <string name="title_home">Principal</string>
+    <string name="title_medical_records">Historial Médico</string>
+    <string name="title_nfc">NFC</string>
+    <string name="title_personal_data">Mis Datos</string>
+    <string name="title_settings">Configuración</string>
+    
+    <!-- Personal Data Fragment -->
+    <string name="label_name">Nombre</string>
+    <string name="label_age">Edad</string>
+    <string name="label_blood">Tipo de sangre</string>
+    <string name="label_weight">Peso</string>
+    <string name="label_height">Altura</string>
+    <string name="title_contacto">Contacto de emergencia</string>
+    <string name="label_hospital">Hospital de preferencia</string>
+    <string name="label_ailments">Condiciones médicas conocidas</string>
+    <string name="label_allergies">Alergias conocidas</string>
+
+    <!-- Medical Records Fragment -->
+    <string name="label_prescriptions">Recetas Médicas</string>
+    <string name="label_records">Historial Médico</string>
+    <string name="label_documents">Documentos</string>
+    <string name="label_doctors">Mis Doctores</string>
+
+    <!-- Settings Fragment -->
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="about">Sobre HealthChain</string>
+
+</resources>
