@@ -1,19 +1,22 @@
 package com.itesm.healthchain.ui.personal_data;
 
+import com.itesm.healthchain.models.PersonalData;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class PersonalDataViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<PersonalData> mData;
 
     public PersonalDataViewModel() {
-        mText = new MutableLiveData<>();
-        //mText.setValue("This is dashboard fragment");
+        PersonalData data = new PersonalData();
+        mData = new MutableLiveData<>();
+        mData.setValue(data);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<PersonalData> getData() {
+        return mData;
     }
 }
