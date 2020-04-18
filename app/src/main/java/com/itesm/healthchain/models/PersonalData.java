@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PersonalData {
+
+    private int id;
     private String name;
     private int age;
     private String blood;
@@ -19,6 +21,7 @@ public class PersonalData {
     public PersonalData(String name, int age, String blood, int weight, int height,
                         String contactName, String contactPhone, String contactRelationship,
                         String hospital, List<String> ailments, List<String> allergies) {
+        // this.id = ?;
         this.name = name;
         this.age = age;
         this.blood = blood;
@@ -33,6 +36,7 @@ public class PersonalData {
     }
 
     public PersonalData() {
+        this.id = 1;
         this.name = "Juanito Pérez Rodríguez";
         this.age = 27;
         this.blood = "A+";
@@ -44,6 +48,10 @@ public class PersonalData {
         this.hospital = "Hospital Español";
         this.ailments = new LinkedList<>();
         this.allergies = new LinkedList<>();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
