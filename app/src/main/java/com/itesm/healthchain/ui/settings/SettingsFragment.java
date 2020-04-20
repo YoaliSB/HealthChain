@@ -4,17 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.itesm.healthchain.R;
 
-public class SettingsFragment extends Fragment {
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
+
+public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private SettingsViewModel settingsViewModel;
 
@@ -23,6 +21,26 @@ public class SettingsFragment extends Fragment {
         settingsViewModel =
                 ViewModelProviders.of(this).get(SettingsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
+        View aboutBtn = root.findViewById(R.id.btn_info);
+        aboutBtn.setOnClickListener(this);
         return root;
     }
+    @Override
+    public void onClick(View view) {
+        Fragment fragment = null;
+        switch (view.getId()) {
+            case R.id.btn_info:
+                fragment = new AboutFragment();
+                replaceFragment(fragment);
+                break;
+        }
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }
