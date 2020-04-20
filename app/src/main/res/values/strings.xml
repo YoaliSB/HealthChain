@@ -19,11 +19,23 @@
     <string name="label_ailments">Condiciones médicas conocidas</string>
     <string name="label_allergies">Alergias conocidas</string>
 
-    <!-- Medical Records Fragment -->
+    <!-- Main Records Fragment -->
     <string name="label_prescriptions">Recetas Médicas</string>
     <string name="label_records">Historial Médico</string>
     <string name="label_documents">Documentos</string>
     <string name="label_doctors">Mis Doctores</string>
+
+    <!-- Medical Records Fragment -->
+    <string name="label_sex">Sexo</string>
+    <string name="label_ta">T.A.</string>
+    <string name="label_fc">F.C.</string>
+    <string name="label_fr">F.R.</string>
+    <string name="label_temp">TEMP</string>
+    <string name="label_bmi">I.M.C.</string>
+    <string name="label_observations">Observaciones</string>
+    <string name="header_dose">Dosis</string>
+    <string name="header_date">Fecha límite</string>
+
 
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>
