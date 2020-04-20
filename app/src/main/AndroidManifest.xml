@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".PatientActivity"
             android:label="@string/app_name">
         </activity>
     </application>
