@@ -34,6 +34,7 @@ public class MedicalRecordsFragment extends Fragment {
         final TextView temp = root.findViewById(R.id.text_temp);
         final TextView weight = root.findViewById(R.id.text_weight);
         final TextView height = root.findViewById(R.id.text_height);
+        final TextView imc = root.findViewById(R.id.text_bmi);
         final TextView observations = root.findViewById(R.id.text_observations);
 
         medicalRecordsViewModel.getData().observe(getViewLifecycleOwner(), new Observer<MedicalRecord>() {
@@ -48,6 +49,7 @@ public class MedicalRecordsFragment extends Fragment {
                 temp.setText(data.getTemp());
                 weight.setText(data.getWeight());
                 height.setText(data.getHeight());
+                imc.setText(data.getImc());
                 observations.setText(data.getObservations());
             }
         });

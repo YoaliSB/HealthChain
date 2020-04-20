@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private SettingsViewModel settingsViewModel;
+    private final static String TAG_FRAGMENT = "SETTINGS_FRAGMENT";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment, fragment);
+        transaction.replace(R.id.nav_host_fragment, fragment, TAG_FRAGMENT);
         transaction.addToBackStack(null);
         transaction.commit();
     }
