@@ -36,6 +36,13 @@
     <string name="header_dose">Dosis</string>
     <string name="header_date">Fecha límite</string>
 
+    <!-- Prescription Header -->
+    <string name="prescription_name">Nombre</string>
+    <string name="prescription_dose">Dosis</string>
+    <string name="prescription_date">Fecha Límite</string>
+
+    <string name="empty_prescriptions">Aún no te han recetado ningún medicamento</string>
+
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>
     <string name="logout">Cerrar Sesión</string>
