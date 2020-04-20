@@ -1,5 +1,6 @@
 package com.itesm.healthchain.models;
 
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,11 +53,11 @@ public class MedicalRecord {
         this.imc = calculateBMI();
         this.ailments = new LinkedList<>();
         this.allergies = new LinkedList<>();
-        this.observations = observations;
+        this.observations = "Paciente presenta cuadro de resfriado común. Descanso por 3 días y mantenerse hidratado";
     }
 
     private double calculateBMI(){
-        return this.weight/Math.pow(this.height, 2);
+        return this.weight/Math.pow(this.height/100, 2);
     }
 
     public String getDoctor() {
@@ -67,8 +68,11 @@ public class MedicalRecord {
         return name;
     }
 
-    public int getAge() {
-        return age;
+    public String getAge() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(age);
+        sb.append(" años");
+        return sb.toString();
     }
 
     public String getSex() {
@@ -106,7 +110,7 @@ public class MedicalRecord {
     }
 
     public String getImc() {
-        return "" + imc;
+        return "" + new DecimalFormat("0.00").format(imc);
     }
 
     public List<String> getAilments() {
