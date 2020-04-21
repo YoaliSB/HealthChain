@@ -9,10 +9,8 @@ import android.widget.ExpandableListView;
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.PrescriptionAdapter;
 import com.itesm.healthchain.models.Prescription;
-import com.itesm.healthchain.models.PrescriptionItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -26,7 +24,6 @@ public class PrescriptionFragment extends Fragment {
     private ExpandableListView expandableListView;
     private PrescriptionAdapter expandableListAdapter;
     private List<Prescription> listDataHeader;
-    private HashMap<Prescription, List<PrescriptionItem>> listHashMap;
     private View emptyView;
     PrescriptionViewModel viewModel;
 
@@ -41,7 +38,6 @@ public class PrescriptionFragment extends Fragment {
         emptyView = rootView.findViewById(R.id.empty);
         expandableListView = rootView.findViewById(R.id.prescription_list);
         listDataHeader = new ArrayList<>();
-        listHashMap = new HashMap<>();
         viewModel = ViewModelProviders.of(getActivity()).get(PrescriptionViewModel.class);
         viewModel.getPrescriptionMutableLiveData().observe(getActivity(), prescriptionListUpdateObserver);
 
@@ -53,11 +49,7 @@ public class PrescriptionFragment extends Fragment {
         new Observer<ArrayList<Prescription>>() {
             @Override
             public void onChanged(ArrayList<Prescription> prescriptionArrayList) {
-
-                for (Prescription prescription : prescriptionArrayList) {
-                    listDataHeader.add(prescription);
-                    listHashMap.put(prescription, prescription.getItems());
-                }
+                listDataHeader.addAll(prescriptionArrayList);
 
                 if (listDataHeader.size() <= 0) {
                     expandableListView.setVisibility(View.GONE);
@@ -66,7 +58,7 @@ public class PrescriptionFragment extends Fragment {
                     emptyView.setVisibility(View.GONE);
                     expandableListView.setVisibility(View.VISIBLE);
                 }
-                expandableListAdapter = new PrescriptionAdapter(getContext(), listDataHeader, listHashMap);
+                expandableListAdapter = new PrescriptionAdapter(getContext(), listDataHeader);
                 expandableListView.setAdapter(expandableListAdapter);
             }
         };

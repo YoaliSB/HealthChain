@@ -1,4 +1,5 @@
 package com.itesm.healthchain.adapters;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,19 +11,15 @@ import com.itesm.healthchain.R;
 import com.itesm.healthchain.models.Prescription;
 import com.itesm.healthchain.models.PrescriptionItem;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class PrescriptionAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<Prescription> listDataHeader;
-    private HashMap<Prescription, List<PrescriptionItem>> listHashMap;
 
-    public PrescriptionAdapter(Context context, List<Prescription> listDataHeader, HashMap<Prescription,
-            List<PrescriptionItem>> listHashMap) {
+    public PrescriptionAdapter(Context context, List<Prescription> listDataHeader) {
         this.context = context;
         this.listDataHeader = listDataHeader;
-        this.listHashMap = listHashMap;
     }
 
     @Override
@@ -32,7 +29,7 @@ public class PrescriptionAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return listHashMap.get(listDataHeader.get(groupPosition)).size();
+        return listDataHeader.get(groupPosition).getItems().size();
     }
 
     @Override
@@ -42,7 +39,7 @@ public class PrescriptionAdapter extends BaseExpandableListAdapter {
 
     @Override
     public PrescriptionItem getChild(int groupPosition, int childPosition) {
-        return listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition);
+        return listDataHeader.get(groupPosition).getItems().get(childPosition);
     }
 
     @Override
@@ -68,7 +65,6 @@ public class PrescriptionAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater =(LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.prescription_title,null);
         }
-        // TODO: Add adapter, maybe check if map is actually needed
         TextView doctor = convertView.findViewById(R.id.text_doctor);
         doctor.setText(currentPrescription.getDoctor());
 
@@ -80,12 +76,12 @@ public class PrescriptionAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-
         final PrescriptionItem prescriptionItem = getChild(groupPosition, childPosition);
         if(convertView == null) {
             LayoutInflater inflater =(LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.prescription, null);
+            convertView = inflater.inflate(R.layout.prescription_item, null);
         }
+
         TextView name = convertView.findViewById(R.id.text_name);
         name.setText(prescriptionItem.getName());
 
