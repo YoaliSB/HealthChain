@@ -9,7 +9,7 @@ import com.itesm.healthchain.R;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
 public class RecordsMainFragment extends Fragment implements View.OnClickListener{
 
@@ -18,25 +18,27 @@ public class RecordsMainFragment extends Fragment implements View.OnClickListene
         View root = inflater.inflate(R.layout.fragment_main_records, container, false);
         View recordsButton = root.findViewById(R.id.btn_records);
         recordsButton.setOnClickListener(this);
+
+        View prescriptionsButton = root.findViewById(R.id.btn_prescriptions);
+        prescriptionsButton.setOnClickListener(this);
         return root;
     }
 
     @Override
     public void onClick(View view) {
-        Fragment fragment = null;
         switch (view.getId()) {
             case R.id.btn_records:
-                fragment = new MedicalRecordsFragment();
-                replaceFragment(fragment);
+                replaceFragment(R.id.navigation_medical_records);
+                break;
+            case R.id.btn_prescriptions:
+                replaceFragment(R.id.navigation_prescriptions);
                 break;
         }
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+
+    private void replaceFragment(int id) {
+        NavHostFragment.findNavController(this).navigate(id);
     }
 }
 

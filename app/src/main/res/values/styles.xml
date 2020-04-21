@@ -15,6 +15,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="backgroundTint">#FFFFFF</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <!-- Labels and Text -->
