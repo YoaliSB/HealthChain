@@ -9,39 +9,31 @@ import com.itesm.healthchain.R;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
-    private SettingsViewModel settingsViewModel;
     private final static String TAG_FRAGMENT = "SETTINGS_FRAGMENT";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        settingsViewModel =
-                ViewModelProviders.of(this).get(SettingsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
         View aboutBtn = root.findViewById(R.id.btn_info);
         aboutBtn.setOnClickListener(this);
         return root;
     }
+
     @Override
     public void onClick(View view) {
-        Fragment fragment = null;
         switch (view.getId()) {
             case R.id.btn_info:
-                fragment = new AboutFragment();
-                replaceFragment(fragment);
+                replaceFragment(R.id.navigation_about);
                 break;
         }
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment, fragment, TAG_FRAGMENT);
-        transaction.addToBackStack(null);
-        transaction.commit();
+    private void replaceFragment(int id) {
+        NavHostFragment.findNavController(this).navigate(id);
     }
 
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:paddingRight="8dp"
+    android:paddingLeft="8dp">
+
+    <TextView
+        android:id="@+id/text_doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="18dp"
+        android:layout_weight="1"
+        android:text="doctor name"/>
+
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:textAlignment="textEnd"
+        android:textSize="18dp"
+        android:paddingRight="?android:attr/expandableListPreferredItemPaddingLeft"
+        />
+
+</LinearLayout>

@@ -1,35 +1,36 @@
 package com.itesm.healthchain.models;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Prescription {
-    private String name;
-    private String dose;
-    private String date;
+    String doctor;
+    String date;
+    List<PrescriptionItem> items;
 
-    public Prescription(String name, String dose, String date) {
-        this.name = name;
-        this.dose = dose;
+    public Prescription(String doctor, String date, List<PrescriptionItem> items) {
+        this.doctor = doctor;
         this.date = date;
+        this.items = items;
     }
 
     public Prescription(){
-        this.name = "Redoxon";
-        this.dose = "Una tableta";
-        this.date = "25/04/2020";
+        this.doctor = "Azucena Sotelo";
+        this.date = "20/04/2020";
+        this.items = new ArrayList<>();
+        items.add(new PrescriptionItem());
+        items.add(new PrescriptionItem());
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDose() {
-        return dose;
+    public String getDoctor() {
+        return doctor;
     }
 
     public String getDate() {
         return date;
+    }
+
+    public List<PrescriptionItem> getItems() {
+        return items;
     }
 }

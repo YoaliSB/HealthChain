@@ -7,16 +7,19 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
+import com.itesm.healthchain.models.Prescription;
+import com.itesm.healthchain.models.PrescriptionItem;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class PrescriptionAdapter extends BaseExpandableListAdapter {
     private Context context;
-    private List<String> listDataHeader;
-    private HashMap<String,List<String>> listHashMap;
+    private List<Prescription> listDataHeader;
+    private HashMap<Prescription, List<PrescriptionItem>> listHashMap;
 
-    public PrescriptionAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
+    public PrescriptionAdapter(Context context, List<Prescription> listDataHeader, HashMap<Prescription,
+            List<PrescriptionItem>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
@@ -33,12 +36,12 @@ public class PrescriptionAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Object getGroup(int groupPosition) {
+    public Prescription getGroup(int groupPosition) {
         return listDataHeader.get(groupPosition);
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosition) {
+    public PrescriptionItem getChild(int groupPosition, int childPosition) {
         return listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition);
     }
 
@@ -60,26 +63,38 @@ public class PrescriptionAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
-        String headerTitle = (String)getGroup(groupPosition);
-        if(convertView==null){
+        Prescription currentPrescription = getGroup(groupPosition);
+        if(convertView == null) {
             LayoutInflater inflater =(LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.list_group,null);
+            convertView = inflater.inflate(R.layout.prescription_title,null);
         }
-        TextView lblListHeader = (TextView)convertView.findViewById(R.id.lblListHeader);
-        lblListHeader.setText(headerTitle);
+        // TODO: Add adapter, maybe check if map is actually needed
+        TextView doctor = convertView.findViewById(R.id.text_doctor);
+        doctor.setText(currentPrescription.getDoctor());
+
+        TextView date = convertView.findViewById(R.id.text_date);
+        date.setText(currentPrescription.getDate());
+
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final String childText = (String)getChild(groupPosition,childPosition);
-        if(convertView==null){
+        final PrescriptionItem prescriptionItem = getChild(groupPosition, childPosition);
+        if(convertView == null) {
             LayoutInflater inflater =(LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.prescription_item);
+            convertView = inflater.inflate(R.layout.prescription, null);
         }
-        TextView lblListChild = (TextView)convertView.findViewById(R.id.lblListItem);
-        lblListChild.setText(childText);
+        TextView name = convertView.findViewById(R.id.text_name);
+        name.setText(prescriptionItem.getName());
+
+        TextView dose = convertView.findViewById(R.id.text_dose);
+        dose.setText(prescriptionItem.getDose());
+
+        TextView date = convertView.findViewById(R.id.text_date);
+        date.setText(prescriptionItem.getDate());
+
         return convertView;
     }
 

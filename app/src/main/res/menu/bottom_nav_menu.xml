@@ -7,7 +7,7 @@
         android:title="@string/title_personal_data" />
 
     <item
-        android:id="@+id/navigation_records"
+        android:id="@+id/navigation_records_main"
         android:icon="@drawable/ic_records_pdark_24dp"
         android:title="@string/title_medical_records" />
 

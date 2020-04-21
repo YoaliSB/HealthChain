@@ -5,10 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.PrescriptionAdapter;
+import com.itesm.healthchain.models.Prescription;
+import com.itesm.healthchain.models.PrescriptionItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,58 +18,56 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 public class PrescriptionFragment extends Fragment {
 
     private ExpandableListView expandableListView;
     private PrescriptionAdapter expandableListAdapter;
-    private List<String> listDataHeader;
-    private HashMap<String,List<String>> listHashMap;
-    private TextView emptyView;
+    private List<Prescription> listDataHeader;
+    private HashMap<Prescription, List<PrescriptionItem>> listHashMap;
+    private View emptyView;
+    PrescriptionViewModel viewModel;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_prescriptions, container,false);
+        View rootView = inflater.inflate(R.layout.fragment_prescriptions, container, false);
         getActivity().setTitle(R.string.label_prescriptions);
 
         emptyView = rootView.findViewById(R.id.empty);
-        expandableListView = (ExpandableListView)rootView.findViewById(R.id.prescription_list);
-        initData();
+        expandableListView = rootView.findViewById(R.id.prescription_list);
+        listDataHeader = new ArrayList<>();
+        listHashMap = new HashMap<>();
+        viewModel = ViewModelProviders.of(getActivity()).get(PrescriptionViewModel.class);
+        viewModel.getPrescriptionMutableLiveData().observe(getActivity(), prescriptionListUpdateObserver);
+
         return rootView;
     }
 
-    public void initData(){
-        listDataHeader = new ArrayList<>();
-        listHashMap = new HashMap<>()
-        eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot faqSnapshot : dataSnapshot.getChildren()){
-                    Faq faq = faqSnapshot.getValue(Faq.class);
-                    listDataHeader.add(faq.getQuestion());
-                    listHashMap.put(listDataHeader
-                            .get(Integer.parseInt(faq.getId())),new ArrayList<String>());
-                    listHashMap.get(listDataHeader
-                            .get(Integer.parseInt(faq.getId()))).add(faq.getAnswer());
+    Observer<ArrayList<Prescription>> prescriptionListUpdateObserver =
+        new Observer<ArrayList<Prescription>>() {
+            @Override
+            public void onChanged(ArrayList<Prescription> prescriptionArrayList) {
+
+                for (Prescription prescription : prescriptionArrayList) {
+                    listDataHeader.add(prescription);
+                    listHashMap.put(prescription, prescription.getItems());
                 }
 
-                if(listDataHeader.size()<=0){
+                if (listDataHeader.size() <= 0) {
                     expandableListView.setVisibility(View.GONE);
                     emptyView.setVisibility(View.VISIBLE);
                 } else {
                     emptyView.setVisibility(View.GONE);
                     expandableListView.setVisibility(View.VISIBLE);
                 }
-
-                expandableListAdapter = new PrescriptionAdapter(getActivity(), listDataHeader, listHashMap);
+                expandableListAdapter = new PrescriptionAdapter(getContext(), listDataHeader, listHashMap);
                 expandableListView.setAdapter(expandableListAdapter);
-
             }
         };
-        myRef.addValueEventListener(eventListener);
-
-    }
 }

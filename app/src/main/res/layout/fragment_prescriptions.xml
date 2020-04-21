@@ -9,7 +9,7 @@
         android:id="@+id/empty">
     </include>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ExpandableListView
         android:id="@+id/prescription_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
