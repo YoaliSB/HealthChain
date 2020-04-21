@@ -28,7 +28,7 @@ public class PrescriptionItemAdapter extends RecyclerView.Adapter<RecyclerView.V
     public PrescriptionItemAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater inflater = LayoutInflater.from(context);
-        view = inflater.inflate(R.layout.prescription, parent, false);
+        view = inflater.inflate(R.layout.prescription_item, parent, false);
 
         return new PrescriptionItemAdapterViewHolder(view);
     }
