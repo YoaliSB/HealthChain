@@ -19,7 +19,7 @@ public class MedicalRecord {
     private List<String> ailments;
     private List<String> allergies;
     private String observations;
-    // TODO: Add prescription
+    private Prescription prescription;
 
     public MedicalRecord(String doctor, String name, int age, String sex, String ta, int fc,
                          int fr, double temp, double weight, double height, String observations) {
@@ -54,6 +54,7 @@ public class MedicalRecord {
         this.ailments = new LinkedList<>();
         this.allergies = new LinkedList<>();
         this.observations = "Paciente presenta cuadro de resfriado común. Descanso por 3 días y mantenerse hidratado";
+        this.prescription = new Prescription();
     }
 
     private double calculateBMI(){
@@ -123,5 +124,9 @@ public class MedicalRecord {
 
     public String getObservations() {
         return observations;
+    }
+
+    public Prescription getPrescription() {
+        return prescription;
     }
 }

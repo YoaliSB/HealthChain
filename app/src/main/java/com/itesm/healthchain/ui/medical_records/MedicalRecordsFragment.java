@@ -7,17 +7,24 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
+import com.itesm.healthchain.adapters.PrescriptionItemAdapter;
 import com.itesm.healthchain.models.MedicalRecord;
+import com.itesm.healthchain.models.PrescriptionItem;
+
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MedicalRecordsFragment extends Fragment {
 
     private MedicalRecordsViewModel medicalRecordsViewModel;
+    private PrescriptionItemAdapter prescriptionItemAdapter;
+    private List<PrescriptionItem> prescriptions;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +43,7 @@ public class MedicalRecordsFragment extends Fragment {
         final TextView height = root.findViewById(R.id.text_height);
         final TextView imc = root.findViewById(R.id.text_bmi);
         final TextView observations = root.findViewById(R.id.text_observations);
+        final RecyclerView prescriptionsList = root.findViewById(R.id.list_prescriptions);
 
         medicalRecordsViewModel.getData().observe(getViewLifecycleOwner(), new Observer<MedicalRecord>() {
             @Override
@@ -51,8 +59,14 @@ public class MedicalRecordsFragment extends Fragment {
                 height.setText(data.getHeight());
                 imc.setText(data.getImc());
                 observations.setText(data.getObservations());
+                prescriptions = data.getPrescription().getItems();
+                prescriptionItemAdapter = new PrescriptionItemAdapter(getContext(), prescriptions);
+                prescriptionsList.setAdapter(prescriptionItemAdapter);
             }
         });
+
+        prescriptionItemAdapter = new PrescriptionItemAdapter(getContext(), prescriptions);
+        prescriptionsList.setAdapter(prescriptionItemAdapter);
         return root;
     }
 }
