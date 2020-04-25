@@ -197,7 +197,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_ailments"
-        android:layout_width="311dp"
+        android:layout_width="377dp"
         android:layout_height="62dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
@@ -213,7 +213,7 @@
     
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_allergies"
-        android:layout_width="311dp"
+        android:layout_width="377dp"
         android:layout_height="62dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
@@ -230,14 +230,42 @@
     <TextView
         android:id="@+id/text_observations"
         android:layout_width="377dp"
-        android:layout_height="111dp"
+        android:layout_height="80dp"
         android:layout_marginTop="4dp"
-        android:ems="10"
+        android:ems="5"
         android:gravity="start|top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/label_observations"
         app:layout_constraintTop_toBottomOf="@+id/label_observations" />
+
+    <TextView
+        android:id="@+id/label_prescriptions"
+        style="@style/DefaultLabel"
+        android:text="@string/label_prescription"
+        app:layout_constraintStart_toStartOf="@+id/text_observations"
+        app:layout_constraintTop_toBottomOf="@+id/text_observations" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/label_prescriptions"
+        app:layout_constraintTop_toBottomOf="@+id/label_prescriptions">
+
+        <include layout="@layout/prescription_header"
+            android:id="@+id/prescription_header" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_prescriptions"
+            android:layout_width="377dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"/>
+
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
