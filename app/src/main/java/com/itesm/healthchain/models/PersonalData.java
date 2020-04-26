@@ -1,13 +1,14 @@
 package com.itesm.healthchain.models;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class PersonalData {
 
-    private int id;
+    private String id;
     private String name;
-    private int age;
+    private String birthDate;
     private String blood;
     private double weight;
     private double height;
@@ -18,12 +19,12 @@ public class PersonalData {
     private List<String> ailments;
     private List<String> allergies;
 
-    public PersonalData(String name, int age, String blood, int weight, int height,
+    public PersonalData(String id, String name, String birthDate, String blood, int weight, int height,
                         String contactName, String contactPhone, String contactRelationship,
                         String hospital, List<String> ailments, List<String> allergies) {
-        // this.id = ?;
+        this.id = id;
         this.name = name;
-        this.age = age;
+        this.birthDate = birthDate;
         this.blood = blood;
         this.weight = weight;
         this.height = height;
@@ -36,9 +37,9 @@ public class PersonalData {
     }
 
     public PersonalData() {
-        this.id = 1;
+        this.id = "1";
         this.name = "Juanito Pérez Rodríguez";
-        this.age = 27;
+        this.birthDate = "27/03/1985";
         this.blood = "A+";
         this.weight = 75;
         this.height = 170;
@@ -50,7 +51,27 @@ public class PersonalData {
         this.allergies = new LinkedList<>();
     }
 
-    public int getId() {
+    public PersonalData(TagProfile tagProfile){
+        this.id = tagProfile.getId();
+        this.name = tagProfile.getName();
+        this.birthDate = tagProfile.getBirthDate();
+        this.weight = Double.parseDouble(tagProfile.getWeight());
+        this.height = Double.parseDouble(tagProfile.getHeight());
+        this.hospital = tagProfile.getHospital();
+        this.ailments = getList(tagProfile.getAilments());
+        this.allergies = getList(tagProfile.getAllergies());
+        this.contactName = tagProfile.getContactName();
+        this.contactPhone = tagProfile.getContactPhone();
+        this.contactRelationship = tagProfile.getContactRelationship();
+    }
+
+    private List<String> getList(String str) {
+        String array[] = str.split(",");
+        List<String> al = Arrays.asList(array);
+        return al;
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -58,9 +79,9 @@ public class PersonalData {
         return name;
     }
 
-    public String getAge() {
+    public String getBirthDate() {
         StringBuilder sb = new StringBuilder();
-        sb.append(age);
+        sb.append(birthDate);
         sb.append(" años");
         return sb.toString();
     }

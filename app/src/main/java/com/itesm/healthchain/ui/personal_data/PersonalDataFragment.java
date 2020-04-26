@@ -39,7 +39,7 @@ public class PersonalDataFragment extends Fragment {
             @Override
             public void onChanged(@Nullable PersonalData data) {
                 name.setText(data.getName());
-                age.setText(data.getAge());
+                age.setText(data.getBirthDate());
                 blood.setText(data.getBlood());
                 weight.setText(data.getWeight());
                 height.setText(data.getHeight());

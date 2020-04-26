@@ -10,6 +10,8 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.itesm.healthchain.models.TagProfile;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 

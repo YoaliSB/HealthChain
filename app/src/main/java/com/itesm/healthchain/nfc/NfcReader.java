@@ -10,6 +10,8 @@ import android.nfc.tech.Ndef;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.itesm.healthchain.models.TagProfile;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -17,10 +19,7 @@ import java.nio.charset.StandardCharsets;
 class NfcReader {
 
     // Total de campos que debe contener el tag
-    private final int tagLength = 12;
-
-    NfcReader() {
-    }
+    private final static int TAG_LENGTH = 12;
 
     // LECTURA DE TAGS
     TagProfile readFromIntent(Intent intent) throws NotNfcActionException, EmptyTagException, ImproperTagException{
@@ -48,8 +47,7 @@ class NfcReader {
         try {
             if (msgs == null || msgs.length == 0) throw new EmptyTagException();
             String[] records = new String[msgs[0].getRecords().length];
-//        String tagId = new String(msgs[0].getRecords()[0].getType());
-            if(records.length == tagLength) {
+            if(records.length == TAG_LENGTH) {
                 for (int i = 0; i < records.length; i++) {
                     records[i] = buildText(msgs[0].getRecords()[i].getPayload());
                 }
@@ -80,23 +78,21 @@ class NfcReader {
     }
 
 
-
-
     // ESCRITURA DE TAGS
     void writeToTag(TagProfile profile, Tag tag) throws IOException, FormatException {
         NdefRecord[] records = {
-                createRecord(profile.id),
-                createRecord(profile.name),
-                createRecord(profile.birthDate),
-                createRecord(profile.bloodType),
-                createRecord(profile.weight),
-                createRecord(profile.height),
-                createRecord(profile.hospital),
-                createRecord(profile.ailments),
-                createRecord(profile.allergies),
-                createRecord(profile.contactName),
-                createRecord(profile.contactPhone),
-                createRecord(profile.contactRelationship)
+                createRecord(profile.getId()),
+                createRecord(profile.getName()),
+                createRecord(profile.getBirthDate()),
+                createRecord(profile.getBloodType()),
+                createRecord(profile.getWeight()),
+                createRecord(profile.getHeight()),
+                createRecord(profile.getHospital()),
+                createRecord(profile.getAilments()),
+                createRecord(profile.getAllergies()),
+                createRecord(profile.getContactName()),
+                createRecord(profile.getContactPhone()),
+                createRecord(profile.getContactRelationship())
         };
         NdefMessage message = new NdefMessage(records);
         // Get an instance of Ndef for the tag.
@@ -126,9 +122,6 @@ class NfcReader {
 
         return new NdefRecord(NdefRecord.TNF_WELL_KNOWN,  NdefRecord.RTD_TEXT,  new byte[0], payload);
     }
-
-
-
 
     private static class NotNfcActionException extends RuntimeException {
         NotNfcActionException() {}
