@@ -80,10 +80,7 @@ public class PersonalData {
     }
 
     public String getBirthDate() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(birthDate);
-        sb.append(" años");
-        return sb.toString();
+        return birthDate;
     }
 
     public String getBlood() {

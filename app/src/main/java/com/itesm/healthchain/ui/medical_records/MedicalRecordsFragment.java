@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MedicalRecordsFragment extends Fragment {
@@ -43,7 +44,7 @@ public class MedicalRecordsFragment extends Fragment {
         final TextView height = root.findViewById(R.id.text_height);
         final TextView imc = root.findViewById(R.id.text_bmi);
         final TextView observations = root.findViewById(R.id.text_observations);
-        final RecyclerView prescriptionsList = root.findViewById(R.id.list_prescriptions);
+        final RecyclerView prescriptionsList = root.findViewById(R.id.list_allergies);
 
         medicalRecordsViewModel.getData().observe(getViewLifecycleOwner(), new Observer<MedicalRecord>() {
             @Override
@@ -64,9 +65,7 @@ public class MedicalRecordsFragment extends Fragment {
                 prescriptionsList.setAdapter(prescriptionItemAdapter);
             }
         });
-
-        prescriptionItemAdapter = new PrescriptionItemAdapter(getContext(), prescriptions);
-        prescriptionsList.setAdapter(prescriptionItemAdapter);
+        prescriptionsList.setLayoutManager(new LinearLayoutManager(getContext()));
         return root;
     }
 }

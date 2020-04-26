@@ -1,271 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.medical_records.MedicalRecordsFragment">
 
-    <TextView
-        android:id="@+id/text_name"
-        style="@style/EditText"
-        android:layout_width="364dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/label_age"
-        style="@style/DefaultLabel"
-        android:text="@string/label_age"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/text_name"
-        app:layout_constraintTop_toBottomOf="@+id/text_name"
-        app:layout_constraintVertical_bias="0.015" />
-
-    <TextView
-        android:id="@+id/text_age"
-        style="@style/DefaultText"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/label_age"
-        app:layout_constraintStart_toEndOf="@+id/label_age"
-        app:layout_constraintTop_toTopOf="@+id/label_age" 
-        app:layout_constraintVertical_bias="0.7"/>
-
-    <TextView
-        android:id="@+id/label_sex"
-        style="@style/DefaultLabel"
-        android:layout_marginStart="36dp"
-        android:text="@string/label_sex"
-        app:layout_constraintBottom_toBottomOf="@+id/label_age"
-        app:layout_constraintStart_toEndOf="@+id/text_age"
-        app:layout_constraintTop_toTopOf="@+id/label_age"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/text_sex"
-        style="@style/DefaultText"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/label_sex"
-        app:layout_constraintStart_toEndOf="@+id/label_sex"
-        app:layout_constraintTop_toTopOf="@+id/label_sex"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <TextView
-        android:id="@+id/label_ta"
-        style="@style/DefaultLabel"
-        android:text="@string/label_ta"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_age"
-        app:layout_constraintTop_toBottomOf="@+id/label_age"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_ta"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_ta"
-        app:layout_constraintStart_toStartOf="@+id/text_age"
-        app:layout_constraintTop_toTopOf="@+id/label_ta"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <TextView
-        android:id="@+id/label_fc"
-        style="@style/DefaultLabel"
-        android:text="@string/label_fc"
-        app:layout_constraintBottom_toBottomOf="@+id/label_ta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_sex"
-        app:layout_constraintTop_toTopOf="@+id/label_ta"
-        app:layout_constraintVertical_bias="1.0"/>
-
-    <TextView
-        android:id="@+id/text_fc"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_fc"
-        app:layout_constraintStart_toStartOf="@+id/text_sex"
-        app:layout_constraintTop_toTopOf="@+id/label_fc"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <TextView
-        android:id="@+id/label_fr"
-        style="@style/DefaultLabel"
-        android:text="@string/label_fr"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_ta"
-        app:layout_constraintTop_toBottomOf="@+id/label_ta"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_fr"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_fr"
-        app:layout_constraintStart_toStartOf="@+id/text_age"
-        app:layout_constraintTop_toTopOf="@+id/label_fr"
-        app:layout_constraintVertical_bias="0.7"/>
-
-    <TextView
-        android:id="@+id/label_temp"
-        style="@style/DefaultLabel"
-        android:text="@string/label_temp"
-        app:layout_constraintBottom_toBottomOf="@+id/label_fr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_fc"
-        app:layout_constraintTop_toTopOf="@+id/label_fr"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/text_temp"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_temp"
-        app:layout_constraintStart_toStartOf="@+id/text_sex"
-        app:layout_constraintTop_toTopOf="@+id/label_temp"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <TextView
-        android:id="@+id/label_weight"
-        style="@style/DefaultLabel"
-        android:text="@string/label_weight"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_fr"
-        app:layout_constraintTop_toBottomOf="@+id/label_fr"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_weight"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_weight"
-        app:layout_constraintStart_toStartOf="@+id/text_age"
-        app:layout_constraintTop_toTopOf="@+id/label_weight"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <TextView
-        android:id="@+id/label_height"
-        style="@style/DefaultLabel"
-        android:text="@string/label_height"
-        app:layout_constraintBottom_toBottomOf="@+id/label_weight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_temp"
-        app:layout_constraintTop_toTopOf="@+id/label_weight"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/text_height"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_height"
-        app:layout_constraintStart_toStartOf="@+id/text_sex"
-        app:layout_constraintTop_toTopOf="@+id/label_height"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <TextView
-        android:id="@+id/label_bmi"
-        style="@style/DefaultLabel"
-        android:text="@string/label_bmi"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_weight"
-        app:layout_constraintTop_toBottomOf="@+id/label_weight"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_bmi"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_bmi"
-        app:layout_constraintStart_toStartOf="@+id/text_age"
-        app:layout_constraintTop_toTopOf="@+id/label_bmi"
-        app:layout_constraintVertical_bias="0.7"/>
-
-    <TextView
-        android:id="@+id/label_ailments"
-        style="@style/DefaultLabel"
-        android:text="@string/label_ailments"
-        app:layout_constraintStart_toStartOf="@+id/label_bmi"
-        app:layout_constraintTop_toBottomOf="@+id/label_bmi"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_ailments"
-        android:layout_width="377dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/label_ailments"
-        app:layout_constraintTop_toBottomOf="@+id/label_ailments" />
-
-    <TextView
-        android:id="@+id/label_allergies"
-        style="@style/DefaultLabel"
-        android:text="@string/label_allergies"
-        app:layout_constraintStart_toStartOf="@+id/label_ailments"
-        app:layout_constraintTop_toBottomOf="@+id/list_ailments" />
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_allergies"
-        android:layout_width="377dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/label_ailments"
-        app:layout_constraintTop_toBottomOf="@+id/label_allergies" />
-
-    <TextView
-        android:id="@+id/label_observations"
-        style="@style/DefaultLabel"
-        android:text="@string/label_observations"
-        app:layout_constraintStart_toStartOf="@+id/label_allergies"
-        app:layout_constraintTop_toBottomOf="@+id/list_allergies" />
-
-    <TextView
-        android:id="@+id/text_observations"
-        android:layout_width="377dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="4dp"
-        android:ems="5"
-        android:gravity="start|top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_observations"
-        app:layout_constraintTop_toBottomOf="@+id/label_observations" />
-
-    <TextView
-        android:id="@+id/label_prescriptions"
-        style="@style/DefaultLabel"
-        android:text="@string/label_prescription"
-        app:layout_constraintStart_toStartOf="@+id/text_observations"
-        app:layout_constraintTop_toBottomOf="@+id/text_observations" />
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/label_prescriptions"
-        app:layout_constraintTop_toBottomOf="@+id/label_prescriptions">
+        android:layout_height="wrap_content">
 
-        <include layout="@layout/prescription_header"
-            android:id="@+id/prescription_header" />
+        <TextView
+            android:id="@+id/text_name"
+            style="@style/EditText"
+            android:layout_width="364dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/label_age"
+            style="@style/DefaultLabel"
+            android:text="@string/label_age"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_name"
+            app:layout_constraintTop_toBottomOf="@+id/text_name"
+            app:layout_constraintVertical_bias="0.015" />
+
+        <TextView
+            android:id="@+id/text_age"
+            style="@style/DefaultText"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/label_age"
+            app:layout_constraintStart_toEndOf="@+id/label_age"
+            app:layout_constraintTop_toTopOf="@+id/label_age"
+            app:layout_constraintVertical_bias="0.7"/>
+
+        <TextView
+            android:id="@+id/label_sex"
+            style="@style/DefaultLabel"
+            android:layout_marginStart="36dp"
+            android:text="@string/label_sex"
+            app:layout_constraintBottom_toBottomOf="@+id/label_age"
+            app:layout_constraintStart_toEndOf="@+id/text_age"
+            app:layout_constraintTop_toTopOf="@+id/label_age"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/text_sex"
+            style="@style/DefaultText"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/label_sex"
+            app:layout_constraintStart_toEndOf="@+id/label_sex"
+            app:layout_constraintTop_toTopOf="@+id/label_sex"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <TextView
+            android:id="@+id/label_ta"
+            style="@style/DefaultLabel"
+            android:text="@string/label_ta"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_age"
+            app:layout_constraintTop_toBottomOf="@+id/label_age"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_ta"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_ta"
+            app:layout_constraintStart_toStartOf="@+id/text_age"
+            app:layout_constraintTop_toTopOf="@+id/label_ta"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <TextView
+            android:id="@+id/label_fc"
+            style="@style/DefaultLabel"
+            android:text="@string/label_fc"
+            app:layout_constraintBottom_toBottomOf="@+id/label_ta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_sex"
+            app:layout_constraintTop_toTopOf="@+id/label_ta"
+            app:layout_constraintVertical_bias="1.0"/>
+
+        <TextView
+            android:id="@+id/text_fc"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_fc"
+            app:layout_constraintStart_toStartOf="@+id/text_sex"
+            app:layout_constraintTop_toTopOf="@+id/label_fc"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <TextView
+            android:id="@+id/label_fr"
+            style="@style/DefaultLabel"
+            android:text="@string/label_fr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_ta"
+            app:layout_constraintTop_toBottomOf="@+id/label_ta"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_fr"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_fr"
+            app:layout_constraintStart_toStartOf="@+id/text_age"
+            app:layout_constraintTop_toTopOf="@+id/label_fr"
+            app:layout_constraintVertical_bias="0.7"/>
+
+        <TextView
+            android:id="@+id/label_temp"
+            style="@style/DefaultLabel"
+            android:text="@string/label_temp"
+            app:layout_constraintBottom_toBottomOf="@+id/label_fr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_fc"
+            app:layout_constraintTop_toTopOf="@+id/label_fr"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/text_temp"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_temp"
+            app:layout_constraintStart_toStartOf="@+id/text_sex"
+            app:layout_constraintTop_toTopOf="@+id/label_temp"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <TextView
+            android:id="@+id/label_weight"
+            style="@style/DefaultLabel"
+            android:text="@string/label_weight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_fr"
+            app:layout_constraintTop_toBottomOf="@+id/label_fr"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_weight"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_weight"
+            app:layout_constraintStart_toStartOf="@+id/text_age"
+            app:layout_constraintTop_toTopOf="@+id/label_weight"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <TextView
+            android:id="@+id/label_height"
+            style="@style/DefaultLabel"
+            android:text="@string/label_height"
+            app:layout_constraintBottom_toBottomOf="@+id/label_weight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_temp"
+            app:layout_constraintTop_toTopOf="@+id/label_weight"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/text_height"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_height"
+            app:layout_constraintStart_toStartOf="@+id/text_sex"
+            app:layout_constraintTop_toTopOf="@+id/label_height"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <TextView
+            android:id="@+id/label_bmi"
+            style="@style/DefaultLabel"
+            android:text="@string/label_bmi"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_weight"
+            app:layout_constraintTop_toBottomOf="@+id/label_weight"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_bmi"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_bmi"
+            app:layout_constraintStart_toStartOf="@+id/text_age"
+            app:layout_constraintTop_toTopOf="@+id/label_bmi"
+            app:layout_constraintVertical_bias="0.7"/>
+
+        <TextView
+            android:id="@+id/label_ailments"
+            style="@style/DefaultLabel"
+            android:text="@string/label_ailments"
+            app:layout_constraintStart_toStartOf="@+id/label_bmi"
+            app:layout_constraintTop_toBottomOf="@+id/label_bmi"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_prescriptions"
+            android:id="@+id/list_ailments"
             android:layout_width="377dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"/>
+            app:layout_constraintStart_toStartOf="@+id/label_ailments"
+            app:layout_constraintTop_toBottomOf="@+id/label_ailments" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/label_allergies"
+            style="@style/DefaultLabel"
+            android:text="@string/label_allergies"
+            app:layout_constraintStart_toStartOf="@+id/label_ailments"
+            app:layout_constraintTop_toBottomOf="@+id/list_ailments" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_allergies"
+            android:layout_width="377dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/label_ailments"
+            app:layout_constraintTop_toBottomOf="@+id/label_allergies" />
 
+        <TextView
+            android:id="@+id/label_observations"
+            style="@style/DefaultLabel"
+            android:text="@string/label_observations"
+            app:layout_constraintStart_toStartOf="@+id/label_allergies"
+            app:layout_constraintTop_toBottomOf="@+id/list_allergies" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_observations"
+            android:layout_width="377dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="4dp"
+            android:ems="5"
+            android:gravity="start|top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_observations"
+            app:layout_constraintTop_toBottomOf="@+id/label_observations" />
+
+        <TextView
+            android:id="@+id/label_prescriptions"
+            style="@style/DefaultLabel"
+            android:text="@string/label_prescription"
+            app:layout_constraintStart_toStartOf="@+id/text_observations"
+            app:layout_constraintTop_toBottomOf="@+id/text_observations" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/label_prescriptions"
+            app:layout_constraintTop_toBottomOf="@+id/label_prescriptions">
+
+            <include layout="@layout/prescription_header"
+                android:id="@+id/prescription_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_prescriptions"
+                android:layout_width="377dp"
+                android:layout_height="400dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
