@@ -17,17 +17,18 @@ public class TagProfile {
 
     public TagProfile(){
         this.id = "1";
-        this.name = "Juanito Pérez Rodríguez";
+        this.name = "Brandon Triplett";
         this.birthDate = "27/03/1985";
-        this.bloodType = "A+";
+        this.bloodType = "B+";
         this.weight = "75";
-        this.height = "170.5";
+        this.height = "170";
         this.contactName = "Elena Rodríguez Blanco";
         this.contactPhone = "5588996622";
         this.contactRelationship = "Madre";
         this.hospital = "Hospital Español";
-        this.ailments = "Diabetes Tipo 1";
-        this.allergies = "Ninguna";
+        this.allergies = "d,e,f";
+        this.ailments = "a,b,c";
+
 //        this.id = "";
 //        this.name = "";
 //        this.birthDate = "";

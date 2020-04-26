@@ -23,6 +23,9 @@ public class PrescriptionItemAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.prescriptionItems = prescriptionItems;
     }
 
+    // TODO: Remove context dependency, add setter for items, remove items from constructor (whole constructor)
+    // diff in Line
+
     @NonNull
     @Override
     public PrescriptionItemAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

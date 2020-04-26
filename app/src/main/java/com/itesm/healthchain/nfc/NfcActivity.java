@@ -61,6 +61,7 @@ public abstract class NfcActivity extends AppCompatActivity implements NfcWriteD
 
     @Override
     protected void onNewIntent(Intent intent) {
+        // Assuming all intents are NFC
         super.onNewIntent(intent);
         if(isWriting){
             attemptWriteToTag();

@@ -1,10 +1,12 @@
 package com.itesm.healthchain;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.itesm.healthchain.models.PersonalData;
+import com.itesm.healthchain.models.TagProfile;
 import com.itesm.healthchain.nfc.NfcActivity;
 import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
@@ -37,6 +39,10 @@ public class ParamedicActivity extends NfcActivity {
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+//        PersonalDataViewModel personalDataViewModel =
+//                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
+//        personalDataViewModel.setData(new PersonalData(new TagProfile()));
     }
 
     @Override
@@ -44,7 +50,7 @@ public class ParamedicActivity extends NfcActivity {
         super.onNewIntent(intent);
         PersonalDataViewModel personalDataViewModel =
                 ViewModelProviders.of(this).get(PersonalDataViewModel.class);
-        personalDataViewModel.setData(new PersonalData(tagProfile));
+        personalDataViewModel.setData(new PersonalData(super.tagProfile));
         navController.navigate(R.id.navigation_personal);
     }
 }

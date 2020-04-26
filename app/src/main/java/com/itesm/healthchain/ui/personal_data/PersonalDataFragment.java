@@ -22,7 +22,7 @@ public class PersonalDataFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         personalDataViewModel =
-                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
+                ViewModelProviders.of(getActivity()).get(PersonalDataViewModel.class);
         View root = inflater.inflate(R.layout.fragment_personal, container, false);
 
         final TextView name = root.findViewById(R.id.text_name);
