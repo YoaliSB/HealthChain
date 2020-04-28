@@ -33,6 +33,7 @@ public class MedicalRecordsFragment extends Fragment {
                 ViewModelProviders.of(this).get(MedicalRecordsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_medical_records, container, false);
 
+        final TextView doctor = root.findViewById(R.id.text_doctor);
         final TextView name = root.findViewById(R.id.text_name);
         final TextView age = root.findViewById(R.id.text_age);
         final TextView sex = root.findViewById(R.id.text_sex);
@@ -44,11 +45,17 @@ public class MedicalRecordsFragment extends Fragment {
         final TextView height = root.findViewById(R.id.text_height);
         final TextView imc = root.findViewById(R.id.text_bmi);
         final TextView observations = root.findViewById(R.id.text_observations);
-        final RecyclerView prescriptionsList = root.findViewById(R.id.list_allergies);
+        final TextView ailments = root.findViewById(R.id.list_ailments);
+        final TextView allergies = root.findViewById(R.id.list_allergies);
+        final RecyclerView prescriptionsList = root.findViewById(R.id.list_prescriptions);
+        prescriptionItemAdapter = new PrescriptionItemAdapter();
+        prescriptionsList.setAdapter(prescriptionItemAdapter);
+        prescriptionsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         medicalRecordsViewModel.getData().observe(getViewLifecycleOwner(), new Observer<MedicalRecord>() {
             @Override
             public void onChanged(@Nullable MedicalRecord data) {
+                doctor.setText(data.getDoctor());
                 name.setText(data.getName());
                 age.setText(data.getAge());
                 sex.setText(data.getSex());
@@ -60,12 +67,12 @@ public class MedicalRecordsFragment extends Fragment {
                 height.setText(data.getHeight());
                 imc.setText(data.getImc());
                 observations.setText(data.getObservations());
+                ailments.setText(data.getAilments());
+                allergies.setText(data.getAllergies());
                 prescriptions = data.getPrescription().getItems();
-                prescriptionItemAdapter = new PrescriptionItemAdapter(getContext(), prescriptions);
-                prescriptionsList.setAdapter(prescriptionItemAdapter);
+                prescriptionItemAdapter.setPrescriptionItems(prescriptions);
             }
         });
-        prescriptionsList.setLayoutManager(new LinearLayoutManager(getContext()));
         return root;
     }
 }

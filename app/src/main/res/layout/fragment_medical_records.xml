@@ -13,14 +13,23 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/text_doctor"
+            style="@style/EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/text_name"
             style="@style/EditText"
-            android:layout_width="364dp"
-            android:layout_height="27dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/text_doctor" />
 
         <TextView
             android:id="@+id/label_age"
@@ -201,11 +210,12 @@
             app:layout_constraintStart_toStartOf="@+id/label_bmi"
             app:layout_constraintTop_toBottomOf="@+id/label_bmi"/>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:id="@+id/list_ailments"
-            android:layout_width="377dp"
-            android:layout_height="wrap_content"
+            style="@style/DefaultText"
+            android:layout_width="0dp"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/label_ailments"
             app:layout_constraintTop_toBottomOf="@+id/label_ailments" />
@@ -217,12 +227,13 @@
             app:layout_constraintStart_toStartOf="@+id/label_ailments"
             app:layout_constraintTop_toBottomOf="@+id/list_ailments" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:id="@+id/list_allergies"
-            android:layout_width="377dp"
-            android:layout_height="wrap_content"
+            style="@style/DefaultText"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginTop="8dp"
+            android:layout_width="0dp"
             app:layout_constraintStart_toStartOf="@+id/label_ailments"
             app:layout_constraintTop_toBottomOf="@+id/label_allergies" />
 
@@ -235,11 +246,12 @@
 
         <TextView
             android:id="@+id/text_observations"
-            android:layout_width="377dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="4dp"
-            android:ems="5"
+            style="@style/DefaultText"
+            android:layout_width="0dp"
             android:gravity="start|top"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/label_observations"
@@ -252,23 +264,28 @@
             app:layout_constraintStart_toStartOf="@+id/text_observations"
             app:layout_constraintTop_toBottomOf="@+id/text_observations" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:id="@+id/prescription_header"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/label_prescriptions"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_prescriptions">
+            <include layout="@layout/prescription_header" />
+        </RelativeLayout>
 
-            <include layout="@layout/prescription_header"
-                android:id="@+id/prescription_header" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_prescriptions"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            app:layout_constraintStart_toStartOf="@+id/label_prescriptions"
+            app:layout_constraintTop_toBottomOf="@+id/prescription_header"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_prescriptions"
-                android:layout_width="377dp"
-                android:layout_height="400dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="@dimen/activity_horizontal_margin"/>
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

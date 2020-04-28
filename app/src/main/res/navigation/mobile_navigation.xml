@@ -46,4 +46,10 @@
         android:name="com.itesm.healthchain.ui.settings.AboutFragment"
         android:label="@string/about"
         tools:layout="@layout/fragment_about"/>
+
+    <!-- NFC -->
+    <fragment
+        android:id="@+id/navigation_nfc"
+        android:name="com.itesm.healthchain.nfc.NfcFragment"
+        tools:layout="@layout/nfc_screen"/>
 </navigation>

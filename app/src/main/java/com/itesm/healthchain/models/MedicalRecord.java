@@ -1,8 +1,6 @@
 package com.itesm.healthchain.models;
 
 import java.text.DecimalFormat;
-import java.util.LinkedList;
-import java.util.List;
 
 public class MedicalRecord {
     private String doctor;
@@ -16,13 +14,14 @@ public class MedicalRecord {
     private double weight;
     private double height;
     private double imc;
-    private List<String> ailments;
-    private List<String> allergies;
+    private String ailments;
+    private String allergies;
     private String observations;
     private Prescription prescription;
 
     public MedicalRecord(String doctor, String name, int age, String sex, String ta, int fc,
-                         int fr, double temp, double weight, double height, String observations) {
+                         int fr, double temp, double weight, double height, String observations,
+                         String ailments, String allergies) {
         this.doctor = doctor;
         this.name = name;
         this.age = age;
@@ -34,8 +33,8 @@ public class MedicalRecord {
         this.weight = weight;
         this.height = height;
         this.imc = calculateBMI();
-        this.ailments = new LinkedList<>();
-        this.allergies = new LinkedList<>();
+        this.ailments = ailments;
+        this.allergies = allergies;
         this.observations = observations;
     }
 
@@ -51,8 +50,8 @@ public class MedicalRecord {
         this.weight = 75;
         this.height = 172;
         this.imc = calculateBMI();
-        this.ailments = new LinkedList<>();
-        this.allergies = new LinkedList<>();
+        this.ailments = "Diabetes tipo 1, fumador";
+        this.allergies = "Ninguna";
         this.observations = "Paciente presenta cuadro de resfriado común. Descanso por 3 días y mantenerse hidratado";
         this.prescription = new Prescription();
     }
@@ -114,11 +113,11 @@ public class MedicalRecord {
         return "" + new DecimalFormat("0.00").format(imc);
     }
 
-    public List<String> getAilments() {
+    public String getAilments() {
         return ailments;
     }
 
-    public List<String> getAllergies() {
+    public String getAllergies() {
         return allergies;
     }
 
