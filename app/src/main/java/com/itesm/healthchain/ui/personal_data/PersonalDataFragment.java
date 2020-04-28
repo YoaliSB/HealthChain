@@ -34,6 +34,8 @@ public class PersonalDataFragment extends Fragment {
         final TextView contactPhone = root.findViewById(R.id.text_contact_phone);
         final TextView contactRelationship = root.findViewById(R.id.text_contact_relationship);
         final TextView hospital = root.findViewById(R.id.text_hospital);
+        final TextView ailments = root.findViewById(R.id.list_ailments);
+        final TextView allergies = root.findViewById(R.id.list_allergies);
 
         personalDataViewModel.getData().observe(getViewLifecycleOwner(), new Observer<PersonalData>() {
             @Override
@@ -47,6 +49,8 @@ public class PersonalDataFragment extends Fragment {
                 contactPhone.setText(data.getContactPhone());
                 contactRelationship.setText(data.getContactRelationship());
                 hospital.setText(data.getHospital());
+                ailments.setText(data.getAilments());
+                allergies.setText(data.getAllergies());
             }
         });
         return root;

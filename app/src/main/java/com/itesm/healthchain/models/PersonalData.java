@@ -1,9 +1,5 @@
 package com.itesm.healthchain.models;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 public class PersonalData {
 
     private String id;
@@ -16,12 +12,12 @@ public class PersonalData {
     private String contactPhone;
     private String contactRelationship;
     private String hospital;
-    private List<String> ailments;
-    private List<String> allergies;
+    private String ailments;
+    private String allergies;
 
     public PersonalData(String id, String name, String birthDate, String blood, int weight, int height,
                         String contactName, String contactPhone, String contactRelationship,
-                        String hospital, List<String> ailments, List<String> allergies) {
+                        String hospital, String ailments, String allergies) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
@@ -47,28 +43,23 @@ public class PersonalData {
         this.contactPhone = "5588996622";
         this.contactRelationship = "Madre";
         this.hospital = "Hospital Español";
-        this.ailments = new LinkedList<>();
-        this.allergies = new LinkedList<>();
+        this.ailments = "Diabetes tipo 1, fumador";
+        this.allergies = "Ninguna";
     }
 
     public PersonalData(TagProfile tagProfile){
         this.id = tagProfile.getId();
         this.name = tagProfile.getName();
         this.birthDate = tagProfile.getBirthDate();
+        this.blood = tagProfile.getBloodType();
         this.weight = Double.parseDouble(tagProfile.getWeight());
         this.height = Double.parseDouble(tagProfile.getHeight());
         this.hospital = tagProfile.getHospital();
-        this.ailments = getList(tagProfile.getAilments());
-        this.allergies = getList(tagProfile.getAllergies());
+        this.ailments = tagProfile.getAilments();
+        this.allergies = tagProfile.getAllergies();
         this.contactName = tagProfile.getContactName();
         this.contactPhone = tagProfile.getContactPhone();
         this.contactRelationship = tagProfile.getContactRelationship();
-    }
-
-    private List<String> getList(String str) {
-        String array[] = str.split(",");
-        List<String> al = Arrays.asList(array);
-        return al;
     }
 
     public String getId() {
@@ -117,11 +108,11 @@ public class PersonalData {
         return hospital;
     }
 
-    public List<String> getAilments() {
+    public String getAilments() {
         return ailments;
     }
 
-    public List<String> getAllergies() {
+    public String getAllergies() {
         return allergies;
     }
 }

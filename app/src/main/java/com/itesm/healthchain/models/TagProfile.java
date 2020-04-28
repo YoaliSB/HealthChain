@@ -16,31 +16,33 @@ public class TagProfile {
     private String contactRelationship;
 
     public TagProfile(){
-        this.id = "1";
-        this.name = "Brandon Triplett";
-        this.birthDate = "27/03/1985";
-        this.bloodType = "B+";
-        this.weight = "75";
-        this.height = "170";
-        this.contactName = "Elena Rodríguez Blanco";
-        this.contactPhone = "5588996622";
-        this.contactRelationship = "Madre";
-        this.hospital = "Hospital Español";
-        this.allergies = "d,e,f";
-        this.ailments = "a,b,c";
 
-//        this.id = "";
-//        this.name = "";
-//        this.birthDate = "";
-//        this.bloodType = "";
-//        this.weight = "";
-//        this.height = "";
-//        this.hospital = "";
-//        this.ailments = "";
-//        this.allergies = "";
-//        this.contactName = "";
-//        this.contactPhone = "";
-//        this.contactRelationship = "";
+        //Testing
+//        this.id = "1";
+//        this.name = "Brandon Triplett";
+//        this.birthDate = "27/03/1985";
+//        this.bloodType = "B+";
+//        this.weight = "75";
+//        this.height = "170";
+//        this.contactName = "Elena Rodríguez Blanco";
+//        this.contactPhone = "5588996622";
+//        this.contactRelationship = "Madre";
+//        this.hospital = "Hospital Español";
+//        this.ailments = "Diabetes tipo 1, fumador";
+//        this.allergies = "Ninguna";
+
+        this.id = "";
+        this.name = "";
+        this.birthDate = "";
+        this.bloodType = "";
+        this.weight = "";
+        this.height = "";
+        this.hospital = "";
+        this.ailments = "";
+        this.allergies = "";
+        this.contactName = "";
+        this.contactPhone = "";
+        this.contactRelationship = "";
     }
 
     public TagProfile(String[] records){

@@ -57,9 +57,10 @@
         android:id="@+id/text_blood"
         style="@style/DefaultText"
         app:layout_constraintBottom_toBottomOf="@+id/label_blood"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toEndOf="@+id/label_blood"
         app:layout_constraintTop_toTopOf="@+id/label_blood"
-        app:layout_constraintVertical_bias="1" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <TextView
         android:id="@+id/label_weight"
@@ -187,10 +188,9 @@
         app:layout_constraintStart_toStartOf="@+id/label_hospital"
         app:layout_constraintTop_toBottomOf="@+id/text_hospital" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
         android:id="@+id/list_ailments"
-        android:layout_width="311dp"
-        android:layout_height="62dp"
+        style="@style/DefaultText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/label_ailments"
@@ -203,10 +203,9 @@
         app:layout_constraintStart_toStartOf="@+id/label_hospital"
         app:layout_constraintTop_toBottomOf="@+id/list_ailments" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
         android:id="@+id/list_allergies"
-        android:layout_width="311dp"
-        android:layout_height="62dp"
+        style="@style/DefaultText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/label_ailments"
