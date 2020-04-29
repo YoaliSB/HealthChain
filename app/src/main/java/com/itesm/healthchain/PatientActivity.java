@@ -3,9 +3,13 @@ package com.itesm.healthchain;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.itesm.healthchain.models.PersonalData;
+import com.itesm.healthchain.models.TagProfile;
+import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -33,11 +37,10 @@ public class PatientActivity extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        // Create view model that represents the tag profile, use viewmodel provider to get in activity
-        // Set the item in viewmodel (<item> from example) from the intent
-        // Navigate to fragment with navcontroller
-        // Get ViewModel from provider in fragment
+//
+//        PersonalDataViewModel personalDataViewModel =
+//                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
+//        personalDataViewModel.setData(new PersonalData(new TagProfile()));
     }
 
 }

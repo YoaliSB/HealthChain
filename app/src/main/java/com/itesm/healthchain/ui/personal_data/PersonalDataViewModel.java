@@ -8,11 +8,9 @@ import androidx.lifecycle.ViewModel;
 
 public class PersonalDataViewModel extends ViewModel {
     private MutableLiveData<PersonalData> mData;
-    public boolean hasBeenSet;
 
     public PersonalDataViewModel() {
         mData = new MutableLiveData<>();
-        hasBeenSet = false;
     }
 
     public LiveData<PersonalData> getData() {
@@ -21,6 +19,5 @@ public class PersonalDataViewModel extends ViewModel {
 
     public void setData(PersonalData mData) {
         this.mData.setValue(mData);
-        hasBeenSet = true;
     }
 }

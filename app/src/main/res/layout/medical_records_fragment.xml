@@ -277,15 +277,19 @@
             <include layout="@layout/prescription_header" />
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_prescriptions"
-            android:layout_width="380dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
             app:layout_constraintStart_toStartOf="@+id/label_prescriptions"
-            app:layout_constraintTop_toBottomOf="@+id/prescription_header"/>
+            app:layout_constraintTop_toBottomOf="@+id/prescription_header">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_prescriptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"/>
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

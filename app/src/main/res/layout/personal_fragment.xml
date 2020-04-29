@@ -6,209 +6,220 @@
     android:layout_height="match_parent"
     tools:context=".ui.personal_data.PersonalDataFragment">
 
-    <TextView
-        android:id="@+id/label_name"
-        style="@style/DefaultLabel"
-        android:layout_marginStart="20dp"
-        android:text="@string/label_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_name"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_name"
-        app:layout_constraintStart_toEndOf="@+id/label_name"
-        app:layout_constraintTop_toTopOf="@+id/label_name" />
-
-    <TextView
-        android:id="@+id/label_age"
-        style="@style/DefaultLabel"
-        android:text="@string/label_age"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_name"
-        app:layout_constraintTop_toBottomOf="@+id/text_name"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_age"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_age"
-        app:layout_constraintStart_toEndOf="@+id/label_age"
-        app:layout_constraintTop_toTopOf="@+id/label_age" />
-
-    <TextView
-        android:id="@+id/label_blood"
-        style="@style/DefaultLabel"
-        android:layout_marginStart="36dp"
-        android:text="@string/label_blood"
-        app:layout_constraintBottom_toBottomOf="@+id/label_age"
-        app:layout_constraintStart_toEndOf="@+id/text_age"
-        app:layout_constraintTop_toTopOf="@+id/label_age"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/text_blood"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_blood"
-        app:layout_constraintHorizontal_bias="0.901"
-        app:layout_constraintStart_toEndOf="@+id/label_blood"
-        app:layout_constraintTop_toTopOf="@+id/label_blood"
-        app:layout_constraintVertical_bias="0.333" />
-
-    <TextView
-        android:id="@+id/label_weight"
-        style="@style/DefaultLabel"
-        android:text="@string/label_weight"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_age"
-        app:layout_constraintTop_toBottomOf="@+id/label_age"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_weight"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_weight"
-        app:layout_constraintStart_toEndOf="@+id/label_weight"
-        app:layout_constraintTop_toTopOf="@+id/label_weight"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/label_height"
-        style="@style/DefaultLabel"
-        android:text="@string/label_height"
-        app:layout_constraintBottom_toBottomOf="@+id/label_weight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/label_blood"
-        app:layout_constraintTop_toTopOf="@+id/label_weight"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/text_height"
-        style="@style/DefaultText"
-        app:layout_constraintBottom_toBottomOf="@+id/label_height"
-        app:layout_constraintStart_toEndOf="@+id/label_height"
-        app:layout_constraintTop_toTopOf="@+id/label_height"
-        app:layout_constraintVertical_bias="0" />
+    <include layout="@layout/nfc_screen"
+        android:id="@+id/nfc_screen"
+        android:visibility="visible"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="337dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_weight">
+        android:id="@+id/fields"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <TextView
-            android:id="@+id/title_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/title_contacto"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"
+            android:id="@+id/label_name"
+            style="@style/DefaultLabel"
+            android:layout_marginStart="20dp"
+            android:text="@string/label_name"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="1dp"
-            android:layout_marginStart="2dp"
-            android:src="@drawable/ic_phone_pdark_24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
-            app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
-            app:layout_constraintTop_toTopOf="@+id/text_contact_phone" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/text_contact_name"
+            android:id="@+id/text_name"
             style="@style/DefaultText"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_contact" />
+            app:layout_constraintBottom_toBottomOf="@+id/label_name"
+            app:layout_constraintStart_toEndOf="@+id/label_name"
+            app:layout_constraintTop_toTopOf="@+id/label_name" />
 
         <TextView
-            android:id="@+id/text_contact_phone"
-            style="@style/DefaultText"
-            android:layout_marginStart="0dp"
-            app:layout_constraintStart_toStartOf="@+id/text_contact_name"
-            app:layout_constraintTop_toBottomOf="@+id/text_contact_name" />
+            android:id="@+id/label_age"
+            style="@style/DefaultLabel"
+            android:text="@string/label_age"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_name"
+            app:layout_constraintTop_toBottomOf="@+id/text_name"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/text_contact_relationship"
+            android:id="@+id/text_age"
             style="@style/DefaultText"
-            android:layout_marginStart="72dp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
-            app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
-            app:layout_constraintTop_toTopOf="@+id/text_contact_phone"
+            app:layout_constraintBottom_toBottomOf="@+id/label_age"
+            app:layout_constraintStart_toEndOf="@+id/label_age"
+            app:layout_constraintTop_toTopOf="@+id/label_age" />
+
+        <TextView
+            android:id="@+id/label_blood"
+            style="@style/DefaultLabel"
+            android:layout_marginStart="36dp"
+            android:text="@string/label_blood"
+            app:layout_constraintBottom_toBottomOf="@+id/label_age"
+            app:layout_constraintStart_toEndOf="@+id/text_age"
+            app:layout_constraintTop_toTopOf="@+id/label_age"
             app:layout_constraintVertical_bias="1.0" />
 
+        <TextView
+            android:id="@+id/text_blood"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_blood"
+            app:layout_constraintHorizontal_bias="0.901"
+            app:layout_constraintStart_toEndOf="@+id/label_blood"
+            app:layout_constraintTop_toTopOf="@+id/label_blood"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <TextView
+            android:id="@+id/label_weight"
+            style="@style/DefaultLabel"
+            android:text="@string/label_weight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_age"
+            app:layout_constraintTop_toBottomOf="@+id/label_age"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_weight"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_weight"
+            app:layout_constraintStart_toEndOf="@+id/label_weight"
+            app:layout_constraintTop_toTopOf="@+id/label_weight"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/label_height"
+            style="@style/DefaultLabel"
+            android:text="@string/label_height"
+            app:layout_constraintBottom_toBottomOf="@+id/label_weight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/label_blood"
+            app:layout_constraintTop_toTopOf="@+id/label_weight"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/text_height"
+            style="@style/DefaultText"
+            app:layout_constraintBottom_toBottomOf="@+id/label_height"
+            app:layout_constraintStart_toEndOf="@+id/label_height"
+            app:layout_constraintTop_toTopOf="@+id/label_height"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="337dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_weight">
+
+            <TextView
+                android:id="@+id/title_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/title_contacto"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginStart="2dp"
+                android:src="@drawable/ic_phone_pdark_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
+                app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
+                app:layout_constraintTop_toTopOf="@+id/text_contact_phone" />
+
+            <TextView
+                android:id="@+id/text_contact_name"
+                style="@style/DefaultText"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_contact" />
+
+            <TextView
+                android:id="@+id/text_contact_phone"
+                style="@style/DefaultText"
+                android:layout_marginStart="0dp"
+                app:layout_constraintStart_toStartOf="@+id/text_contact_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_contact_name" />
+
+            <TextView
+                android:id="@+id/text_contact_relationship"
+                style="@style/DefaultText"
+                android:layout_marginStart="72dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
+                app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
+                app:layout_constraintTop_toTopOf="@+id/text_contact_phone"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/label_hospital"
+            style="@style/DefaultLabel"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_hospital"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/label_weight"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/text_hospital"
+            style="@style/DefaultText"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/label_hospital"
+            app:layout_constraintTop_toBottomOf="@+id/label_hospital" />
+
+        <TextView
+            android:id="@+id/label_ailments"
+            style="@style/DefaultLabel"
+            android:text="@string/label_ailments"
+            app:layout_constraintStart_toStartOf="@+id/label_hospital"
+            app:layout_constraintTop_toBottomOf="@+id/text_hospital" />
+
+        <TextView
+            android:id="@+id/list_ailments"
+            style="@style/DefaultText"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/label_ailments"
+            app:layout_constraintTop_toBottomOf="@+id/label_ailments" />
+
+        <TextView
+            android:id="@+id/label_allergies"
+            style="@style/DefaultLabel"
+            android:text="@string/label_allergies"
+            app:layout_constraintStart_toStartOf="@+id/label_hospital"
+            app:layout_constraintTop_toBottomOf="@+id/list_ailments" />
+
+        <TextView
+            android:id="@+id/list_allergies"
+            style="@style/DefaultText"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/label_ailments"
+            app:layout_constraintTop_toBottomOf="@+id/label_allergies" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/label_hospital"
-        style="@style/DefaultLabel"
-        android:layout_marginTop="16dp"
-        android:text="@string/label_hospital"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@+id/label_weight"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0" />
-
-    <TextView
-        android:id="@+id/text_hospital"
-        style="@style/DefaultText"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/label_hospital"
-        app:layout_constraintTop_toBottomOf="@+id/label_hospital" />
-
-    <TextView
-        android:id="@+id/label_ailments"
-        style="@style/DefaultLabel"
-        android:text="@string/label_ailments"
-        app:layout_constraintStart_toStartOf="@+id/label_hospital"
-        app:layout_constraintTop_toBottomOf="@+id/text_hospital" />
-
-    <TextView
-        android:id="@+id/list_ailments"
-        style="@style/DefaultText"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/label_ailments"
-        app:layout_constraintTop_toBottomOf="@+id/label_ailments" />
-
-    <TextView
-        android:id="@+id/label_allergies"
-        style="@style/DefaultLabel"
-        android:text="@string/label_allergies"
-        app:layout_constraintStart_toStartOf="@+id/label_hospital"
-        app:layout_constraintTop_toBottomOf="@+id/list_ailments" />
-
-    <TextView
-        android:id="@+id/list_allergies"
-        style="@style/DefaultText"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/label_ailments"
-        app:layout_constraintTop_toBottomOf="@+id/label_allergies" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
