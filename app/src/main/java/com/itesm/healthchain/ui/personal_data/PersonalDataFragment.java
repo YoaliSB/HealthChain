@@ -8,12 +8,14 @@ import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.models.PersonalData;
+import com.itesm.healthchain.models.TagProfile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 
 public class PersonalDataFragment extends Fragment {
 
@@ -54,5 +56,13 @@ public class PersonalDataFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(!personalDataViewModel.hasBeenSet) {
+            NavHostFragment.findNavController(this).navigate(R.id.navigation_nfc);
+        }
     }
 }
