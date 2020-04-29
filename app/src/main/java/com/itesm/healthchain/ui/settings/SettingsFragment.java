@@ -13,13 +13,13 @@ import androidx.navigation.fragment.NavHostFragment;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
-    private final static String TAG_FRAGMENT = "SETTINGS_FRAGMENT";
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_settings, container, false);
+        View root = inflater.inflate(R.layout.settings_fragment, container, false);
         View aboutBtn = root.findViewById(R.id.btn_info);
+        View editBtn = root.findViewById(R.id.btn_edit_profile);
         aboutBtn.setOnClickListener(this);
+        editBtn.setOnClickListener(this);
         return root;
     }
 
@@ -28,6 +28,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btn_info:
                 replaceFragment(R.id.navigation_about);
+                break;
+            case R.id.btn_edit_profile:
+                replaceFragment(R.id.navigation_account);
                 break;
         }
     }

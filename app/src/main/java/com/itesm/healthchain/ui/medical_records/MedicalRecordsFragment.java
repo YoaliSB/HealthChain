@@ -31,7 +31,7 @@ public class MedicalRecordsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         medicalRecordsViewModel =
                 ViewModelProviders.of(this).get(MedicalRecordsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_medical_records, container, false);
+        View root = inflater.inflate(R.layout.medical_records_fragment, container, false);
 
         final TextView doctor = root.findViewById(R.id.text_doctor);
         final TextView name = root.findViewById(R.id.text_name);

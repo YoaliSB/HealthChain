@@ -32,7 +32,7 @@ public class PrescriptionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_prescriptions, container, false);
+        View rootView = inflater.inflate(R.layout.prescriptions_fragment, container, false);
         getActivity().setTitle(R.string.label_prescriptions);
 
         emptyView = rootView.findViewById(R.id.empty);

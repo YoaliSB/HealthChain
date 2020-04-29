@@ -11,7 +11,7 @@
         android:id="@+id/navigation_personal"
         android:name="com.itesm.healthchain.ui.personal_data.PersonalDataFragment"
         android:label="@string/title_personal_data"
-        tools:layout="@layout/fragment_personal" />
+        tools:layout="@layout/personal_fragment" />
 
     <!-- Medical Records -->
 
@@ -19,19 +19,19 @@
         android:id="@+id/navigation_records_main"
         android:name="com.itesm.healthchain.ui.medical_records.RecordsMainFragment"
         android:label="@string/title_medical_records"
-        tools:layout="@layout/fragment_main_records" />
+        tools:layout="@layout/main_records_fragment" />
 
     <fragment
         android:id="@+id/navigation_medical_records"
         android:name="com.itesm.healthchain.ui.medical_records.MedicalRecordsFragment"
         android:label="@string/title_medical_records"
-        tools:layout="@layout/fragment_medical_records"/>
+        tools:layout="@layout/medical_records_fragment"/>
 
     <fragment
         android:id="@+id/navigation_prescriptions"
         android:name="com.itesm.healthchain.ui.medical_records.PrescriptionFragment"
         android:label="@string/label_prescriptions"
-        tools:layout="@layout/fragment_prescriptions"/>
+        tools:layout="@layout/prescriptions_fragment"/>
 
     <!-- Settings -->
 
@@ -39,13 +39,19 @@
         android:id="@+id/navigation_settings"
         android:name="com.itesm.healthchain.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/settings_fragment" />
 
     <fragment
         android:id="@+id/navigation_about"
         android:name="com.itesm.healthchain.ui.settings.AboutFragment"
         android:label="@string/about"
-        tools:layout="@layout/fragment_about"/>
+        tools:layout="@layout/about_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.itesm.healthchain.ui.settings.AccountSettingsFragment"
+        android:label="@string/edit_profile"
+        tools:layout="@layout/account_settings_fragment"/>
 
     <!-- NFC -->
     <fragment

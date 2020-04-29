@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.models.PersonalData;
-import com.itesm.healthchain.models.TagProfile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +24,7 @@ public class PersonalDataFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         personalDataViewModel =
                 ViewModelProviders.of(getActivity()).get(PersonalDataViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_personal, container, false);
+        View root = inflater.inflate(R.layout.personal_fragment, container, false);
 
         final TextView name = root.findViewById(R.id.text_name);
         final TextView age = root.findViewById(R.id.text_age);

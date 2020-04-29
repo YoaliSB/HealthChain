@@ -15,7 +15,7 @@ public class RecordsMainFragment extends Fragment implements View.OnClickListene
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main_records, container, false);
+        View root = inflater.inflate(R.layout.main_records_fragment, container, false);
         View recordsButton = root.findViewById(R.id.btn_records);
         recordsButton.setOnClickListener(this);
 
