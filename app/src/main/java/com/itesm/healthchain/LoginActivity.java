@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String LG = "https://jsonplaceholder.typicode.com/posts/1"; //URL para pruebas de get
     private static final String url2 = "https://jsonplaceholder.typicode.com/posts"; //URL para pruebas de post
     private static final String url = "https://localhost:3000/api/login"; //URL para pruebas de post
+    private static final String ngrok = "https://health-chain-api.herokuapp.com/api/login";
     EditText editemail,editpass;
     Button btnLogin;
     TextView tv;
@@ -51,15 +52,8 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     jsonBody.put("email", email);
                     jsonBody.put("password", pass);
-                    /*
-                    jsonBody.put("name", "abc@abc.com");
-                    jsonBody.put("email", "");
-                    jsonBody.put("phone", "");
-                    jsonBody.put("pin", "");
-                    jsonBody.put("password", "");
-                    */
 
-                    JsonObjectRequest jsonOblect = new JsonObjectRequest(Request.Method.POST, url2, jsonBody, new Response.Listener<JSONObject>() {
+                    JsonObjectRequest jsonOblect = new JsonObjectRequest(Request.Method.POST, ngrok, jsonBody, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
 
@@ -74,6 +68,14 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
                     }) {
+                        @Override
+                        protected Map<String,String> getParams(){
+                            Map<String,String> params = new HashMap<String, String>();
+                            params.put("email",email);
+                            params.put("passweod",pass);
+                            return params;
+                        }
+
                         @Override
                         public Map<String, String> getHeaders() throws AuthFailureError {
                             final Map<String, String> headers = new HashMap<>();
@@ -90,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                //METODO GET
+                //METODO GET Este si funciona
                 /*JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                         (Request.Method.GET, LG, null, new Response.Listener<JSONObject>() {
 

@@ -27,8 +27,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String url = "https://jsonplaceholder.typicode.com/posts";
-    private static final String url2 = "http://localhost:8000/api/register"; //Aqui va la url del servidor
+    private static final String url2 = "https://jsonplaceholder.typicode.com/posts";
+    private static final String url = "https://health-chain-api.herokuapp.com/api/register"; //Aqui va la url del servidor
     EditText etname,etemail,etpass,etpin,etphone,etpass2;
     Button signupbtn;
     @Override
@@ -89,15 +89,21 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }) {
                         @Override
+                        protected Map<String,String> getParams(){
+                            Map<String,String> params = new HashMap<String, String>();
+                            params.put("name",name);
+                            params.put("email",email);
+                            params.put("password",pass);
+                            params.put("pin",pin);
+                            params.put("phone",phone);
+                            params.put("password_confirmation",pass2);
+                            return params;
+                        }
+
+                        @Override
                         public Map<String, String> getHeaders() throws AuthFailureError {
                             final Map<String, String> headers = new HashMap<>();
                             headers.put("Content-Type", "application/json");
-                            headers.put("name",name);
-                            headers.put("email",email);
-                            headers.put("password",pass);
-                            headers.put("pin",pin);
-                            headers.put("phone",phone);
-                            headers.put("password_confirmation",pass2);
                             return headers;
                         }
                     };
