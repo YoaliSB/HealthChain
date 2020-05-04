@@ -14,6 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public abstract class NfcActivity extends AppCompatActivity implements NfcWriteDialogFragment.NFCTagWriteDialogListener{
 
@@ -45,9 +51,12 @@ public abstract class NfcActivity extends AppCompatActivity implements NfcWriteD
             finish();
         }
 
-        nfcReader = new NfcReader();
-        // readFromIntent(getIntent());
-        tagProfile = nfcReader.readFromIntent(getIntent());
+        try {
+            nfcReader = new NfcReader(this.context);
+            tagProfile = nfcReader.readFromIntent(getIntent());
+        } catch (NoSuchAlgorithmException | IOException | ClassNotFoundException | NoSuchPaddingException e) {
+            e.printStackTrace();
+        }
 
         pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
         IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
@@ -60,6 +69,9 @@ public abstract class NfcActivity extends AppCompatActivity implements NfcWriteD
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
+            myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        }
         if(isWriting){
             attemptWriteToTag();
             writeFragment.dismiss();
@@ -67,9 +79,6 @@ public abstract class NfcActivity extends AppCompatActivity implements NfcWriteD
         } else {
             setIntent(intent);
             tagProfile = nfcReader.readFromIntent(intent);
-            if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
-                myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            }
         }
     }
 
@@ -103,7 +112,7 @@ public abstract class NfcActivity extends AppCompatActivity implements NfcWriteD
                 nfcReader.writeToTag(tagProfile, myTag);
                 Toast.makeText(context, WRITE_SUCCESS, Toast.LENGTH_LONG ).show();
             }
-        } catch (IOException | FormatException e) {
+        } catch (IOException | FormatException | IllegalBlockSizeException | InvalidKeyException | InvalidAlgorithmParameterException e) {
             Toast.makeText(context, WRITE_ERROR, Toast.LENGTH_LONG ).show();
             e.printStackTrace();
         }

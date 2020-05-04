@@ -1,6 +1,8 @@
 package com.itesm.healthchain.nfc;
 
-public class TagProfile {
+import java.io.Serializable;
+
+public class TagProfile implements Serializable {
 
     public String id;
     public String name;

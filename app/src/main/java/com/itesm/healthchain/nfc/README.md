@@ -26,3 +26,7 @@ Para escribir los datos del TagProfile en una tarjeta NFC, llamar ```confirmTagW
 ### Leer/Escribir TagProfile
 
 Como los atributos de ```tagProfile``` son públicos, basta con llamarlos directamente. Ejemplo: ```tagProfile.id```.
+
+### Cifrado
+
+El cifrado y descifrado es transparente para el usuario. Es posible observarlo al querer leer en otra aplicación una tarjeta NFC ya cifrada. Por ahora, se hace uso de cifrado simétrico con AES/CBC/PKCS5Padding. Se utilizan una llave secreta y vectores de inicialización actualmente estáticos e iguales para todos los usuarios. Estos se encuentran como recursos en la carpeta ```/assets```. No es ideal pero al menos permite que no puedan extraerse los datos sin los archivos contenidos en la aplicación.

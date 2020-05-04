@@ -1,6 +1,8 @@
 package com.itesm.healthchain.nfc;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.nfc.FormatException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -8,18 +10,44 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Parcelable;
-import android.util.Log;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SealedObject;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 
 class NfcReader {
 
     // Total de campos que debe contener el tag
-    private final int tagLength = 12;
+    private final int tagLength = 1;
+    private Cipher cipher;
+    private SecretKey key;
+    private byte[] iv;
 
-    NfcReader() {
+    NfcReader(Context ctx) throws NoSuchAlgorithmException, IOException, ClassNotFoundException, NoSuchPaddingException {
+        AssetManager assetManager = ctx.getAssets();
+        InputStream kis = assetManager.open("secretKey.txt");
+        ObjectInputStream ois = new ObjectInputStream(kis);
+        key = (SecretKey) ois.readObject();
+        kis.close();
+        iv = new byte[16];
+        InputStream vis = assetManager.open("iv.txt");
+        vis.read(iv);
+        vis.close();
+        cipher = Cipher.getInstance( key.getAlgorithm() + "/CBC/PKCS5Padding" );
     }
 
     // LECTURA DE TAGS
@@ -30,7 +58,7 @@ class NfcReader {
                     || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
                     || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
                 Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
-                NdefMessage[] msgs = null;
+                NdefMessage[] msgs;
                 if (rawMsgs != null) {
                     msgs = new NdefMessage[rawMsgs.length];
                     for (int i = 0; i < rawMsgs.length; i++) {
@@ -48,87 +76,51 @@ class NfcReader {
         try {
             if (msgs == null || msgs.length == 0) throw new EmptyTagException();
             String[] records = new String[msgs[0].getRecords().length];
-//        String tagId = new String(msgs[0].getRecords()[0].getType());
             if(records.length == tagLength) {
-                for (int i = 0; i < records.length; i++) {
-                    records[i] = buildText(msgs[0].getRecords()[i].getPayload());
-                }
-                return new TagProfile(records);
+                return decryptProfile(msgs[0].getRecords()[0].getPayload());
             } else throw new ImproperTagException();
         } catch (ImproperTagException e) {
             // Toast for improper tag
             return new TagProfile();
-        } catch (EmptyTagException e) {
+        } catch (Exception e) {
             return new TagProfile();
         }
     }
 
-    private String buildText(byte[] payload){
-        String text = "";
-        String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get the Text Encoding
-        int languageCodeLength = payload[0] & 0063; // Get the Language Code, e.g. "en"
-        // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
 
-        try {
-            // Get the Text
-            text = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
-        } catch (UnsupportedEncodingException e) {
-            Log.e("UnsupportedEncoding", e.toString());
-        }
-
-        return text;
+    private TagProfile decryptProfile(byte[] bytes) throws IOException, ClassNotFoundException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        ObjectInputStream ois = new ObjectInputStream(bis);
+        SealedObject sealedObject = (SealedObject) ois.readObject();
+        cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
+        return (TagProfile) sealedObject.getObject(cipher);
     }
-
-
 
 
     // ESCRITURA DE TAGS
-    void writeToTag(TagProfile profile, Tag tag) throws IOException, FormatException {
-        NdefRecord[] records = {
-                createRecord(profile.id),
-                createRecord(profile.name),
-                createRecord(profile.birthDate),
-                createRecord(profile.bloodType),
-                createRecord(profile.weight),
-                createRecord(profile.height),
-                createRecord(profile.hospital),
-                createRecord(profile.ailments),
-                createRecord(profile.allergies),
-                createRecord(profile.contactName),
-                createRecord(profile.contactPhone),
-                createRecord(profile.contactRelationship)
-        };
-        NdefMessage message = new NdefMessage(records);
-        // Get an instance of Ndef for the tag.
+    void writeToTag(TagProfile profile, Tag tag) throws IOException, FormatException, IllegalBlockSizeException, InvalidKeyException, InvalidAlgorithmParameterException {
+        NdefRecord[] encryptedRecord = { createEncryptedRecord(profile) };
+        NdefMessage encryptedMessage = new NdefMessage(encryptedRecord);
         Ndef ndef = Ndef.get(tag);
-        // Enable I/O
         ndef.connect();
-        // Write the message
-        ndef.writeNdefMessage(message);
-        // Close the connection
+        ndef.writeNdefMessage(encryptedMessage);
         ndef.close();
     }
 
-    private NdefRecord createRecord(String text) throws UnsupportedEncodingException {
-        String lang       = "en";
-        byte[] textBytes  = text.getBytes();
-        byte[] langBytes  = lang.getBytes(StandardCharsets.US_ASCII);
-        int    langLength = langBytes.length;
-        int    textLength = textBytes.length;
-        byte[] payload    = new byte[1 + langLength + textLength];
-
-        // set status byte (see NDEF spec for actual bits)
-        payload[0] = (byte) langLength;
-
-        // copy langbytes and textbytes into payload
-        System.arraycopy(langBytes, 0, payload, 1,              langLength);
-        System.arraycopy(textBytes, 0, payload, 1 + langLength, textLength);
-
-        return new NdefRecord(NdefRecord.TNF_WELL_KNOWN,  NdefRecord.RTD_TEXT,  new byte[0], payload);
+    private NdefRecord createEncryptedRecord(TagProfile tagProfile) throws IOException, InvalidKeyException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+        byte[] profileBytes = encryptProfile(tagProfile);
+        return new NdefRecord(NdefRecord.TNF_WELL_KNOWN,  NdefRecord.RTD_TEXT,  new byte[0], profileBytes);
     }
 
-
-
+    private byte[] encryptProfile(TagProfile tagProfile) throws InvalidKeyException, IOException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+        cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
+        SealedObject sealedProfile = new SealedObject(tagProfile, cipher);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(sealedProfile);
+        oos.flush();
+        return bos.toByteArray();
+    }
 
     private static class NotNfcActionException extends RuntimeException {
         NotNfcActionException() {}
