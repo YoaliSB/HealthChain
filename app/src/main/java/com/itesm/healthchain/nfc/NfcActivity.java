@@ -10,8 +10,10 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.itesm.healthchain.R;
 import com.itesm.healthchain.models.TagProfile;
 
+import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -25,14 +27,10 @@ import javax.crypto.NoSuchPaddingException;
 
 public abstract class NfcActivity extends AppCompatActivity implements NfcWriteDialogFragment.NFCTagWriteDialogListener{
 
-    public static final String ERROR_DETECTED = "No NFC tag detected!";
-    public static final String WRITE_SUCCESS = "Text written to the NFC tag successfully!";
-    public static final String WRITE_ERROR = "Error during writing, is the NFC tag close enough to your device?";
-
     protected Context context;
     protected NfcAdapter nfcAdapter;
     protected NfcReader nfcReader;
-    protected TagProfile tagProfile;
+    public TagProfile tagProfile;
     protected PendingIntent pendingIntent;
     protected IntentFilter[] writeTagFilters;
     protected Tag myTag;
@@ -104,21 +102,35 @@ public abstract class NfcActivity extends AppCompatActivity implements NfcWriteD
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
-        isWriting = false;
+        onNfcWriteCancel();
     }
 
     protected void attemptWriteToTag(){
         try {
             if(myTag ==null) {
-                Toast.makeText(context, ERROR_DETECTED, Toast.LENGTH_LONG).show();
+                onNfcWriteError();
             } else {
                 nfcReader.writeToTag(tagProfile, myTag);
-                Toast.makeText(context, WRITE_SUCCESS, Toast.LENGTH_LONG ).show();
+                onNfcWriteSuccess();
             }
-        } catch (IOException | FormatException | IllegalBlockSizeException | InvalidKeyException | InvalidAlgorithmParameterException e) {
-            Toast.makeText(context, WRITE_ERROR, Toast.LENGTH_LONG ).show();
+        } catch (IOException | FormatException | IllegalBlockSizeException | InvalidKeyException |
+                InvalidAlgorithmParameterException e) {
+            onNfcWriteError();
             e.printStackTrace();
         }
+    }
+
+    protected void onNfcWriteSuccess() {
+        Toast.makeText(context, getResources().getString(R.string.nfc_write_success), Toast.LENGTH_LONG ).show();
+    }
+
+    protected void onNfcWriteError() {
+        Toast.makeText(context, getResources().getString(R.string.nfc_write_error), Toast.LENGTH_LONG).show();
+    }
+
+    @CallSuper
+    protected void onNfcWriteCancel() {
+        isWriting = false;
     }
 
     protected void writeModeOn(){

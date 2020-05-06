@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.models.PersonalData;
+import com.itesm.healthchain.nfc.NfcActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,7 +45,12 @@ public class PersonalEditFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(getParentFragment()).navigateUp();
+                NfcActivity activity = (NfcActivity) getActivity();
+                activity.tagProfile.setContactName(contactName.getText().toString());
+                activity.tagProfile.setContactPhone(contactPhone.getText().toString());
+                activity.tagProfile.setContactRelationship(contactRelationship.getText().toString());
+                activity.tagProfile.setHospital(hospital.getText().toString());
+                activity.confirmTagWrite();
             }
         });
 

@@ -17,6 +17,22 @@ public class TagProfile implements Serializable {
     private String contactPhone;
     private String contactRelationship;
 
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public void setContactRelationship(String contactRelationship) {
+        this.contactRelationship = contactRelationship;
+    }
+
     public TagProfile(){
 
         this.id = "";

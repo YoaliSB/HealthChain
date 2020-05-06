@@ -97,13 +97,14 @@ class NfcReader {
 
 
     // ESCRITURA DE TAGS
-    void writeToTag(TagProfile profile, Tag tag) throws IOException, FormatException, IllegalBlockSizeException, InvalidKeyException, InvalidAlgorithmParameterException {
-        NdefRecord[] encryptedRecord = { createEncryptedRecord(profile) };
-        NdefMessage encryptedMessage = new NdefMessage(encryptedRecord);
-        Ndef ndef = Ndef.get(tag);
-        ndef.connect();
-        ndef.writeNdefMessage(encryptedMessage);
-        ndef.close();
+    void writeToTag(TagProfile profile, Tag tag) throws IOException, FormatException,
+            IllegalBlockSizeException, InvalidKeyException, InvalidAlgorithmParameterException {
+            NdefRecord[] encryptedRecord = { createEncryptedRecord(profile) };
+            NdefMessage encryptedMessage = new NdefMessage(encryptedRecord);
+            Ndef ndef = Ndef.get(tag);
+            ndef.connect();
+            ndef.writeNdefMessage(encryptedMessage);
+            ndef.close();
     }
 
     private NdefRecord createEncryptedRecord(TagProfile tagProfile) throws IOException, InvalidKeyException, IllegalBlockSizeException, InvalidAlgorithmParameterException {

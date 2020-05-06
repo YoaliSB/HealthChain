@@ -115,4 +115,20 @@ public class PersonalData {
     public String getAllergies() {
         return allergies;
     }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public void setContactRelationship(String contactRelationship) {
+        this.contactRelationship = contactRelationship;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
 }

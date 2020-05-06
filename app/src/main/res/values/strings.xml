@@ -11,6 +11,9 @@
 
     <!-- NFC Fragment -->
     <string name="nfc_instructions">Acerque la tarjeta NFC al teléfono</string>
+    <string name="no_nfc">No se detecta la tarjeta NFC</string>
+    <string name="nfc_write_success">Se escribió la información correctamente en la tarjeta</string>
+    <string name="nfc_write_error">Hubo un error al escribir. Acerca la tarjeta al dispositivo</string>
 
     <!-- Personal Data Fragment -->
     <string name="label_name">Nombre</string>

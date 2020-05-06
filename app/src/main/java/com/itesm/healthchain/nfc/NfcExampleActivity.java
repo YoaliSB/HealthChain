@@ -65,7 +65,7 @@ public class NfcExampleActivity extends NfcActivity {
                     contactPhoneView.setText("");
                     contactRelationshipView.setText("");
                 } catch (Exception e) {
-                    Toast.makeText(context, WRITE_ERROR, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "WRITE_ERROR", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
