@@ -51,8 +51,6 @@ public class PersonalDataFragment extends Fragment {
             @Override
             public void onChanged(@Nullable PersonalData data) {
                 if (data == null) {
-                    // TODO: Call updateProfileState() -> check if data, show profile if not empty
-                    // Include nfc fragment in layout and toggle it
                     nfcScreen.setVisibility(View.VISIBLE);
                     fields.setVisibility(View.GONE);
                 } else {

@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.itesm.healthchain.models.PersonalData;
-import com.itesm.healthchain.models.TagProfile;
 import com.itesm.healthchain.nfc.NfcActivity;
 import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
