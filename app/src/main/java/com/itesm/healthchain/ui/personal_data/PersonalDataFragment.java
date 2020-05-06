@@ -40,19 +40,17 @@ public class PersonalDataFragment extends Fragment {
         final View nfcScreen = root.findViewById(R.id.nfc_screen);
         final View fields = root.findViewById(R.id.fields);
 
-        nfcScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                personalDataViewModel.setData(new PersonalData(new TagProfile()));
-            }
-        });
+//        nfcScreen.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                personalDataViewModel.setData(new PersonalData(new TagProfile()));
+//            }
+//        });
 
         personalDataViewModel.getData().observe(getViewLifecycleOwner(), new Observer<PersonalData>() {
             @Override
             public void onChanged(@Nullable PersonalData data) {
                 if (data == null) {
-                    // TODO: Call updateProfileState() -> check if data, show profile if not empty
-                    // Include nfc fragment in layout and toggle it
                     nfcScreen.setVisibility(View.VISIBLE);
                     fields.setVisibility(View.GONE);
                 } else {
