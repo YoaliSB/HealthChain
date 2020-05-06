@@ -8,13 +8,17 @@
 
     <include layout="@layout/nfc_screen"
         android:id="@+id/nfc_screen"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        tools:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fields"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-50dp"
+        tools:visibility="visible">
 
         <TextView
             android:id="@+id/label_name"
@@ -110,67 +114,6 @@
             app:layout_constraintTop_toTopOf="@+id/label_height"
             app:layout_constraintVertical_bias="0" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="337dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_weight">
-
-            <TextView
-                android:id="@+id/title_contact"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/title_contacto"
-                android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginStart="2dp"
-                android:src="@drawable/ic_phone_pdark_24dp"
-                app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
-                app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
-                app:layout_constraintTop_toTopOf="@+id/text_contact_phone" />
-
-            <TextView
-                android:id="@+id/text_contact_name"
-                style="@style/DefaultText"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_contact" />
-
-            <TextView
-                android:id="@+id/text_contact_phone"
-                style="@style/DefaultText"
-                android:layout_marginStart="0dp"
-                app:layout_constraintStart_toStartOf="@+id/text_contact_name"
-                app:layout_constraintTop_toBottomOf="@+id/text_contact_name" />
-
-            <TextView
-                android:id="@+id/text_contact_relationship"
-                style="@style/DefaultText"
-                android:layout_marginStart="72dp"
-                app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
-                app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
-                app:layout_constraintTop_toTopOf="@+id/text_contact_phone"
-                app:layout_constraintVertical_bias="1.0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <TextView
             android:id="@+id/label_hospital"
             style="@style/DefaultLabel"
@@ -182,6 +125,18 @@
             app:layout_constraintStart_toStartOf="@+id/label_weight"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
             app:layout_constraintVertical_bias="0" />
+
+        <ImageView
+            android:id="@+id/edit_btn2"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:contentDescription="@string/title_edit"
+            android:src="@drawable/ic_edit_plight_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/label_hospital"
+            app:layout_constraintStart_toEndOf="@+id/label_hospital"
+            app:layout_constraintTop_toTopOf="@+id/label_hospital"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/text_hospital"
@@ -221,5 +176,78 @@
             app:layout_constraintStart_toStartOf="@+id/label_ailments"
             app:layout_constraintTop_toBottomOf="@+id/label_allergies" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="337dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_weight">
+
+            <TextView
+                android:id="@+id/title_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/title_contacto"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/edit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/title_edit"
+                android:src="@drawable/ic_edit_plight_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_contact_name"
+                style="@style/DefaultText"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_contact" />
+
+            <TextView
+                android:id="@+id/text_contact_phone"
+                style="@style/DefaultText"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="0dp"
+                app:layout_constraintStart_toStartOf="@+id/text_contact_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_contact_name" />
+
+            <ImageView
+                android:id="@+id/phone_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginStart="2dp"
+                android:contentDescription="@string/content_phone"
+                android:src="@drawable/ic_phone_pdark_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
+                app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
+                app:layout_constraintTop_toTopOf="@+id/text_contact_phone" />
+
+            <TextView
+                android:id="@+id/text_contact_relationship"
+                style="@style/DefaultText"
+                android:layout_marginStart="72dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
+                app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
+                app:layout_constraintTop_toTopOf="@+id/text_contact_phone"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

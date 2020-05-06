@@ -22,6 +22,10 @@
     <string name="label_hospital">Hospital de preferencia</string>
     <string name="label_ailments">Condiciones médicas conocidas</string>
     <string name="label_allergies">Alergias conocidas</string>
+    <string name="content_phone">Llamar contacto de emergencia</string>
+
+    <!-- Personal Edit Fragment -->
+    <string name="title_edit">Editar datos personales</string>
 
     <!-- Main Records Fragment -->
     <string name="label_prescriptions">Recetas Médicas</string>

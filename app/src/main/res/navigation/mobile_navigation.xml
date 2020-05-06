@@ -13,6 +13,12 @@
         android:label="@string/title_personal_data"
         tools:layout="@layout/personal_fragment" />
 
+    <fragment
+        android:id="@+id/navigation_personal_edit"
+        android:name="com.itesm.healthchain.ui.personal_data.PersonalEditFragment"
+        android:label="@string/title_edit"
+        tools:layout="@layout/personal_edit_fragment" />
+
     <!-- Medical Records -->
 
     <fragment

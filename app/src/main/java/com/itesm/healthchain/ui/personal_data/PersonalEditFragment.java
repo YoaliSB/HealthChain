@@ -1,25 +1,24 @@
 package com.itesm.healthchain.ui.personal_data;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.models.PersonalData;
-import com.itesm.healthchain.models.TagProfile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-public class PersonalDataFragment extends Fragment {
+public class PersonalEditFragment extends Fragment {
 
     private PersonalDataViewModel personalDataViewModel;
 
@@ -27,7 +26,7 @@ public class PersonalDataFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         personalDataViewModel =
                 ViewModelProviders.of(getActivity()).get(PersonalDataViewModel.class);
-        View root = inflater.inflate(R.layout.personal_fragment, container, false);
+        View root = inflater.inflate(R.layout.personal_edit_fragment, container, false);
 
         final TextView name = root.findViewById(R.id.text_name);
         final TextView age = root.findViewById(R.id.text_age);
@@ -40,44 +39,18 @@ public class PersonalDataFragment extends Fragment {
         final TextView hospital = root.findViewById(R.id.text_hospital);
         final TextView ailments = root.findViewById(R.id.list_ailments);
         final TextView allergies = root.findViewById(R.id.list_allergies);
-        final View nfcScreen = root.findViewById(R.id.nfc_screen);
-        final View fields = root.findViewById(R.id.fields);
-        final View editButton = root.findViewById(R.id.edit_btn);
-        final View editButton2 = root.findViewById(R.id.edit_btn2);
-        final View phoneButton = root.findViewById(R.id.phone_btn);
+        final Button saveButton = root.findViewById(R.id.save_btn);
 
-        final View.OnClickListener editPersonalData = new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.navigation_personal_edit);
-            }
-        };
-        editButton.setOnClickListener(editPersonalData);
-        editButton2.setOnClickListener(editPersonalData);
-
-        nfcScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                personalDataViewModel.setData(new PersonalData(new TagProfile()));
-            }
-        });
-
-        phoneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL,
-                        Uri.fromParts("tel", contactPhone.getText().toString(), null));
-                startActivity(intent);
+                NavHostFragment.findNavController(getParentFragment()).navigateUp();
             }
         });
 
         personalDataViewModel.getData().observe(getViewLifecycleOwner(), new Observer<PersonalData>() {
             @Override
             public void onChanged(@Nullable PersonalData data) {
-                if (data == null) {
-                    nfcScreen.setVisibility(View.VISIBLE);
-                    fields.setVisibility(View.GONE);
-                } else {
                     name.setText(data.getName());
                     age.setText(data.getBirthDate());
                     blood.setText(data.getBlood());
@@ -89,9 +62,6 @@ public class PersonalDataFragment extends Fragment {
                     hospital.setText(data.getHospital());
                     ailments.setText(data.getAilments());
                     allergies.setText(data.getAllergies());
-                    nfcScreen.setVisibility(View.GONE);
-                    fields.setVisibility(View.VISIBLE);
-                }
             }
         });
         return root;

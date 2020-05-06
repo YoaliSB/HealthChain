@@ -38,9 +38,9 @@ public class PatientActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 //
-//        PersonalDataViewModel personalDataViewModel =
-//                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
-//        personalDataViewModel.setData(new PersonalData(new TagProfile()));
+        PersonalDataViewModel personalDataViewModel =
+                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
+        personalDataViewModel.setData(new PersonalData(new TagProfile()));
     }
 
 }
