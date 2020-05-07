@@ -16,11 +16,15 @@ public class RecordsMainFragment extends Fragment implements View.OnClickListene
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.main_records_fragment, container, false);
+
         View recordsButton = root.findViewById(R.id.btn_records);
         recordsButton.setOnClickListener(this);
 
         View prescriptionsButton = root.findViewById(R.id.btn_prescriptions);
         prescriptionsButton.setOnClickListener(this);
+
+        View doctorsButton = root.findViewById(R.id.btn_doctors);
+        doctorsButton.setOnClickListener(this);
         return root;
     }
 
@@ -33,6 +37,8 @@ public class RecordsMainFragment extends Fragment implements View.OnClickListene
             case R.id.btn_prescriptions:
                 replaceFragment(R.id.navigation_prescriptions);
                 break;
+            case R.id.btn_doctors:
+                replaceFragment(R.id.navigation_doctors);
         }
     }
 

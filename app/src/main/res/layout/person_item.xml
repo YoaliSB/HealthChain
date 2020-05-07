@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:layout_editor_absoluteX="1dp"
-    tools:layout_editor_absoluteY="1dp">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="4dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin">
 
         <TextView
             android:id="@+id/text_name"
             style="@style/DefaultLabel"
+            android:layout_width="286dp"
             android:layout_marginStart="12dp"
-            tools:text="Juanito Perez" />
+            tools:text="Juanito Perez Rodriguez" />
 
         <TextView
             android:id="@+id/text_desc"
             style="@style/DefaultText"
             tools:text="Nutriologo" />
+
     </LinearLayout>
 
-    <Switch
-        android:id="@+id/swtich_activated"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:layout_margin="24dp"
-        android:thumbTint="@color/colorPrimaryLight" />
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:contentDescription="@string/delete_doctor"
+        app:srcCompat="@drawable/ic_delete_secondary_24dp" />
+
 </LinearLayout>

@@ -39,6 +39,12 @@
         android:label="@string/label_prescriptions"
         tools:layout="@layout/prescriptions_fragment"/>
 
+    <fragment
+        android:id="@+id/navigation_doctors"
+        android:name="com.itesm.healthchain.ui.medical_records.DoctorsFragment"
+        android:label="@string/title_doctors"
+        tools:layout="@layout/recyclerview_fragment"/>
+
     <!-- Settings -->
 
     <fragment

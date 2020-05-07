@@ -55,6 +55,11 @@
 
     <string name="empty_prescriptions">Aún no te han recetado ningún medicamento</string>
 
+    <!-- Doctors Fragment -->
+    <string name="title_doctors">Profesionales consultados </string>
+    <string name="delete_doctor">Restringir información a este profesional</string>
+    <string name="empty_doctors">No tienes agregado a ningún profesional</string>
+
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>
     <string name="logout">Cerrar Sesión</string>
