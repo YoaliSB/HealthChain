@@ -30,17 +30,17 @@ public class LoginActivity extends AppCompatActivity {
     private static final String url2 = "https://jsonplaceholder.typicode.com/posts"; //URL para pruebas de post
     private static final String url = "https://localhost:3000/api/login"; //URL para pruebas de post
     private static final String ngrok = "https://health-chain-api.herokuapp.com/api/login";
-    EditText editemail,editpass;
+    EditText editemail, editpass;
     Button btnLogin;
     TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        tv=(TextView)findViewById(R.id.textSignUp);
-        editemail=(EditText)findViewById(R.id.etemail);
-        editpass=(EditText)findViewById(R.id.etpass);
-        btnLogin=(Button)findViewById(R.id.btnlogin);
+        tv = (TextView)findViewById(R.id.textSignUp);
+        editemail = (EditText)findViewById(R.id.etemail);
+        editpass = (EditText)findViewById(R.id.etpass);
+        btnLogin = (Button)findViewById(R.id.btnlogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,8 +69,8 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }) {
                         @Override
-                        protected Map<String,String> getParams(){
-                            Map<String,String> params = new HashMap<String, String>();
+                        protected Map<String, String> getParams(){
+                            Map<String, String> params = new HashMap<>();
                             params.put("email",email);
                             params.put("passweod",pass);
                             return params;
