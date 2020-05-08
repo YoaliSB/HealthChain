@@ -16,7 +16,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -37,15 +36,15 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        tv = (TextView)findViewById(R.id.textSignUp);
-        editemail = (EditText)findViewById(R.id.etemail);
-        editpass = (EditText)findViewById(R.id.etpass);
-        btnLogin = (Button)findViewById(R.id.btnlogin);
+        tv = findViewById(R.id.textSignUp);
+        editemail = findViewById(R.id.etemail);
+        editpass = findViewById(R.id.etpass);
+        btnLogin = findViewById(R.id.btnlogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email=editemail.getText().toString().trim();
-                final String pass=editpass.getText().toString().trim();
+                final String email = editemail.getText().toString().trim();
+                final String pass = editpass.getText().toString().trim();
 
                 JSONObject jsonBody = new JSONObject();
 
@@ -53,26 +52,33 @@ public class LoginActivity extends AppCompatActivity {
                     jsonBody.put("email", email);
                     jsonBody.put("password", pass);
 
-                    JsonObjectRequest jsonOblect = new JsonObjectRequest(Request.Method.POST, ngrok, jsonBody, new Response.Listener<JSONObject>() {
+                    JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, ngrok,
+                            jsonBody, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-
-                            Toast.makeText(getApplicationContext(), "Response:  " + response.toString(), Toast.LENGTH_SHORT).show();
                             Log.i("respuesta", response.toString());
+                            try {
+                                String role = response.getJSONObject("data")
+                                        .getJSONArray("roles")
+                                        .getJSONObject(0)
+                                        .getString("name");
+                                login(role);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-
-                            onBackPressed();
-
+                            Toast.makeText(getApplicationContext(), getString(R.string.login_error),
+                                    Toast.LENGTH_LONG).show();
                         }
                     }) {
                         @Override
                         protected Map<String, String> getParams(){
                             Map<String, String> params = new HashMap<>();
-                            params.put("email",email);
-                            params.put("passweod",pass);
+                            params.put("email", email);
+                            params.put("password", pass);
                             return params;
                         }
 
@@ -84,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     };
                     RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-                    requestQueue.add(jsonOblect);
+                    requestQueue.add(jsonObject);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -187,9 +193,29 @@ public class LoginActivity extends AppCompatActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+
+    }
+
+    private void login(String role) {
+        switch (role) {
+            case "user":
+                startActivity(new Intent(LoginActivity.this,
+                        PatientActivity.class));
+                break;
+            case "paramedic":
+                startActivity(new Intent(LoginActivity.this,
+                        ParamedicActivity.class));
+                break;
+            case "doctor":
+                startActivity(new Intent(LoginActivity.this,
+                        DoctorActivity.class));
+                break;
+            default:
+                Toast.makeText(getApplicationContext(), "whoops", Toast.LENGTH_LONG).show();
+        }
 
     }
 }
