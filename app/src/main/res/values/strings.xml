@@ -9,6 +9,16 @@
     <string name="title_settings">Configuración</string>
     <string name="save">Guardar</string>
 
+    <!-- Log In / Register Activity-->
+    <string name="email">E-mail</string>
+    <string name="pwd">Contraseña</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="register">Registrarse</string>
+    <string name="name">Nombre</string>
+    <string name="phone">Teléfono</string>
+    <string name="pin">Pin</string>
+    <string name="confirm_pwd">Confirmar Contraseña</string>
+
     <!-- NFC Fragment -->
     <string name="nfc_instructions">Acerque la tarjeta NFC al teléfono</string>
     <string name="no_nfc">No se detecta la tarjeta NFC</string>
