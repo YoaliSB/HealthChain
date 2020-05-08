@@ -15,12 +15,10 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {// a thread in Android
             @Override
             public void run() {
-                Intent intent = new Intent( SplashActivity.this  ,  PatientActivity.class  );
+                Intent intent = new Intent( SplashActivity.this, LoginActivity.class  );
                 startActivity(intent);
                 finish();
             }
         },3000);
     }
 }
-
-
