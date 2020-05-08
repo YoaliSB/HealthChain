@@ -23,6 +23,11 @@
 
     <!-- Doctor Main Fragment -->
     <string name="text_home">Principal</string>
+    <string name="text_patients">Mis Pacientes</string>
+    <string name="text_new_entry">Nueva Consulta</string>
+
+    <!-- Paramedic -->
+    <string name="emergency_info">Información Paciente</string>
 
     <!-- NFC Fragment -->
     <string name="nfc_instructions">Acerque la tarjeta NFC al teléfono</string>

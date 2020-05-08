@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/doctor_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <!-- Medical Records -->
+    <fragment
+        android:id="@+id/navigation_medical_records"
+        android:name="com.itesm.healthchain.ui.medical_records.MedicalRecordsFragment"
+        android:label="@string/title_medical_records"
+        tools:layout="@layout/medical_records_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_prescriptions"
+        android:name="com.itesm.healthchain.ui.medical_records.PrescriptionFragment"
+        android:label="@string/label_prescriptions"
+        tools:layout="@layout/prescriptions_fragment"/>
+
+    <!-- Settings -->
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.itesm.healthchain.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/settings_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="com.itesm.healthchain.ui.settings.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/about_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.itesm.healthchain.ui.settings.AccountSettingsFragment"
+        android:label="@string/edit_profile"
+        tools:layout="@layout/account_settings_fragment"/>
+
+    <!-- NFC -->
+    <fragment
+        android:id="@+id/navigation_nfc"
+        android:name="com.itesm.healthchain.nfc.NfcFragment"
+        tools:layout="@layout/nfc_screen"/>
+
+    <!-- Doctor Home -->
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.itesm.healthchain.ui.home.HomeFragment"
+        android:label="@string/text_home"
+        tools:layout="@layout/home_fragment"/>
+</navigation>

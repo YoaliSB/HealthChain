@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -38,6 +39,8 @@ public class ParamedicActivity extends NfcActivity {
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        navController.setGraph(R.navigation.mobile_navigation);
 
         // Testing
 //        PersonalDataViewModel personalDataViewModel =
