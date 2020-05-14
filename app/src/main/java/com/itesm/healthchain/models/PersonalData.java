@@ -1,13 +1,10 @@
 package com.itesm.healthchain.models;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class PersonalData {
 
-    private int id;
+    private String id;
     private String name;
-    private int age;
+    private String birthDate;
     private String blood;
     private double weight;
     private double height;
@@ -15,15 +12,15 @@ public class PersonalData {
     private String contactPhone;
     private String contactRelationship;
     private String hospital;
-    private List<String> ailments;
-    private List<String> allergies;
+    private String ailments;
+    private String allergies;
 
-    public PersonalData(String name, int age, String blood, int weight, int height,
+    public PersonalData(String id, String name, String birthDate, String blood, int weight, int height,
                         String contactName, String contactPhone, String contactRelationship,
-                        String hospital, List<String> ailments, List<String> allergies) {
-        // this.id = ?;
+                        String hospital, String ailments, String allergies) {
+        this.id = id;
         this.name = name;
-        this.age = age;
+        this.birthDate = birthDate;
         this.blood = blood;
         this.weight = weight;
         this.height = height;
@@ -36,9 +33,9 @@ public class PersonalData {
     }
 
     public PersonalData() {
-        this.id = 1;
+        this.id = "1";
         this.name = "Juanito Pérez Rodríguez";
-        this.age = 27;
+        this.birthDate = "27/03/1985";
         this.blood = "A+";
         this.weight = 75;
         this.height = 170;
@@ -46,11 +43,26 @@ public class PersonalData {
         this.contactPhone = "5588996622";
         this.contactRelationship = "Madre";
         this.hospital = "Hospital Español";
-        this.ailments = new LinkedList<>();
-        this.allergies = new LinkedList<>();
+        this.ailments = "Diabetes tipo 1, fumador";
+        this.allergies = "Ninguna";
     }
 
-    public int getId() {
+    public PersonalData(TagProfile tagProfile){
+        this.id = tagProfile.getId();
+        this.name = tagProfile.getName();
+        this.birthDate = tagProfile.getBirthDate();
+        this.blood = tagProfile.getBloodType();
+        this.weight = Double.parseDouble(tagProfile.getWeight());
+        this.height = Double.parseDouble(tagProfile.getHeight());
+        this.hospital = tagProfile.getHospital();
+        this.ailments = tagProfile.getAilments();
+        this.allergies = tagProfile.getAllergies();
+        this.contactName = tagProfile.getContactName();
+        this.contactPhone = tagProfile.getContactPhone();
+        this.contactRelationship = tagProfile.getContactRelationship();
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -58,11 +70,8 @@ public class PersonalData {
         return name;
     }
 
-    public String getAge() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(age);
-        sb.append(" años");
-        return sb.toString();
+    public String getBirthDate() {
+        return birthDate;
     }
 
     public String getBlood() {
@@ -99,11 +108,27 @@ public class PersonalData {
         return hospital;
     }
 
-    public List<String> getAilments() {
+    public String getAilments() {
         return ailments;
     }
 
-    public List<String> getAllergies() {
+    public String getAllergies() {
         return allergies;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public void setContactRelationship(String contactRelationship) {
+        this.contactRelationship = contactRelationship;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 }

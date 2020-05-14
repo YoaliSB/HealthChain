@@ -7,7 +7,34 @@
     <string name="title_nfc">NFC</string>
     <string name="title_personal_data">Mis Datos</string>
     <string name="title_settings">Configuración</string>
-    
+    <string name="save">Guardar</string>
+
+    <!-- Log In / Register Activity-->
+    <string name="email">E-mail</string>
+    <string name="pwd">Contraseña</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="register">Registrarse</string>
+    <string name="name">Nombre</string>
+    <string name="phone">Teléfono</string>
+    <string name="pin">Pin</string>
+    <string name="confirm_pwd">Confirmar Contraseña</string>
+    <string name="login_error">Usuario y contraseña no válidos.</string>
+    <string name="register_error">Error al registrar usuario.</string>
+
+    <!-- Doctor Main Fragment -->
+    <string name="text_home">Principal</string>
+    <string name="text_patients">Mis Pacientes</string>
+    <string name="text_new_entry">Nueva Consulta</string>
+
+    <!-- Paramedic -->
+    <string name="emergency_info">Información Paciente</string>
+
+    <!-- NFC Fragment -->
+    <string name="nfc_instructions">Acerque la tarjeta NFC al teléfono</string>
+    <string name="no_nfc">No se detecta la tarjeta NFC</string>
+    <string name="nfc_write_success">Se escribió la información correctamente en la tarjeta</string>
+    <string name="nfc_write_error">Hubo un error al escribir. Acerca la tarjeta al dispositivo</string>
+
     <!-- Personal Data Fragment -->
     <string name="label_name">Nombre</string>
     <string name="label_age">Edad</string>
@@ -18,16 +45,63 @@
     <string name="label_hospital">Hospital de preferencia</string>
     <string name="label_ailments">Condiciones médicas conocidas</string>
     <string name="label_allergies">Alergias conocidas</string>
+    <string name="content_phone">Llamar contacto de emergencia</string>
 
-    <!-- Medical Records Fragment -->
+    <!-- Personal Edit Fragment -->
+    <string name="title_edit">Editar datos personales</string>
+
+    <!-- Main Records Fragment -->
     <string name="label_prescriptions">Recetas Médicas</string>
     <string name="label_records">Historial Médico</string>
     <string name="label_documents">Documentos</string>
     <string name="label_doctors">Mis Doctores</string>
 
+    <!-- Medical Records Fragment -->
+    <string name="label_sex">Sexo</string>
+    <string name="label_ta">T.A.</string>
+    <string name="label_fc">F.C.</string>
+    <string name="label_fr">F.R.</string>
+    <string name="label_temp">TEMP</string>
+    <string name="label_bmi">I.M.C.</string>
+    <string name="label_observations">Observaciones</string>
+    <string name="label_prescription">Receta Médica</string>
+    <string name="header_dose">Dosis</string>
+    <string name="header_date">Fecha límite</string>
+
+    <!-- Prescription Header -->
+    <string name="prescription_name">Nombre</string>
+    <string name="prescription_dose">Dosis</string>
+    <string name="prescription_date">Fecha Límite</string>
+
+    <string name="empty_prescriptions">Aún no te han recetado ningún medicamento</string>
+
+    <!-- Doctors Fragment -->
+    <string name="title_doctors">Profesionales consultados </string>
+    <string name="delete_doctor">Restringir información a este profesional</string>
+    <string name="empty_doctors">No tienes agregado a ningún profesional</string>
+
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="about">Sobre HealthChain</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <!-- About Fragment -->
+    <string name="about_text">Esta aplicación fue desarrollada por alumnos del Instituto Tecnológico
+        y de Estudios Superiores de Monterrey para la materia de Proyecto integrador para el
+        desarrollo de soluciones empresariales impartida por el profesor Rafael Lozano Espinosa. \n
+        \n David Gómez Chiu		        A01334574
+        \n Diogo Burnay Rojas 			A01334970
+        \n José Alberto Jurado Hdez.	A01336656
+        \n Yoali Sotomayor Baqueiro 	A01650536
+        \n Kenyiro Tsuru González 		A01651095 </string>
 
 </resources>

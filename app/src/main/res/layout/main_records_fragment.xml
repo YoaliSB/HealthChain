@@ -10,6 +10,7 @@
         android:id="@+id/btn_prescriptions"
         style="@style/MainButtons"
         android:text="@string/label_prescriptions"
+        app:layout_constraintBottom_toTopOf="@+id/btn_records"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,25 +20,20 @@
         android:id="@+id/btn_records"
         style="@style/MainButtons"
         android:text="@string/label_records"
+        app:layout_constraintBottom_toTopOf="@+id/btn_doctors"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_prescriptions" />
 
     <Button
-        android:id="@+id/btn_documents"
-        android:text="@string/label_documents"
-        style="@style/MainButtons"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_records" />
-
-    <Button
         android:id="@+id/btn_doctors"
-        android:text="@string/label_doctors"
         style="@style/MainButtons"
+        android:text="@string/label_doctors"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_documents" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_records"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

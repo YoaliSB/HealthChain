@@ -21,7 +21,6 @@
     <TextView
         android:id="@+id/text_name"
         style="@style/DefaultText"
-        android:text="Juanito Pérez Rodríguez"
         app:layout_constraintBottom_toBottomOf="@+id/label_name"
         app:layout_constraintStart_toEndOf="@+id/label_name"
         app:layout_constraintTop_toTopOf="@+id/label_name" />
@@ -40,7 +39,6 @@
     <TextView
         android:id="@+id/text_age"
         style="@style/DefaultText"
-        android:text="27 años"
         app:layout_constraintBottom_toBottomOf="@+id/label_age"
         app:layout_constraintStart_toEndOf="@+id/label_age"
         app:layout_constraintTop_toTopOf="@+id/label_age" />
@@ -58,11 +56,11 @@
     <TextView
         android:id="@+id/text_blood"
         style="@style/DefaultText"
-        android:text="A+"
         app:layout_constraintBottom_toBottomOf="@+id/label_blood"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toEndOf="@+id/label_blood"
         app:layout_constraintTop_toTopOf="@+id/label_blood"
-        app:layout_constraintVertical_bias="1" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <TextView
         android:id="@+id/label_weight"
@@ -78,7 +76,6 @@
     <TextView
         android:id="@+id/text_weight"
         style="@style/DefaultText"
-        android:text="75 kg"
         app:layout_constraintBottom_toBottomOf="@+id/label_weight"
         app:layout_constraintStart_toEndOf="@+id/label_weight"
         app:layout_constraintTop_toTopOf="@+id/label_weight"
@@ -98,7 +95,6 @@
     <TextView
         android:id="@+id/text_height"
         style="@style/DefaultText"
-        android:text="170 cm"
         app:layout_constraintBottom_toBottomOf="@+id/label_height"
         app:layout_constraintStart_toEndOf="@+id/label_height"
         app:layout_constraintTop_toTopOf="@+id/label_height"
@@ -128,39 +124,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="1dp"
-            android:layout_marginStart="2dp"
-            android:src="@drawable/ic_phone_pdark_24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
-            app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
-            app:layout_constraintTop_toTopOf="@+id/text_contact_phone" />
-
-        <TextView
+        <EditText
             android:id="@+id/text_contact_name"
-            style="@style/DefaultText"
+            style="@style/EditText"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="María Rodríguez Blanco"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_contact" />
 
-        <TextView
+        <EditText
             android:id="@+id/text_contact_phone"
-            style="@style/DefaultText"
+            style="@style/EditText"
             android:layout_marginStart="0dp"
-            android:text="5566332211"
             app:layout_constraintStart_toStartOf="@+id/text_contact_name"
             app:layout_constraintTop_toBottomOf="@+id/text_contact_name" />
 
-        <TextView
+        <EditText
             android:id="@+id/text_contact_relationship"
-            style="@style/DefaultText"
+            style="@style/EditText"
             android:layout_marginStart="72dp"
-            android:text="Madre"
             app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
             app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
             app:layout_constraintTop_toTopOf="@+id/text_contact_phone"
@@ -180,12 +162,11 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:layout_constraintVertical_bias="0" />
 
-    <TextView
+    <EditText
         android:id="@+id/text_hospital"
-        style="@style/DefaultText"
+        style="@style/EditText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
-        android:text="Hospital Español"
         app:layout_constraintStart_toStartOf="@+id/label_hospital"
         app:layout_constraintTop_toBottomOf="@+id/label_hospital" />
 
@@ -196,10 +177,9 @@
         app:layout_constraintStart_toStartOf="@+id/label_hospital"
         app:layout_constraintTop_toBottomOf="@+id/text_hospital" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
         android:id="@+id/list_ailments"
-        android:layout_width="311dp"
-        android:layout_height="62dp"
+        style="@style/DefaultText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/label_ailments"
@@ -212,13 +192,25 @@
         app:layout_constraintStart_toStartOf="@+id/label_hospital"
         app:layout_constraintTop_toBottomOf="@+id/list_ailments" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
         android:id="@+id/list_allergies"
-        android:layout_width="311dp"
-        android:layout_height="62dp"
+        style="@style/DefaultText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/label_ailments"
         app:layout_constraintTop_toBottomOf="@+id/label_allergies" />
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/save"
+        android:textColor="@color/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
