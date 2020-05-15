@@ -3,15 +3,12 @@ package com.itesm.healthchain;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.itesm.healthchain.models.PersonalData;
-import com.itesm.healthchain.models.TagProfile;
+import com.itesm.healthchain.data.model.PersonalData;
+import com.itesm.healthchain.data.model.TagProfile;
 import com.itesm.healthchain.nfc.NfcActivity;
 import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;

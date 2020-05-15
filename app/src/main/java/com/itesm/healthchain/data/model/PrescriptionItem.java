@@ -1,4 +1,4 @@
-package com.itesm.healthchain.models;
+package com.itesm.healthchain.data.model;
 
 public class PrescriptionItem {
     private String name;

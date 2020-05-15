@@ -8,8 +8,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.models.Prescription;
-import com.itesm.healthchain.models.PrescriptionItem;
+import com.itesm.healthchain.data.model.Prescription;
+import com.itesm.healthchain.data.model.PrescriptionItem;
 
 import java.util.List;
 

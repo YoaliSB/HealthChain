@@ -1,6 +1,6 @@
 package com.itesm.healthchain.ui.medical_records;
 
-import com.itesm.healthchain.models.Prescription;
+import com.itesm.healthchain.data.model.Prescription;
 
 import java.util.ArrayList;
 

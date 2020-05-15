@@ -1,6 +1,6 @@
 package com.itesm.healthchain.ui.personal_data;
 
-import com.itesm.healthchain.models.PersonalData;
+import com.itesm.healthchain.data.model.PersonalData;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

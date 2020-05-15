@@ -8,7 +8,7 @@ import android.widget.ExpandableListView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.PrescriptionAdapter;
-import com.itesm.healthchain.models.Prescription;
+import com.itesm.healthchain.data.model.Prescription;
 
 import java.util.ArrayList;
 import java.util.List;
