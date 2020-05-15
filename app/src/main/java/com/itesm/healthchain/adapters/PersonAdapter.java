@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.models.Person;
+import com.itesm.healthchain.data.model.Person;
 
 import java.util.List;
 

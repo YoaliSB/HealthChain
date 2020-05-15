@@ -1,7 +1,6 @@
 package com.itesm.healthchain.ui.medical_records;
 
-import com.itesm.healthchain.models.MedicalRecord;
-import com.itesm.healthchain.models.Prescription;
+import com.itesm.healthchain.data.model.MedicalRecord;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,6 +1,6 @@
 package com.itesm.healthchain.ui.medical_records;
 
-import com.itesm.healthchain.models.Person;
+import com.itesm.healthchain.data.model.Person;
 
 import java.util.ArrayList;
 

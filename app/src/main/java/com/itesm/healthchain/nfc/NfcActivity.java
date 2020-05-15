@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.models.TagProfile;
+import com.itesm.healthchain.data.model.TagProfile;
 
 import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;

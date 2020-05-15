@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.models.PersonalData;
-import com.itesm.healthchain.models.TagProfile;
+import com.itesm.healthchain.data.model.PersonalData;
+import com.itesm.healthchain.data.model.TagProfile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
