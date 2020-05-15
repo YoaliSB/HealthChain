@@ -20,6 +20,10 @@ public class Result<T> {
         return "";
     }
 
+    public boolean isSuccess(){
+        return this instanceof Result.Success;
+    }
+
     // Success sub-class
     public final static class Success<T> extends Result {
         private T data;
