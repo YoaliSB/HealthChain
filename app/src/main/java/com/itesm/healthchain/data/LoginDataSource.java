@@ -61,6 +61,7 @@ public class LoginDataSource {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                    Log.e("LOGIN", "" + error.networkResponse.statusCode);
+                    user.setValue(null);
                 }
             }) {
                 @Override
@@ -81,11 +82,7 @@ public class LoginDataSource {
             requestQueue.add(jsonObject);
 
         } catch (JSONException e) {
-            //TODO
+            e.printStackTrace();
         }
-    }
-
-    public void logout() {
-        // TODO: revoke authentication
     }
 }

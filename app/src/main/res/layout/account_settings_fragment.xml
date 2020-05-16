@@ -48,8 +48,7 @@
 
     <Button
         android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/DefaultButtons"
         android:layout_marginTop="112dp"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/save"

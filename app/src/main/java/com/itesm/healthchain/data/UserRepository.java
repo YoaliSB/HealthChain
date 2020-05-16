@@ -5,6 +5,7 @@ import android.content.Context;
 import com.itesm.healthchain.LoginActivity;
 import com.itesm.healthchain.data.model.LoggedInUser;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
@@ -28,8 +29,12 @@ public class UserRepository {
         this.dataSource = dataSource;
         dataSource.subscribe().observe(owner, new Observer<LoggedInUser>() {
             @Override
-            public void onChanged(LoggedInUser loggedInUser) {
-                setLoggedInUser(user);
+            public void onChanged(@Nullable LoggedInUser loggedInUser) {
+                if (loggedInUser != null) {
+                    setLoggedInUser(loggedInUser);
+                } else {
+                    loginListener.onLoginFailure();
+                }
             }
         });
     }
@@ -47,7 +52,7 @@ public class UserRepository {
 
     public void logout() {
         user = null;
-        dataSource.logout();
+        // TODO: Create logout datasource
     }
 
     private void setLoggedInUser(LoggedInUser user) {
@@ -69,6 +74,6 @@ public class UserRepository {
 
     public interface LoginStateListener {
         void onLoginSuccess(LoggedInUser user);
-        // TODO onLoginFailure
+        void onLoginFailure();
     }
 }
