@@ -20,6 +20,7 @@
     <string name="confirm_pwd">Confirmar Contraseña</string>
     <string name="login_error">Usuario y contraseña no válidos.</string>
     <string name="register_error">Error al registrar usuario.</string>
+    <string name="role_error">Error al iniciar sesión</string>
 
     <!-- Doctor Main Fragment -->
     <string name="text_home">Principal</string>

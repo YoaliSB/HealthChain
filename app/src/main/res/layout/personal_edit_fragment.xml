@@ -202,10 +202,9 @@
 
     <Button
         android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        style="@style/DefaultButtons"
         android:backgroundTint="@color/colorAccent"
+        android:layout_marginBottom="40dp"
         android:text="@string/save"
         android:textColor="@color/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -12,6 +12,7 @@ import com.itesm.healthchain.data.LoginDataSource;
 import com.itesm.healthchain.data.UserRepository;
 import com.itesm.healthchain.data.model.LoggedInUser;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity implements UserRepository.LoginStateListener {
@@ -52,24 +53,31 @@ public class LoginActivity extends AppCompatActivity implements UserRepository.L
         switch (role) {
             case "user":
                 startActivity(new Intent(LoginActivity.this,
-                        PatientActivity.class));
+                        PatientActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 break;
             case "paramedic":
                 startActivity(new Intent(LoginActivity.this,
-                        ParamedicActivity.class));
+                        ParamedicActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 break;
             case "doctor":
                 startActivity(new Intent(LoginActivity.this,
-                        DoctorActivity.class));
+                        DoctorActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 break;
             default:
-                Toast.makeText(getApplicationContext(), "whoops", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.role_error, Toast.LENGTH_LONG).show();
         }
 
     }
 
     @Override
-    public void onLoginSuccess(LoggedInUser user) {
-        redirect(user.getRole());
+    public void onLoginSuccess(@Nullable LoggedInUser user) {
+        if (user != null) {
+            redirect(user.getRole());
+        }
+    }
+
+    @Override
+    public void onLoginFailure() {
+        Toast.makeText(getApplicationContext(), R.string.login_error, Toast.LENGTH_LONG).show();
     }
 }
