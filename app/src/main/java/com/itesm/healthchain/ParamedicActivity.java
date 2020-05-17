@@ -38,7 +38,7 @@ public class ParamedicActivity extends NfcActivity {
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        navController.setGraph(R.navigation.mobile_navigation);
+        navController.setGraph(R.navigation.paramedic_navigation);
 
         // Testing
 //        PersonalDataViewModel personalDataViewModel =

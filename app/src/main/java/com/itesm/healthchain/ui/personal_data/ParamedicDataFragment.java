@@ -18,10 +18,12 @@ public class ParamedicDataFragment extends PersonalDataFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         personalDataViewModel =
-                ViewModelProviders.of(getActivity()).get(ParamedicPersonalDataViewModel.class);
+                ViewModelProviders.of(getActivity()).get(ParamedicDataViewModel.class);
         super.onCreateView(inflater, container, savedInstanceState);
         nfcScreen.setVisibility(View.VISIBLE);
         fields.setVisibility(View.GONE);
+        editButton.setVisibility(View.GONE);
+        editButton2.setVisibility(View.GONE);
 
         final View nfcScreen = root.findViewById(R.id.nfc_screen);
         // TODO: Delete this

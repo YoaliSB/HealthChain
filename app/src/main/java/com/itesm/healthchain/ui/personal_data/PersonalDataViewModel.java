@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class PersonalDataViewModel extends ViewModel {
-    private MutableLiveData<PersonalData> mData;
+    protected MutableLiveData<PersonalData> mData;
 
     PersonalDataViewModel() {
         mData = new MutableLiveData<>();

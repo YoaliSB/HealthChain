@@ -15,7 +15,10 @@ public class PatientDataFragment extends PersonalDataFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         personalDataViewModel =
-                ViewModelProviders.of(getActivity()).get(PatientPersonalDataViewModel.class);
+                ViewModelProviders.of(this,
+                        new PatientDataViewModel.Factory(getActivity()))
+                        .get(PatientDataViewModel.class);
+
         super.onCreateView(inflater, container, savedInstanceState);
         nfcScreen.setVisibility(View.GONE);
         fields.setVisibility(View.VISIBLE);
@@ -25,8 +28,7 @@ public class PatientDataFragment extends PersonalDataFragment {
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.navigation_personal_edit);
             }
         };
-        final View editButton = root.findViewById(R.id.edit_btn);
-        final View editButton2 = root.findViewById(R.id.edit_btn2);
+
         editButton.setOnClickListener(editPersonalData);
         editButton2.setOnClickListener(editPersonalData);
         return root;

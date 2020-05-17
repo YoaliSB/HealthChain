@@ -6,11 +6,10 @@
     app:startDestination="@+id/navigation_personal">
 
     <!-- Personal -->
-
     <fragment
         android:id="@+id/navigation_personal"
-        android:name="com.itesm.healthchain.ui.personal_data.ParamedicDataFragment"
-        android:label="@string/title_personal_data"
+        android:name="com.itesm.healthchain.ui.personal_data.PatientDataFragment"
+        android:label="@string/title_patient_data"
         tools:layout="@layout/personal_fragment" >
         <action
             android:id="@+id/action_navigation_personal_to_navigation_personal_edit"
@@ -85,15 +84,4 @@
         android:name="com.itesm.healthchain.ui.settings.AccountSettingsFragment"
         android:label="@string/edit_profile"
         tools:layout="@layout/account_settings_fragment"/>
-
-    <!-- NFC -->
-    <fragment
-        android:id="@+id/navigation_nfc"
-        android:name="com.itesm.healthchain.nfc.NfcFragment"
-        android:label="@string/title_nfc"
-        tools:layout="@layout/nfc_screen">
-        <action
-            android:id="@+id/action_navigation_nfc_to_navigation_personal2"
-            app:destination="@id/navigation_personal" />
-    </fragment>
 </navigation>
