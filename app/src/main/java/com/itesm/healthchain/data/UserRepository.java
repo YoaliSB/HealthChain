@@ -1,8 +1,10 @@
 package com.itesm.healthchain.data;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.itesm.healthchain.LoginActivity;
+import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.model.LoggedInUser;
 
 import androidx.annotation.Nullable;
@@ -18,6 +20,7 @@ public class UserRepository {
     private static volatile UserRepository instance;
 
     private LoginDataSource dataSource;
+    private Context context;
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
@@ -25,8 +28,9 @@ public class UserRepository {
     private LoginStateListener loginListener;
 
     // private constructor : singleton access
-    private UserRepository(LoginDataSource dataSource, LifecycleOwner owner) {
+    private UserRepository(LoginDataSource dataSource, LifecycleOwner owner, final Context context) {
         this.dataSource = dataSource;
+        this.context = context;
         dataSource.subscribe().observe(owner, new Observer<LoggedInUser>() {
             @Override
             public void onChanged(@Nullable LoggedInUser loggedInUser) {
@@ -39,9 +43,9 @@ public class UserRepository {
         });
     }
 
-    public static UserRepository getInstance(LoginDataSource dataSource, LifecycleOwner owner) {
+    public static UserRepository getInstance(LoginDataSource dataSource, LifecycleOwner owner, Context context) {
         if (instance == null) {
-            instance = new UserRepository(dataSource, owner);
+            instance = new UserRepository(dataSource, owner, context);
         }
         return instance;
     }
@@ -58,9 +62,15 @@ public class UserRepository {
     private void setLoggedInUser(LoggedInUser user) {
         this.user = user;
         loginListener.onLoginSuccess(user);
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preferences_key),Context.MODE_PRIVATE);
+        // TODO: Encrypted shared data
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(context.getString(R.string.token_key), user.getToken());
+        editor.apply();
     }
 
-    public void login(String username, String password, Context context) {
+    public void login(String username, String password) {
         dataSource.login(username, password, context);
     }
 

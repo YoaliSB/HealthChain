@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements UserRepository.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         dataSource = new LoginDataSource();
-        repository = UserRepository.getInstance(dataSource, this);
+        repository = UserRepository.getInstance(dataSource, this, getApplicationContext());
         repository.setLoginListener(this);
         tv = findViewById(R.id.textSignUp);
         editEmail = findViewById(R.id.etemail);
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements UserRepository.L
             public void onClick(View v) {
                 final String email = editEmail.getText().toString().trim();
                 final String pass = editPass.getText().toString().trim();
-                repository.login(email, pass, getApplicationContext());
+                repository.login(email, pass);
             }
         });
 
