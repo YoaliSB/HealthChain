@@ -21,6 +21,7 @@ public class PersonalDataFragment extends Fragment {
     protected PersonalDataViewModel personalDataViewModel;
     protected View root;
     TextView name, age, blood, weight, height, contactName, contactPhone, contactRelationship, hospital, ailments, allergies;
+    protected View editButton, editButton2;
     protected View fields, nfcScreen;
     private View phoneButton;
 
@@ -41,6 +42,8 @@ public class PersonalDataFragment extends Fragment {
         fields = root.findViewById(R.id.fields);
         phoneButton = root.findViewById(R.id.phone_btn);
         nfcScreen = root.findViewById(R.id.nfc_screen);
+        editButton = root.findViewById(R.id.edit_btn);
+        editButton2 = root.findViewById(R.id.edit_btn2);
 
         phoneButton.setOnClickListener(new View.OnClickListener() {
             @Override

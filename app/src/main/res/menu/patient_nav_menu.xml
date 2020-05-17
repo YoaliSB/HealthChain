@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_personal"
         android:icon="@drawable/ic_person_pdark_24dp"
-        android:title="@string/title_personal_data" />
+        android:title="@string/title_patient_data" />
 
     <item
         android:id="@+id/navigation_records_main"

@@ -1,5 +1,7 @@
 package com.itesm.healthchain.ui.personal_data;
 
+import android.content.Context;
+
 import com.itesm.healthchain.data.PersonalDataRepository;
 import com.itesm.healthchain.data.model.PersonalData;
 
@@ -8,29 +10,31 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public class PatientPersonalDataViewModel extends PersonalDataViewModel {
+public class PatientDataViewModel extends PersonalDataViewModel {
     PersonalDataRepository repository;
 
-    public PatientPersonalDataViewModel(PersonalDataRepository repository) {
-        this.repository = repository;
+    public PatientDataViewModel(Context context) {
+        super();
+        this.repository = PersonalDataRepository.getInstance(context);
     }
 
     @Override
     public LiveData<PersonalData> getData() {
-        return repository.fetchPersonalData();
+        mData = repository.fetchPersonalData();
+        return mData;
     }
 
     public static class Factory implements ViewModelProvider.Factory {
-        private final PersonalDataRepository dataRepository;
+        private final Context context;
 
-        public Factory(PersonalDataRepository repository) {
-            this.dataRepository = repository;
+        public Factory(Context context) {
+            this.context = context;
         }
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new PatientPersonalDataViewModel(dataRepository);
+            return (T) new PatientDataViewModel(context);
         }
     }
 }
