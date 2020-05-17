@@ -8,6 +8,8 @@
     <string name="title_personal_data">Mis Datos</string>
     <string name="title_settings">Configuración</string>
     <string name="save">Guardar</string>
+    <string name="preferences_key">com.itesm.healthchain.preferences</string>
+    <string name="token_key">authentication_token</string>
 
     <!-- Log In / Register Activity-->
     <string name="email">E-mail</string>

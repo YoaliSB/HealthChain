@@ -47,9 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String name= etname.getText().toString().trim();
-                final String email=etemail.getText().toString().trim();
-                final String pass=etpass.getText().toString().trim();
-                final String pass2=etpass2.getText().toString().trim();
+                final String email = etemail.getText().toString().trim();
+                final String pass = etpass.getText().toString().trim();
+                final String pass2 = etpass2.getText().toString().trim();
 
                 JSONObject jsonBody = new JSONObject();
 
@@ -75,7 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 try {
-
                 jsonBody.put("name", name);
                 jsonBody.put("email", email);
                 jsonBody.put("password", pass);
@@ -106,23 +105,13 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }) {
                     @Override
-                    protected Map<String,String> getParams(){
-                        Map<String,String> params = new HashMap<String, String>();
-                        params.put("name", name);
-                        params.put("email", email);
-                        params.put("password", pass);
-                        params.put("password_confirmation", pass2);
-                        return params;
-                    }
-
-                    @Override
                     public Map<String, String> getHeaders() throws AuthFailureError {
                         final Map<String, String> headers = new HashMap<>();
                         headers.put("Content-Type", "application/json");
                         return headers;
                     }
                 };
-                RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
+                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                 requestQueue.add(jsonObject);
 
             } catch (JSONException e) {

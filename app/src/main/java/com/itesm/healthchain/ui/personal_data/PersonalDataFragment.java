@@ -55,6 +55,7 @@ public class PersonalDataFragment extends Fragment {
         editButton.setOnClickListener(editPersonalData);
         editButton2.setOnClickListener(editPersonalData);
 
+        // TODO: Delete this
         nfcScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

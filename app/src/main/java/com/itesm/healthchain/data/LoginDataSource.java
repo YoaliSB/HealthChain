@@ -1,9 +1,7 @@
 package com.itesm.healthchain.data;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -12,13 +10,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.model.LoggedInUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,12 +43,15 @@ public class LoginDataSource {
                 public void onResponse(JSONObject response) {
                     Log.i("respuesta", response.toString());
                     try {
+                        String token = response.getString("token");
+                        String id = response.getJSONObject("data").getString("id");
+                        String name = response.getJSONObject("data").getString("name");
+                        String mail = response.getJSONObject("data").getString("email");
                         String role = response.getJSONObject("data")
                                 .getJSONArray("roles")
                                 .getJSONObject(0)
                                 .getString("name");
-
-                        user.setValue(new LoggedInUser("1", "Juanito", "juanito@mail.com", role, "123"));
+                        user.setValue(new LoggedInUser(id, name, mail, role, token));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

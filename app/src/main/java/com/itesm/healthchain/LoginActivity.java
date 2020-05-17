@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements UserRepository.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         dataSource = new LoginDataSource();
-        repository = UserRepository.getInstance(dataSource, this);
+        repository = UserRepository.getInstance(dataSource, this, getApplicationContext());
         repository.setLoginListener(this);
         tv = findViewById(R.id.textSignUp);
         editEmail = findViewById(R.id.etemail);
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements UserRepository.L
                     editPass.setError("Contraseña incorrecta");
                     return;
                 }
-                repository.login(email, pass, getApplicationContext());
+                repository.login(email, pass);
             }
         });
 

@@ -18,15 +18,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:ems="10"
         android:autofillHints="@string/email"
+        android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.263" />
+        app:layout_constraintVertical_bias="0.341" />
 
     <EditText
         android:id="@+id/etpass"
@@ -47,16 +47,16 @@
 
     <Button
         android:id="@+id/btnlogin"
+        style="@style/LoginButtons"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="@string/login"
-        style="@style/LoginButtons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etpass"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.269" />
 
     <TextView
         android:id="@+id/textSignUp"
@@ -81,7 +81,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.351"
         app:srcCompat="@drawable/healthchain" />
 
 

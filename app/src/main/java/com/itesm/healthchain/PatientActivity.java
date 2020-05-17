@@ -3,9 +3,11 @@ package com.itesm.healthchain;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.itesm.healthchain.data.PersonalDataRepository;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.model.TagProfile;
 import com.itesm.healthchain.nfc.NfcActivity;
+import com.itesm.healthchain.ui.personal_data.PatientPersonalDataViewModel;
 import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
 import androidx.appcompat.widget.Toolbar;
@@ -40,10 +42,10 @@ public class PatientActivity extends NfcActivity {
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-//
+
+        PersonalDataRepository personalDataRepository = PersonalDataRepository.getInstance(this);
         personalDataViewModel =
-                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
-        personalDataViewModel.setData(new PersonalData(new TagProfile()));
+                ViewModelProviders.of(this, new PatientPersonalDataViewModel.Factory(personalDataRepository)).get(PatientPersonalDataViewModel.class);
     }
 
     @Override
