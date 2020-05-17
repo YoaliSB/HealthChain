@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/navigation_personal"
-        android:name="com.itesm.healthchain.ui.personal_data.PersonalDataFragment"
+        android:name="com.itesm.healthchain.ui.personal_data.ParamedicDataFragment"
         android:label="@string/title_personal_data"
         tools:layout="@layout/personal_fragment" >
         <action

@@ -51,7 +51,7 @@ public class LoginDataSource {
                                 .getJSONArray("roles")
                                 .getJSONObject(0)
                                 .getString("name");
-                        user.setValue(new LoggedInUser(id, name, mail, role, token));
+                        user.postValue(new LoggedInUser(id, name, mail, role, token));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
