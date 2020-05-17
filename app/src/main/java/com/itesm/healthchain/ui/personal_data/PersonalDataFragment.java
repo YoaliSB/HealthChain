@@ -26,7 +26,7 @@ public class PersonalDataFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         personalDataViewModel =
-                ViewModelProviders.of(getActivity()).get(PersonalDataViewModel.class);
+                ViewModelProviders.of(getActivity()).get(ParamedicPersonalDataViewModel.class);
         View root = inflater.inflate(R.layout.personal_fragment, container, false);
 
         final TextView name = root.findViewById(R.id.text_name);
