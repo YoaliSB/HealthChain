@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,10 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String url2 = "https://jsonplaceholder.typicode.com/posts";
-    // server url
     private static final String url = "https://health-chain-api.herokuapp.com/api/register";
-    EditText etname, etemail, etpass, etpin, etphone, etpass2;
+    EditText etname, etemail, etpass, etpass2;
     Button signupbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,30 +38,46 @@ public class RegisterActivity extends AppCompatActivity {
         etname = findViewById(R.id.editname);
         etemail = findViewById(R.id.editEmail);
         etpass = findViewById(R.id.editPass);
-        etpin = findViewById(R.id.editPin);
-        etphone = findViewById(R.id.editPhone);
         etpass2 = findViewById(R.id.editPass2);
         signupbtn = findViewById(R.id.btnsignup);
+        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String name= etname.getText().toString().trim();
                 final String email=etemail.getText().toString().trim();
                 final String pass=etpass.getText().toString().trim();
-                final String pin=etpin.getText().toString().trim();
-                final String phone=etphone.getText().toString().trim();
-                final String pass2=etpass.getText().toString().trim();
+                final String pass2=etpass2.getText().toString().trim();
 
                 JSONObject jsonBody = new JSONObject();
-                if (!pass.equals(pass2)) {
-                    // TODO: Non-matching password message
+
+                if(TextUtils.isEmpty(name) || name.length() < 3)
+                {
+                    etname.setError("Tu nombre debe ser de al menos 3 caracteres");
+                    return;
                 }
+                if(TextUtils.isEmpty(email) || email.length() < 3 || !email.matches(emailPattern))
+                {
+                    etemail.setError("Ingresa un correo valido");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass) || pass.length() < 6)
+                {
+                    etpass.setError("Tu contraseña debe ser de al menos 6 caracteres");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass2) || !pass.equals(pass2))
+                {
+                    etpass2.setError("Tu contraseña debe coincidir con la de arriba");
+                    return;
+                }
+
                 try {
 
                 jsonBody.put("name", name);
                 jsonBody.put("email", email);
-                jsonBody.put("phone", phone);
-                jsonBody.put("pin", pin);
                 jsonBody.put("password", pass);
                 jsonBody.put("password_confirmation", pass2);
 
@@ -96,8 +111,6 @@ public class RegisterActivity extends AppCompatActivity {
                         params.put("name", name);
                         params.put("email", email);
                         params.put("password", pass);
-                        params.put("pin", pin);
-                        params.put("phone", phone);
                         params.put("password_confirmation", pass2);
                         return params;
                     }

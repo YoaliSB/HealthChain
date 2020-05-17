@@ -25,10 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String LG = "https://jsonplaceholder.typicode.com/posts/1"; //URL para pruebas de get
-    private static final String url2 = "https://jsonplaceholder.typicode.com/posts"; //URL para pruebas de post
-    private static final String url = "https://localhost:3000/api/login"; //URL para pruebas de post
-    private static final String ngrok = "https://health-chain-api.herokuapp.com/api/login";
+    private static final String url = "https://health-chain-api.herokuapp.com/api/login";
     EditText editemail, editpass;
     Button btnLogin;
     TextView tv;
@@ -52,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                     jsonBody.put("email", email);
                     jsonBody.put("password", pass);
 
-                    JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, ngrok,
+                    JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url,
                             jsonBody, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
