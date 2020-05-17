@@ -3,6 +3,7 @@ package com.itesm.healthchain;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         editemail = findViewById(R.id.etemail);
         editpass = findViewById(R.id.etpass);
         btnLogin = findViewById(R.id.btnlogin);
+        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +47,16 @@ public class LoginActivity extends AppCompatActivity {
                 final String pass = editpass.getText().toString().trim();
 
                 JSONObject jsonBody = new JSONObject();
+                if(TextUtils.isEmpty(email) || !email.matches(emailPattern))
+                {
+                    editemail.setError("Ingresa un correo valido");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass) || pass.length() < 6)
+                {
+                    editpass.setError("Contraseña incorrecta");
+                    return;
+                }
 
                 try {
                     jsonBody.put("email", email);

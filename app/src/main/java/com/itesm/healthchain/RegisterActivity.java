@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                     etname.setError("Tu nombre debe ser de al menos 3 caracteres");
                     return;
                 }
-                if(TextUtils.isEmpty(email) || email.length() < 3 || !email.matches(emailPattern))
+                if(TextUtils.isEmpty(email) || !email.matches(emailPattern))
                 {
                     etemail.setError("Ingresa un correo valido");
                     return;
