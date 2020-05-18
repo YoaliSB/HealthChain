@@ -20,8 +20,7 @@ public class PatientDataViewModel extends PersonalDataViewModel {
 
     @Override
     public LiveData<PersonalData> getData() {
-        mData = repository.fetchPersonalData();
-        return mData;
+        return repository.fetchPersonalData();
     }
 
     public static class Factory implements ViewModelProvider.Factory {

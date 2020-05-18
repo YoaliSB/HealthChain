@@ -9,8 +9,11 @@
     <string name="title_paramedic_data">Información de emergencia</string>
     <string name="title_settings">Configuración</string>
     <string name="save">Guardar</string>
+
+    <!-- Shared Preferences -->
     <string name="preferences_key">com.itesm.healthchain.preferences</string>
     <string name="token_key">authentication_token</string>
+    <string name="role_key">user_role</string>
 
     <!-- Log In / Register Activity-->
     <string name="email">E-mail</string>
@@ -24,6 +27,8 @@
     <string name="login_error">Usuario y contraseña no válidos.</string>
     <string name="register_error">Error al registrar usuario.</string>
     <string name="role_error">Error al iniciar sesión</string>
+
+    <string name="logout_error">Error al cerrar sesión.</string>
 
     <!-- Doctor Main Fragment -->
     <string name="text_home">Principal</string>

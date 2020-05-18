@@ -4,22 +4,28 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.itesm.healthchain.R;
+import com.itesm.healthchain.data.SharedPreferencesManager;
+import com.itesm.healthchain.data.session.LogoutStateListener;
+import com.itesm.healthchain.data.session.UserRepository;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-public class SettingsFragment extends Fragment implements View.OnClickListener {
+public class SettingsFragment extends Fragment implements View.OnClickListener, LogoutStateListener {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.settings_fragment, container, false);
         View aboutBtn = root.findViewById(R.id.btn_info);
         View editBtn = root.findViewById(R.id.btn_edit_profile);
+        View logoutBtn = root.findViewById(R.id.btn_logout);
         aboutBtn.setOnClickListener(this);
         editBtn.setOnClickListener(this);
+        logoutBtn.setOnClickListener(this);
         return root;
     }
 
@@ -32,6 +38,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_edit_profile:
                 replaceFragment(R.id.navigation_account);
                 break;
+            case R.id.btn_logout:
+                UserRepository repository = new UserRepository(getActivity());
+                repository.setLogoutListener(this);
+                repository.logout();
         }
     }
 
@@ -39,4 +49,13 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         NavHostFragment.findNavController(this).navigate(id);
     }
 
+    @Override
+    public void onLogoutSuccess() {
+        replaceFragment(R.id.navigation_login);
+    }
+
+    @Override
+    public void onLogoutFailure() {
+        Toast.makeText(getActivity(), R.string.logout_error, Toast.LENGTH_LONG).show();
+    }
 }

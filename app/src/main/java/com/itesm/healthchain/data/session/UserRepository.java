@@ -1,0 +1,85 @@
+package com.itesm.healthchain.data.session;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.itesm.healthchain.R;
+import com.itesm.healthchain.data.SharedPreferencesManager;
+import com.itesm.healthchain.data.model.LoggedInUser;
+
+/**
+ * Class that requests authentication and user information from the remote data source and
+ * maintains an in-memory cache of login status and user credentials information.
+ */
+public class UserRepository implements LoginStateListener, LogoutStateListener {
+
+    private Context context;
+    private LoginDataSource loginDataSource;
+    private LogoutDataSource logoutDataSource;
+    private LoginStateListener loginListener;
+    private LogoutStateListener logoutListener;
+
+    public UserRepository(final Context context) {
+        this.context = context;
+        this.loginDataSource = new LoginDataSource(context);
+        this.logoutDataSource = new LogoutDataSource(context);
+        loginDataSource.setLoginStateListener(this);
+        logoutDataSource.setLogoutStateListener(this);
+    }
+
+    public boolean isLoggedIn() {
+        String role = SharedPreferencesManager.getRole(context);
+        String token = SharedPreferencesManager.getToken(context);
+        return role != null && token != null && !role.isEmpty() && !token.isEmpty();
+    }
+
+    public void logout() {
+        logoutDataSource.logout();
+        //TODO: Delete this
+        logoutListener.onLogoutSuccess();
+        this.onLogoutSuccess();
+    }
+
+    public void login(String username, String password) {
+        loginDataSource.login(username, password);
+    }
+
+    public void setLoginListener(LoginStateListener loginStateListener) {
+        this.loginListener = loginStateListener;
+    }
+
+    public void setLogoutListener(LogoutStateListener logoutStateListener) {
+        this.logoutListener = logoutStateListener;
+    }
+
+    @Override
+    public void onLoginSuccess(LoggedInUser user) {
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preferences_key),Context.MODE_PRIVATE);
+        // TODO: Encrypted shared data
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(context.getString(R.string.token_key), user.getToken());
+        editor.apply();
+
+        // Callback to activity for redirection
+        loginListener.onLoginSuccess(user);
+    }
+
+    @Override
+    public void onLoginFailure() {
+        loginListener.onLoginFailure();
+    }
+
+    @Override
+    public void onLogoutSuccess() {
+        SharedPreferencesManager.setToken(context, null);
+        SharedPreferencesManager.setRole(context, null);
+        logoutListener.onLogoutSuccess();
+    }
+
+    @Override
+    public void onLogoutFailure() {
+        logoutListener.onLogoutFailure();
+    }
+}
+

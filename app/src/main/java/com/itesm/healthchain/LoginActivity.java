@@ -8,25 +8,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.itesm.healthchain.data.LoginDataSource;
-import com.itesm.healthchain.data.UserRepository;
+import com.itesm.healthchain.data.session.LoginStateListener;
+import com.itesm.healthchain.data.session.UserRepository;
 import com.itesm.healthchain.data.model.LoggedInUser;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LoginActivity extends AppCompatActivity implements UserRepository.LoginStateListener {
+public class LoginActivity extends AppCompatActivity implements LoginStateListener {
     EditText editEmail, editPass;
     Button btnLogin;
     TextView tv;
     UserRepository repository;
-    LoginDataSource dataSource;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        dataSource = new LoginDataSource();
-        repository = UserRepository.getInstance(dataSource, this, getApplicationContext());
+        repository = new UserRepository(getApplicationContext());
         repository.setLoginListener(this);
         tv = findViewById(R.id.textSignUp);
         editEmail = findViewById(R.id.etemail);
@@ -66,7 +64,6 @@ public class LoginActivity extends AppCompatActivity implements UserRepository.L
             default:
                 Toast.makeText(getApplicationContext(), R.string.role_error, Toast.LENGTH_LONG).show();
         }
-
     }
 
     @Override
