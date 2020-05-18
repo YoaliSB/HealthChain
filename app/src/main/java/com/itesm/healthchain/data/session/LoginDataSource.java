@@ -1,4 +1,4 @@
-package com.itesm.healthchain.data;
+package com.itesm.healthchain.data.session;
 
 import android.content.Context;
 import android.util.Log;
@@ -18,26 +18,28 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.lifecycle.MutableLiveData;
-
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
 public class LoginDataSource {
-    private static final String ngrok = "https://health-chain-api.herokuapp.com/api/login";
-    private final MutableLiveData<LoggedInUser> user = new MutableLiveData<>();
 
-    public MutableLiveData<LoggedInUser> subscribe() {
-        return user;
+    private Context context;
+    private static final String LOGIN = "https://health-chain-api.herokuapp.com/api/login";
+    private RequestQueue requestQueue;
+    LoginStateListener loginStateListener;
+
+    public LoginDataSource(Context context) {
+        this.context = context;
+        requestQueue = Volley.newRequestQueue(context);
     }
 
-    public void login(final String email, final String password, final Context context) {
+    public void login(final String email, final String password) {
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("email", email);
             jsonBody.put("password", password);
 
-            JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, ngrok,
+            JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, LOGIN,
                     jsonBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -51,7 +53,7 @@ public class LoginDataSource {
                                 .getJSONArray("roles")
                                 .getJSONObject(0)
                                 .getString("name");
-                        user.postValue(new LoggedInUser(id, name, mail, role, token));
+                       loginStateListener.onLoginSuccess(new LoggedInUser(id, name, mail, role, token));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -60,16 +62,9 @@ public class LoginDataSource {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                    Log.e("LOGIN", "" + error.networkResponse.statusCode);
-                    user.setValue(null);
+                   loginStateListener.onLoginFailure();
                 }
             }) {
-                @Override
-                protected Map<String, String> getParams(){
-                    Map<String, String> params = new HashMap<>();
-                    params.put("email", email);
-                    params.put("password", password);
-                    return params;
-                }
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     final Map<String, String> headers = new HashMap<>();
@@ -77,11 +72,14 @@ public class LoginDataSource {
                     return headers;
                 }
             };
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
             requestQueue.add(jsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setLoginStateListener(LoginStateListener stateListener) {
+        this.loginStateListener = stateListener;
     }
 }

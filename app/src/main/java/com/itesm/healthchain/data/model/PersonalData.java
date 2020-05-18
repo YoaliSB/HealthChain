@@ -131,4 +131,8 @@ public class PersonalData {
     public void setHospital(String hospital) {
         this.hospital = hospital;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

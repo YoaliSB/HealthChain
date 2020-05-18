@@ -5,6 +5,13 @@
     android:id="@+id/doctor_navigation"
     app:startDestination="@+id/navigation_home">
 
+    <!-- Login -->
+    <activity
+        android:id="@+id/navigation_login"
+        android:name="com.itesm.healthchain.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+
     <!-- Medical Records -->
     <fragment
         android:id="@+id/navigation_medical_records"

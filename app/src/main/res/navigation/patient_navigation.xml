@@ -5,15 +5,19 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_personal">
 
+    <!-- Login -->
+    <activity
+        android:id="@+id/navigation_login"
+        android:name="com.itesm.healthchain.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+
     <!-- Personal -->
     <fragment
         android:id="@+id/navigation_personal"
         android:name="com.itesm.healthchain.ui.personal_data.PatientDataFragment"
         android:label="@string/title_patient_data"
         tools:layout="@layout/personal_fragment" >
-        <action
-            android:id="@+id/action_navigation_personal_to_navigation_personal_edit"
-            app:destination="@id/navigation_personal_edit" />
     </fragment>
 
     <fragment

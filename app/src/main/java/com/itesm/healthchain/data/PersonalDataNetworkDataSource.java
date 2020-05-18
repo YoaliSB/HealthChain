@@ -2,26 +2,29 @@ package com.itesm.healthchain.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.model.PersonalData;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import androidx.lifecycle.MutableLiveData;
 
 public class PersonalDataNetworkDataSource {
-    private static final String MY_INFO = "https://health-chain-api.herokuapp.com/api/my_info";
-    private MutableLiveData<PersonalData> personalDataMutableLiveData;
+    private static final String MY_INFO = "https://health-chain-api.herokuapp.com/api/user/my_info";
+    private MutableLiveData<PersonalData> personalDataMutableLiveData = new MutableLiveData<>();
     private Context context;
 
     public PersonalDataNetworkDataSource(Context context) {
@@ -34,24 +37,34 @@ public class PersonalDataNetworkDataSource {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("PERSONAL DATA", response.toString());
+                        // TODO postValue to mutable live data
+                        PersonalData data = new PersonalData();
+                        try {
+                            String name = response.getJSONObject("user").getString("_name");
+                            data.setName(name);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        personalDataMutableLiveData.postValue(data);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // TODO: handle errors
+                Log.d("PERSONAL DATA", error.toString());
             }
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = super.getHeaders();
-                SharedPreferences preferences = context.getSharedPreferences(
-                        context.getString(R.string.preferences_key), Context.MODE_PRIVATE);
+                Map<String, String> headers = new HashMap<>(super.getHeaders());
                 headers.put("Content-Type", "application/json");
                 headers.put("Authorization",
-                        preferences.getString(context.getString(R.string.token_key), ""));
+                        SharedPreferencesManager.getToken(context));
+                // TODO: on auth failure send back to login
                 return headers;
             }
         };
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(request);
     }
 
     public MutableLiveData<PersonalData> getPersonalData() {
