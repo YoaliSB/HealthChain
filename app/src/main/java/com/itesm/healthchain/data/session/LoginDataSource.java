@@ -36,26 +36,26 @@ public class LoginDataSource {
     public void login(final String email, final String password) {
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("email", email);
-            jsonBody.put("password", password);
+                jsonBody.put("email", email);
+                jsonBody.put("password", password);
 
-            JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, LOGIN,
-                    jsonBody, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.i("respuesta", response.toString());
-                    try {
-                        String token = response.getString("token");
-                        String id = response.getJSONObject("data").getString("id");
-                        String name = response.getJSONObject("data").getString("name");
-                        String mail = response.getJSONObject("data").getString("email");
-                        String role = response.getJSONObject("data")
-                                .getJSONArray("roles")
-                                .getJSONObject(0)
-                                .getString("name");
-                       loginStateListener.onLoginSuccess(new LoggedInUser(id, name, mail, role, token));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, LOGIN,
+                        jsonBody, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("respuesta", response.toString());
+                        try {
+                            String token = response.getString("token");
+                            String id = response.getJSONObject("data").getString("id");
+                            String name = response.getJSONObject("data").getString("name");
+                            String mail = response.getJSONObject("data").getString("email");
+                            String role = response.getJSONObject("data")
+                                    .getJSONArray("roles")
+                                    .getJSONObject(0)
+                                    .getString("name");
+                            loginStateListener.onLoginSuccess(new LoggedInUser(id, name, mail, role, token));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                     }
                 }
             }, new Response.ErrorListener() {
@@ -67,9 +67,9 @@ public class LoginDataSource {
             }) {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
-                    final Map<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json");
-                    return headers;
+                        final Map<String, String> headers = new HashMap<>();
+                        headers.put("Content-Type", "application/json");
+                        return headers;
                 }
             };
             requestQueue.add(jsonObject);
