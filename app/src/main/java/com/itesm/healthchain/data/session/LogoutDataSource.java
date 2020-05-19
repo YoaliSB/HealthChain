@@ -22,7 +22,6 @@ import java.util.Map;
  * Class that handles authentication logout.
  */
 public class LogoutDataSource {
-
     private Context context;
     private static final String LOGOUT = "https://health-chain-api.herokuapp.com/api/logout";
     private RequestQueue requestQueue;

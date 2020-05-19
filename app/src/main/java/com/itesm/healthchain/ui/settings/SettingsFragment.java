@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.data.SharedPreferencesManager;
 import com.itesm.healthchain.data.session.LogoutStateListener;
 import com.itesm.healthchain.data.session.UserRepository;
 

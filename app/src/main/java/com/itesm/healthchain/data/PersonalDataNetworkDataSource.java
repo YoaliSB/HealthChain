@@ -37,7 +37,6 @@ public class PersonalDataNetworkDataSource {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("PERSONAL DATA", response.toString());
-                        // TODO postValue to mutable live data
                         PersonalData data = new PersonalData();
                         try {
                             String name = response.getJSONObject("user").getString("_name");

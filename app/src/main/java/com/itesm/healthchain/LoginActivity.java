@@ -2,6 +2,7 @@ package com.itesm.healthchain;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,11 +31,21 @@ public class LoginActivity extends AppCompatActivity implements LoginStateListen
         editEmail = findViewById(R.id.etemail);
         editPass = findViewById(R.id.etpass);
         btnLogin = findViewById(R.id.btnlogin);
+        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String email = editEmail.getText().toString().trim();
                 final String pass = editPass.getText().toString().trim();
+                if(TextUtils.isEmpty(email) || !email.matches(emailPattern)) {
+                    editEmail.setError("Ingresa un correo valido");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass) || pass.length() < 6) {
+                    editPass.setError("Contraseña incorrecta");
+                    return;
+                }
                 repository.login(email, pass);
             }
         });
