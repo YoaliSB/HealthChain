@@ -3,6 +3,7 @@ package com.itesm.healthchain;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,10 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String LG = "https://jsonplaceholder.typicode.com/posts/1"; //URL para pruebas de get
-    private static final String url2 = "https://jsonplaceholder.typicode.com/posts"; //URL para pruebas de post
-    private static final String url = "https://localhost:3000/api/login"; //URL para pruebas de post
-    private static final String ngrok = "https://health-chain-api.herokuapp.com/api/login";
+    private static final String url = "https://health-chain-api.herokuapp.com/api/login";
     EditText editemail, editpass;
     Button btnLogin;
     TextView tv;
@@ -40,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         editemail = findViewById(R.id.etemail);
         editpass = findViewById(R.id.etpass);
         btnLogin = findViewById(R.id.btnlogin);
+        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,12 +47,22 @@ public class LoginActivity extends AppCompatActivity {
                 final String pass = editpass.getText().toString().trim();
 
                 JSONObject jsonBody = new JSONObject();
+                if(TextUtils.isEmpty(email) || !email.matches(emailPattern))
+                {
+                    editemail.setError("Ingresa un correo valido");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass) || pass.length() < 6)
+                {
+                    editpass.setError("Contraseña incorrecta");
+                    return;
+                }
 
                 try {
                     jsonBody.put("email", email);
                     jsonBody.put("password", pass);
 
-                    JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, ngrok,
+                    JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url,
                             jsonBody, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -114,79 +124,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         });*/
-
-                //METODO POST
-                /*StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                        new Response.Listener<String>()
-                        {
-                            @Override
-                            public void onResponse(String response) {
-                                // response
-                                Log.i("Response", response);
-                            }
-                        },
-                        new Response.ErrorListener()
-                        {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // error
-                                //Log.i("Error.Response", response);
-                            }
-                        }
-                ) {
-                    @Override
-                    protected Map<String, String> getParams()
-                    {
-                        Map<String, String>  params = new HashMap<String, String>();
-                        params.put("title", "bar");
-                        params.put("body", "foo");
-                        params.put("userId", "1");
-                        return params;
-                    }
-                };
-
-                /*StringRequest stringRequest=new StringRequest(Request.Method.GET, LG, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        try {
-                            JSONObject object=new JSONObject(response);
-                            Log.i("objeto", response);
-                            if (!object.getBoolean("sucsses")){
-                                final String name=object.getString("name");
-                                final String emaildata=object.getString("email");
-                                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                                intent.putExtra("username",name);
-                                intent.putExtra("email",emaildata);
-                                startActivity(intent);
-                            }else {
-                                Toast.makeText(getApplicationContext(),"User Login UnSucssesFull", Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams()  {
-                        Map<String,String>params=new HashMap<String, String>();
-                        params.put("email",email);
-                        params.put("password",pass);
-                        params.put("Content-Type", "application/json");
-                        return params;
-                    }
-                };*/
-                //RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-                //requestQueue.add(jsonObjectRequest);
-                //requestQueue.add(postRequest);
-
-                //Log.i("prueba", String.valueOf(stringRequest));
-                //startActivity(new Intent(LoginActivity.this,MainActivity.class));*/
             }
         });
 
