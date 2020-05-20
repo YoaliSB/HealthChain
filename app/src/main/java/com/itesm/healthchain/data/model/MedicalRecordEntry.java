@@ -2,7 +2,7 @@ package com.itesm.healthchain.data.model;
 
 import java.text.DecimalFormat;
 
-public class MedicalRecord {
+public class MedicalRecordEntry {
     private String doctor;
     private String name;
     private int age;
@@ -19,9 +19,9 @@ public class MedicalRecord {
     private String observations;
     private Prescription prescription;
 
-    public MedicalRecord(String doctor, String name, int age, String sex, String ta, int fc,
-                         int fr, double temp, double weight, double height, String observations,
-                         String ailments, String allergies) {
+    public MedicalRecordEntry(String doctor, String name, int age, String sex, String ta, int fc,
+                              int fr, double temp, double weight, double height, String observations,
+                              String ailments, String allergies) {
         this.doctor = doctor;
         this.name = name;
         this.age = age;
@@ -38,7 +38,7 @@ public class MedicalRecord {
         this.observations = observations;
     }
 
-    public MedicalRecord() {
+    public MedicalRecordEntry() {
         this.doctor = "Rogelio Flores Puerta";
         this.name = "Juanito Perez Rodriguez";
         this.age = 27;

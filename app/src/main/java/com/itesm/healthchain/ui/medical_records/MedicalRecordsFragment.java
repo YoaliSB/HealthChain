@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.PrescriptionItemAdapter;
-import com.itesm.healthchain.data.model.MedicalRecord;
+import com.itesm.healthchain.data.model.MedicalRecordEntry;
 import com.itesm.healthchain.data.model.PrescriptionItem;
 
 import java.util.List;
@@ -52,9 +52,9 @@ public class MedicalRecordsFragment extends Fragment {
         prescriptionsList.setAdapter(prescriptionItemAdapter);
         prescriptionsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        medicalRecordsViewModel.getData().observe(getViewLifecycleOwner(), new Observer<MedicalRecord>() {
+        medicalRecordsViewModel.getData().observe(getViewLifecycleOwner(), new Observer<MedicalRecordEntry>() {
             @Override
-            public void onChanged(@Nullable MedicalRecord data) {
+            public void onChanged(@Nullable MedicalRecordEntry data) {
                 doctor.setText(data.getDoctor());
                 name.setText(data.getName());
                 age.setText(data.getAge());
