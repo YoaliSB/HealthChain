@@ -33,6 +33,7 @@ public class PersonalData {
     }
 
     public PersonalData() {
+        // TODO: erase this
         this.id = "1";
         this.name = "Juanito Pérez Rodríguez";
         this.birthDate = "27/03/1985";

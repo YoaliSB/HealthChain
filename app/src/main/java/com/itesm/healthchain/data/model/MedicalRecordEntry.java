@@ -39,6 +39,7 @@ public class MedicalRecordEntry {
     }
 
     public MedicalRecordEntry() {
+        // TODO: erase this
         this.doctor = "Rogelio Flores Puerta";
         this.name = "Juanito Perez Rodriguez";
         this.age = 27;

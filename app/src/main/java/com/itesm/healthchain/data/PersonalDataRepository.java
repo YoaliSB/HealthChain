@@ -27,7 +27,4 @@ public class PersonalDataRepository {
         return personalDataNetworkDataSource.getPersonalData();
     }
 
-    public void updatePersonalData(){
-
-    }
 }

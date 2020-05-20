@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Prescription {
-    String doctor;
-    String date;
-    List<PrescriptionItem> items;
+    private String doctor;
+    private String date;
+    private List<PrescriptionItem> items;
 
     public Prescription(String doctor, String date, List<PrescriptionItem> items) {
         this.doctor = doctor;
@@ -15,6 +15,7 @@ public class Prescription {
     }
 
     public Prescription(){
+        // TODO: erase this
         this.doctor = "Azucena Sotelo";
         this.date = "20/04/2020";
         this.items = new ArrayList<>();

@@ -3,10 +3,22 @@ package com.itesm.healthchain;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.itesm.healthchain.data.SharedPreferencesManager;
+import com.itesm.healthchain.data.model.Doctor;
+import com.itesm.healthchain.data.model.MedicalRecordEntry;
+import com.itesm.healthchain.data.model.Patient;
+import com.itesm.healthchain.data.model.PersonalData;
+import com.itesm.healthchain.data.model.Prescription;
 import com.itesm.healthchain.data.session.UserRepository;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +32,16 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {// a thread in Android
             @Override
             public void run() {
+
+                Doctor doctor = new Doctor();
+                Doctor d2 = new Doctor();
+                ArrayList<Doctor> list = new ArrayList<>();
+                list.add(doctor);
+                list.add(d2);
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                String json = gson.toJson(list);
+                Log.d("LIST", json);
+
                 if(repository.isLoggedIn()){
                     redirect(SharedPreferencesManager.getRole(getApplicationContext()));
                 } else {

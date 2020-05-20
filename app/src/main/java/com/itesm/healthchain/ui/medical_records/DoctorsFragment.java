@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.PersonAdapter;
-import com.itesm.healthchain.data.model.Person;
+import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.ArrayList;
 
@@ -24,9 +24,9 @@ public class DoctorsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private PersonAdapter personAdapter;
-    private ArrayList<Person> doctors = new ArrayList<>();;
+    private ArrayList<Doctor> doctors = new ArrayList<>();;
     private View emptyView;
-    PeopleViewModel viewModel;
+    DoctorViewModel viewModel;
 
     @Nullable
     @Override
@@ -40,8 +40,11 @@ public class DoctorsFragment extends Fragment {
         TextView emptyText = emptyView.findViewById(R.id.text);
         emptyText.setText(R.string.empty_doctors);
         recyclerView = rootView.findViewById(R.id.list);
-        viewModel = ViewModelProviders.of(getActivity()).get(PeopleViewModel.class);
-        viewModel.getPeopleMutableLiveData().observe(getActivity(), peopleListUpdateObserver);
+        viewModel =
+                ViewModelProviders.of(this,
+                        new DoctorViewModel.Factory(getActivity()))
+                        .get(DoctorViewModel.class);
+        viewModel.getData().observe(getActivity(), peopleListUpdateObserver);
         personAdapter = new PersonAdapter(doctors);
         recyclerView.setAdapter(personAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -49,15 +52,15 @@ public class DoctorsFragment extends Fragment {
         return rootView;
     }
 
-    Observer<ArrayList<Person>> peopleListUpdateObserver =
-        new Observer<ArrayList<Person>>() {
+    Observer<ArrayList<Doctor>> peopleListUpdateObserver =
+        new Observer<ArrayList<Doctor>>() {
             @Override
-            public void onChanged(ArrayList<Person> personArrayList) {
-                if (personArrayList.size() == 0) {
+            public void onChanged(ArrayList<Doctor> doctorArrayList) {
+                if (doctorArrayList.size() == 0) {
                     emptyView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 } else {
-                    doctors.addAll(personArrayList);
+                    doctors.addAll(doctorArrayList);
                     personAdapter = new PersonAdapter(doctors);
                     recyclerView.setAdapter(personAdapter);
                     emptyView.setVisibility(View.GONE);

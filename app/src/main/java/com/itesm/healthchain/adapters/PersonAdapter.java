@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.data.model.Person;
+import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.List;
 
@@ -27,11 +27,11 @@ public class PersonAdapter extends GenericAdapter {
 
     @Override
     public void onBindData(RecyclerView.ViewHolder viewHolder, Object val) {
-        Person person = (Person) val;
+        Doctor doctor = (Doctor) val;
 
         PersonAdapterViewHolder personAdapterViewHolder = (PersonAdapterViewHolder) viewHolder;
-        personAdapterViewHolder.name.setText(person.getName());
-        personAdapterViewHolder.desc.setText(person.getDesc());
+        personAdapterViewHolder.name.setText(doctor.getName());
+        personAdapterViewHolder.desc.setText(doctor.getDesc());
     }
 
     class PersonAdapterViewHolder extends RecyclerView.ViewHolder {
