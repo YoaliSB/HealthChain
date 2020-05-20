@@ -102,6 +102,8 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="password_changeSuccess">Cambio exitoso</string>
+    <string name="password_changeFail">No se pudo hacer el cambio</string>
 
     <!-- About Fragment -->
     <string name="about_text">Esta aplicación fue desarrollada por alumnos del Instituto Tecnológico
