@@ -11,20 +11,24 @@ import com.itesm.healthchain.data.model.LoggedInUser;
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
-public class UserRepository implements LoginStateListener, LogoutStateListener {
+public class UserRepository implements LoginStateListener, LogoutStateListener, PasswordChangeStateListener {
 
     private Context context;
     private LoginDataSource loginDataSource;
     private LogoutDataSource logoutDataSource;
     private LoginStateListener loginListener;
     private LogoutStateListener logoutListener;
+    private PasswordDataSource passwordDataSource;
+    private PasswordChangeStateListener passwordChangeListener;
 
     public UserRepository(final Context context) {
         this.context = context;
         this.loginDataSource = new LoginDataSource(context);
         this.logoutDataSource = new LogoutDataSource(context);
+        this.passwordDataSource = new PasswordDataSource(context);
         loginDataSource.setLoginStateListener(this);
         logoutDataSource.setLogoutStateListener(this);
+        passwordDataSource.setPasswordListener(this);
     }
 
     public boolean isLoggedIn() {
@@ -80,6 +84,24 @@ public class UserRepository implements LoginStateListener, LogoutStateListener {
     @Override
     public void onLogoutFailure() {
         logoutListener.onLogoutFailure();
+    }
+
+    public void updatePassword(String oldPassword, String newPassword){
+        passwordDataSource.updatePassword(oldPassword, newPassword);
+    }
+
+    public void setPasswordListener(PasswordChangeStateListener passwordChangeListener) {
+        this.passwordChangeListener = passwordChangeListener;
+    }
+
+    @Override
+    public void onChangeSuccess() {
+        passwordChangeListener.onChangeSuccess();
+    }
+
+    @Override
+    public void onChangeFailure() {
+        passwordChangeListener.onChangeFailure();
     }
 }
 
