@@ -14,6 +14,8 @@ import com.itesm.healthchain.data.DoctorRepository;
 import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,6 +69,16 @@ public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
                     recyclerView.setVisibility(View.GONE);
                 } else {
                     doctors = new ArrayList<>(doctorArrayList);
+
+                    // Remove inactive doctors
+                    Iterator<Doctor> itr = doctors.iterator();
+                    while (itr.hasNext()) {
+                        Doctor dr = itr.next();
+                        if (!dr.isActive()) {
+                            itr.remove();
+                        }
+                    }
+
                     doctorAdapter = new DoctorAdapter(doctors);
                     recyclerView.setAdapter(doctorAdapter);
                     emptyView.setVisibility(View.GONE);
