@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.adapters.PersonAdapter;
+import com.itesm.healthchain.adapters.DoctorAdapter;
 import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class DoctorsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private PersonAdapter personAdapter;
+    private DoctorAdapter doctorAdapter;
     private ArrayList<Doctor> doctors = new ArrayList<>();;
     private View emptyView;
     DoctorViewModel viewModel;
@@ -45,8 +45,8 @@ public class DoctorsFragment extends Fragment {
                         new DoctorViewModel.Factory(getActivity()))
                         .get(DoctorViewModel.class);
         viewModel.getData().observe(getActivity(), peopleListUpdateObserver);
-        personAdapter = new PersonAdapter(doctors);
-        recyclerView.setAdapter(personAdapter);
+        doctorAdapter = new DoctorAdapter(doctors);
+        recyclerView.setAdapter(doctorAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return rootView;
@@ -61,8 +61,8 @@ public class DoctorsFragment extends Fragment {
                     recyclerView.setVisibility(View.GONE);
                 } else {
                     doctors.addAll(doctorArrayList);
-                    personAdapter = new PersonAdapter(doctors);
-                    recyclerView.setAdapter(personAdapter);
+                    doctorAdapter = new DoctorAdapter(doctors);
+                    recyclerView.setAdapter(doctorAdapter);
                     emptyView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                 }

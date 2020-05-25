@@ -13,32 +13,32 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PersonAdapter extends GenericAdapter {
+public class DoctorAdapter extends GenericAdapter {
 
-    public PersonAdapter(List items) {
+    public DoctorAdapter(List items) {
         super(items);
     }
 
     @Override
     public RecyclerView.ViewHolder setViewHolder(ViewGroup parent) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.person_item, parent, false);
-        return new PersonAdapterViewHolder(view);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.doctor_item, parent, false);
+        return new DoctorAdapterViewHolder(view);
     }
 
     @Override
     public void onBindData(RecyclerView.ViewHolder viewHolder, Object val) {
         Doctor doctor = (Doctor) val;
 
-        PersonAdapterViewHolder personAdapterViewHolder = (PersonAdapterViewHolder) viewHolder;
-        personAdapterViewHolder.name.setText(doctor.getName());
-        personAdapterViewHolder.desc.setText(doctor.getDesc());
+        DoctorAdapterViewHolder doctorAdapterViewHolder = (DoctorAdapterViewHolder) viewHolder;
+        doctorAdapterViewHolder.name.setText(doctor.getName());
+        doctorAdapterViewHolder.desc.setText(doctor.getDesc());
     }
 
-    class PersonAdapterViewHolder extends RecyclerView.ViewHolder {
+    class DoctorAdapterViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView desc;
 
-        public PersonAdapterViewHolder(@NonNull View itemView) {
+        public DoctorAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.text_name);
             desc = itemView.findViewById(R.id.text_desc);

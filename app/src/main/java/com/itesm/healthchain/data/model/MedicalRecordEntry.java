@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 public class MedicalRecordEntry {
     private String doctor;
     private String name;
+    private String date;
     private int age;
     private String sex;
     private String ta;
@@ -19,11 +20,12 @@ public class MedicalRecordEntry {
     private String observations;
     private Prescription prescription;
 
-    public MedicalRecordEntry(String doctor, String name, int age, String sex, String ta, int fc,
+    public MedicalRecordEntry(String doctor, String name, String date, int age, String sex, String ta, int fc,
                               int fr, double temp, double weight, double height, String observations,
                               String ailments, String allergies) {
         this.doctor = doctor;
         this.name = name;
+        this.date = date;
         this.age = age;
         this.sex = sex;
         this.ta = ta;
@@ -42,6 +44,7 @@ public class MedicalRecordEntry {
         // TODO: erase this
         this.doctor = "Rogelio Flores Puerta";
         this.name = "Juanito Perez Rodriguez";
+        this.date = "05/05/2020";
         this.age = 27;
         this.sex = "Masculino";
         this.ta = "120/80";
@@ -67,6 +70,10 @@ public class MedicalRecordEntry {
 
     public String getName() {
         return name;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getAge() {
