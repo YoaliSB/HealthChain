@@ -1,9 +1,12 @@
 package com.itesm.healthchain.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Prescription {
+public class Prescription implements Parcelable {
     private String doctor;
     private String date;
     private List<PrescriptionItem> items;
@@ -23,6 +26,24 @@ public class Prescription {
         items.add(new PrescriptionItem());
     }
 
+    protected Prescription(Parcel in) {
+        doctor = in.readString();
+        date = in.readString();
+        items = in.createTypedArrayList(PrescriptionItem.CREATOR);
+    }
+
+    public static final Creator<Prescription> CREATOR = new Creator<Prescription>() {
+        @Override
+        public Prescription createFromParcel(Parcel in) {
+            return new Prescription(in);
+        }
+
+        @Override
+        public Prescription[] newArray(int size) {
+            return new Prescription[size];
+        }
+    };
+
     public String getDoctor() {
         return doctor;
     }
@@ -33,5 +54,17 @@ public class Prescription {
 
     public List<PrescriptionItem> getItems() {
         return items;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(doctor);
+        parcel.writeString(date);
+        parcel.writeList(items);
     }
 }

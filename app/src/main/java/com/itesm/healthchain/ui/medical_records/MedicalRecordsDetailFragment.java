@@ -18,19 +18,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MedicalRecordsFragment extends Fragment {
+public class MedicalRecordsDetailFragment extends Fragment {
 
-    private MedicalRecordsViewModel medicalRecordsViewModel;
     private PrescriptionItemAdapter prescriptionItemAdapter;
     private List<PrescriptionItem> prescriptions;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        medicalRecordsViewModel =
-                ViewModelProviders.of(this).get(MedicalRecordsViewModel.class);
         View root = inflater.inflate(R.layout.medical_records_fragment, container, false);
 
         final TextView doctor = root.findViewById(R.id.text_doctor);
@@ -49,30 +47,32 @@ public class MedicalRecordsFragment extends Fragment {
         final TextView allergies = root.findViewById(R.id.list_allergies);
         final RecyclerView prescriptionsList = root.findViewById(R.id.list_prescriptions);
         prescriptionItemAdapter = new PrescriptionItemAdapter();
-        prescriptionsList.setAdapter(prescriptionItemAdapter);
         prescriptionsList.setLayoutManager(new LinearLayoutManager(getContext()));
+        Bundle bundle = getArguments();
 
-        medicalRecordsViewModel.getData().observe(getViewLifecycleOwner(), new Observer<MedicalRecordEntry>() {
-            @Override
-            public void onChanged(@Nullable MedicalRecordEntry data) {
-                doctor.setText(data.getDoctor());
-                name.setText(data.getName());
-                age.setText(data.getAge());
-                sex.setText(data.getSex());
-                ta.setText(data.getTa());
-                fc.setText(data.getFc());
-                fr.setText(data.getFr());
-                temp.setText(data.getTemp());
-                weight.setText(data.getWeight());
-                height.setText(data.getHeight());
-                imc.setText(data.getImc());
-                observations.setText(data.getObservations());
-                ailments.setText(data.getAilments());
-                allergies.setText(data.getAllergies());
-                prescriptions = data.getPrescription().getItems();
-                prescriptionItemAdapter.setPrescriptionItems(prescriptions);
-            }
-        });
+        if (bundle != null) {
+            MedicalRecordEntry entry = bundle.getParcelable("medicalRecord");
+            doctor.setText(entry.getDoctor());
+            name.setText(entry.getName());
+            age.setText(entry.getAge());
+            sex.setText(entry.getSex());
+            ta.setText(entry.getTa());
+            fc.setText(entry.getFc());
+            fr.setText(entry.getFr());
+            temp.setText(entry.getTemp());
+            weight.setText(entry.getWeight());
+            height.setText(entry.getHeight());
+            imc.setText(entry.getImc());
+            observations.setText(entry.getObservations());
+            ailments.setText(entry.getAilments());
+            allergies.setText(entry.getAllergies());
+            prescriptions = entry.getPrescription().getItems();
+            prescriptionItemAdapter.setPrescriptionItems(prescriptions);
+            prescriptionsList.setAdapter(prescriptionItemAdapter);
+        }
+
         return root;
     }
+
+
 }

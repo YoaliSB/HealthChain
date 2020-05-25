@@ -7,16 +7,24 @@ import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.model.MedicalRecordEntry;
+import com.itesm.healthchain.ui.medical_records.MedicalRecordEntrySelectListener;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MedicalRecordAdapter extends GenericAdapter {
 
+    private MedicalRecordEntrySelectListener selectListener;
+
     public MedicalRecordAdapter(List items) {
         super(items);
+    }
+
+    public void setSelectListener(MedicalRecordEntrySelectListener selectListener) {
+        this.selectListener = selectListener;
     }
 
     @Override
@@ -26,11 +34,18 @@ public class MedicalRecordAdapter extends GenericAdapter {
     }
 
     @Override
-    public void onBindData(RecyclerView.ViewHolder viewHolder, Object val) {
+    public void onBindData(final RecyclerView.ViewHolder viewHolder, Object val) {
         MedicalRecordEntry entry = (MedicalRecordEntry) val;
         MedicalRecordAdapterViewHolder medicalRecordAdapterViewHolder = (MedicalRecordAdapterViewHolder) viewHolder;
         medicalRecordAdapterViewHolder.doctor.setText(entry.getDoctor());
         medicalRecordAdapterViewHolder.date.setText(entry.getDate());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MedicalRecordEntry currentEntry = (MedicalRecordEntry) items.get(viewHolder.getAdapterPosition());
+                selectListener.onSelect(currentEntry);
+            }
+        });
     }
 
     class MedicalRecordAdapterViewHolder extends RecyclerView.ViewHolder {
