@@ -21,6 +21,7 @@
     <string name="login">Iniciar Sesión</string>
     <string name="register">Registrarse</string>
     <string name="name">Nombre</string>
+    <string name="full_name">Nombre completo</string>
     <string name="phone">Teléfono</string>
     <string name="pin">Pin</string>
     <string name="create_emergency_instruction">Llena tu perfil de emergencia</string>

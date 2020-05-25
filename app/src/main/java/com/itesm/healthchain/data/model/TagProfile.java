@@ -1,5 +1,8 @@
 package com.itesm.healthchain.data.model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class TagProfile implements Serializable {
@@ -12,7 +15,7 @@ public class TagProfile implements Serializable {
     private String hospital;
     private String ailments;
     private String allergies;
-    private String id;
+    private String email;
     private String contactName;
     private String contactPhone;
     private String contactRelationship;
@@ -35,7 +38,7 @@ public class TagProfile implements Serializable {
 
     public TagProfile(){
 
-        this.id = "";
+        this.email = "";
         this.name = "";
         this.birthDate = "";
         this.bloodType = "";
@@ -49,7 +52,7 @@ public class TagProfile implements Serializable {
         this.contactRelationship = "";
 
         //Testing
-        this.id = "1";
+        this.email = "triplett@test.com";
         this.name = "Brandon Triplett";
         this.birthDate = "27/03/1985";
         this.bloodType = "B+";
@@ -63,25 +66,10 @@ public class TagProfile implements Serializable {
         this.allergies = "Ninguna";
     }
 
-    public TagProfile(String[] records){
-        this.id = records[0];
-        this.name = records[1];
-        this.birthDate = records[2];
-        this.bloodType = records[3];
-        this.weight = records[4];
-        this.height = records[5];
-        this.hospital = records[6];
-        this.ailments = records[7];
-        this.allergies = records[8];
-        this.contactName = records[9];
-        this.contactPhone = records[10];
-        this.contactRelationship = records[11];
-    }
-
-    public TagProfile(String name, String birthDate, String bloodType, String weight, String height,
-                      String hospital, String ailments, String allergies, String contactName,
-                      String contactPhone, String contactRelationship) {
-        this.id = "00001";
+    public TagProfile(String email, String name, String birthDate, String bloodType, String weight, String height,
+                      String hospital, String ailments, String allergies,
+                      String contactName, String contactPhone, String contactRelationship) {
+        this.email = email;
         this.name = name;
         this.birthDate = birthDate;
         this.bloodType = bloodType;
@@ -93,6 +81,22 @@ public class TagProfile implements Serializable {
         this.contactName = contactName;
         this.contactPhone = contactPhone;
         this.contactRelationship = contactRelationship;
+    }
+
+    public JSONObject toJson() throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("birthDate", birthDate);
+        json.put("bloodType", bloodType);
+        json.put("weight", weight);
+        json.put("height", height);
+        json.put("hospital", hospital);
+        json.put("ailments", ailments);
+        json.put("allergies", allergies);
+        json.put("contactName", contactName);
+        json.put("contactPhone", contactPhone);
+        json.put("contactRelationship", contactRelationship);
+        return json;
     }
 
     public String getName() {
@@ -127,8 +131,8 @@ public class TagProfile implements Serializable {
         return allergies;
     }
 
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
     public String getContactName() {
@@ -139,7 +143,5 @@ public class TagProfile implements Serializable {
         return contactPhone;
     }
 
-    public String getContactRelationship() {
-        return contactRelationship;
-    }
+    public String getContactRelationship() { return contactRelationship; }
 }

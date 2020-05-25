@@ -48,7 +48,7 @@ public class PersonalData {
     }
 
     public PersonalData(TagProfile tagProfile){
-        this.id = tagProfile.getId();
+        this.id = tagProfile.getEmail();
         this.name = tagProfile.getName();
         this.birthDate = tagProfile.getBirthDate();
         this.blood = tagProfile.getBloodType();
