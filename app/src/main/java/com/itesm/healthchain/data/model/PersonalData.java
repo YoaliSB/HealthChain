@@ -2,7 +2,7 @@ package com.itesm.healthchain.data.model;
 
 public class PersonalData {
 
-    private String id;
+    private String email;
     private String name;
     private String birthDate;
     private String blood;
@@ -15,10 +15,10 @@ public class PersonalData {
     private String ailments;
     private String allergies;
 
-    public PersonalData(String id, String name, String birthDate, String blood, int weight, int height,
+    public PersonalData(String email, String name, String birthDate, String blood, int weight, int height,
                         String contactName, String contactPhone, String contactRelationship,
                         String hospital, String ailments, String allergies) {
-        this.id = id;
+        this.email = email;
         this.name = name;
         this.birthDate = birthDate;
         this.blood = blood;
@@ -33,7 +33,7 @@ public class PersonalData {
     }
 
     public PersonalData() {
-        this.id = "1";
+        this.email = "juanito@test.com";
         this.name = "Juanito Pérez Rodríguez";
         this.birthDate = "27/03/1985";
         this.blood = "A+";
@@ -48,7 +48,7 @@ public class PersonalData {
     }
 
     public PersonalData(TagProfile tagProfile){
-        this.id = tagProfile.getEmail();
+        this.email = tagProfile.getEmail();
         this.name = tagProfile.getName();
         this.birthDate = tagProfile.getBirthDate();
         this.blood = tagProfile.getBloodType();
@@ -62,8 +62,8 @@ public class PersonalData {
         this.contactRelationship = tagProfile.getContactRelationship();
     }
 
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
     public String getName() {
@@ -79,17 +79,13 @@ public class PersonalData {
     }
 
     public String getWeight() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(weight);
-        sb.append(" kg");
-        return sb.toString();
+        return weight +
+                " kg";
     }
 
     public String getHeight() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(height);
-        sb.append(" cm");
-        return sb.toString();
+        return height +
+                " cm";
     }
 
     public String getContactName() {

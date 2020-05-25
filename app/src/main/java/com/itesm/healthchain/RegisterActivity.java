@@ -1,6 +1,8 @@
 package com.itesm.healthchain;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.model.TagProfile;
 import com.itesm.healthchain.nfc.NfcActivity;
 
@@ -102,15 +106,7 @@ public class RegisterActivity extends NfcActivity {
                             etFullName.setText(name);
                             setContentView(R.layout.create_emergency_profile);
                         /*
-                        new Handler().postDelayed(new Runnable() {// a thread in Android
-                            @Override
-                            public void run() {
-                                Intent intent = new Intent( RegisterActivity.this,
-                                        LoginActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        },1500);
+
 
                          */
                         }
@@ -164,15 +160,18 @@ public class RegisterActivity extends NfcActivity {
                             email, name, birthDate, bloodType, weight, height,
                             hospital, ailments, allergies,
                             contactName, contactPhone, contactRelationship);
-
-                    jsonBody.put("content", tagProfile.toJson());
+                    PersonalData personalData = new PersonalData(tagProfile);
+                    Gson gson = new Gson();
+                    String content = gson.toJson(personalData);
+                    jsonBody.put("content", content);
 
                     JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, emergencyInfoUrl,
                             jsonBody, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.i("respuesta", response.toString());
-                            // setContentView(R.layout.save_profile_nfc);
+                            isWriting = true;
+                            setContentView(R.layout.nfc_screen);
                         }
                     }, new Response.ErrorListener() {
                         @Override
@@ -197,5 +196,21 @@ public class RegisterActivity extends NfcActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent){
+        if(isWriting){
+            super.onNewIntent(intent);
+            new Handler().postDelayed(new Runnable() {// a thread in Android
+                @Override
+                public void run() {
+                    Intent intent = new Intent( RegisterActivity.this,
+                            LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            },1500);
+        }
     }
 }
