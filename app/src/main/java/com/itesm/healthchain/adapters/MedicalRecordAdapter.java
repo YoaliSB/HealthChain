@@ -35,15 +35,14 @@ public class MedicalRecordAdapter extends GenericAdapter {
 
     @Override
     public void onBindData(final RecyclerView.ViewHolder viewHolder, Object val) {
-        MedicalRecordEntry entry = (MedicalRecordEntry) val;
+        final MedicalRecordEntry entry = (MedicalRecordEntry) val;
         MedicalRecordAdapterViewHolder medicalRecordAdapterViewHolder = (MedicalRecordAdapterViewHolder) viewHolder;
         medicalRecordAdapterViewHolder.doctor.setText(entry.getDoctor());
         medicalRecordAdapterViewHolder.date.setText(entry.getDate());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MedicalRecordEntry currentEntry = (MedicalRecordEntry) items.get(viewHolder.getAdapterPosition());
-                selectListener.onSelect(currentEntry);
+                selectListener.onSelect(entry);
             }
         });
     }
