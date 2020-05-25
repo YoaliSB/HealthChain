@@ -17,13 +17,23 @@ public class DoctorViewModel extends ViewModel {
     private DoctorRepository repository;
     private MutableLiveData<ArrayList<Doctor>> doctorLiveData;
 
-    public DoctorViewModel(Context context) {
+    public DoctorViewModel(DoctorRepository repository) {
         doctorLiveData = new MutableLiveData<>();
-        this.repository = DoctorRepository.getInstance(context);
+        this.repository = repository;
     }
 
     public LiveData<ArrayList<Doctor>> getData() {
         return repository.fetchDoctors();
+    }
+
+    public LiveData<ArrayList<Doctor>> getDummyData() {
+        ArrayList<Doctor> doctors = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            doctors.add(new Doctor(Integer.toString(i), "Doctor #" + i, "This is doctor #" + i, true));
+        }
+        MutableLiveData<ArrayList<Doctor>> data = new MutableLiveData<ArrayList<Doctor>>();
+        data.setValue(doctors);
+        return data;
     }
 
     public void deleteDoctor(Doctor deletedDoctor) {
@@ -31,16 +41,16 @@ public class DoctorViewModel extends ViewModel {
     }
 
     public static class Factory implements ViewModelProvider.Factory {
-        private final Context context;
+        private final DoctorRepository repository;
 
-        public Factory(Context context) {
-            this.context = context;
+        public Factory(DoctorRepository repository) {
+            this.repository = repository;
         }
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new DoctorViewModel(context);
+            return (T) new DoctorViewModel(repository);
         }
     }
 

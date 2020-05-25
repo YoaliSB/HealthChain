@@ -16,6 +16,7 @@ public class DoctorRepository implements DoctorDeleteListener{
     // private constructor : singleton access
     private DoctorRepository(final Context context) {
         doctorNetworkDataSource = new DoctorNetworkDataSource(context);
+        doctorNetworkDataSource.setDoctorDeleteListener(this);
     }
 
     public static DoctorRepository getInstance(Context context) {

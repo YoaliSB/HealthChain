@@ -27,6 +27,7 @@ public class DoctorNetworkDataSource {
     private MutableLiveData<ArrayList<Doctor>> doctorMutableLiveData = new MutableLiveData<>();
     private Context context;
     RequestQueue requestQueue;
+    DoctorDeleteListener doctorDeleteListener;
 
     public DoctorNetworkDataSource(Context context) {
         this.context = context;
@@ -79,14 +80,12 @@ public class DoctorNetworkDataSource {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("POST DOCTORS", response.toString());
-                        ArrayList<Doctor> doctors = doctorMutableLiveData.getValue();
-                        doctors.remove(doctor);
-                        doctorMutableLiveData.postValue(doctors);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("DOCTORS", error.toString());
+                doctorDeleteListener.onFailure();
             }
         }) {
             @Override
@@ -100,5 +99,9 @@ public class DoctorNetworkDataSource {
             }
         };
         requestQueue.add(request);
+    }
+
+    public void setDoctorDeleteListener(DoctorDeleteListener listener) {
+        this.doctorDeleteListener = listener;
     }
 }

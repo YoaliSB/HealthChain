@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.DoctorAdapter;
 import com.itesm.healthchain.data.DoctorDeleteListener;
+import com.itesm.healthchain.data.DoctorRepository;
 import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
 
     private RecyclerView recyclerView;
     private DoctorAdapter doctorAdapter;
-    private ArrayList<Doctor> doctors = new ArrayList<>();;
+    private ArrayList<Doctor> doctors = new ArrayList<>();
     private View emptyView;
     DoctorViewModel viewModel;
 
@@ -42,19 +43,22 @@ public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
         TextView emptyText = emptyView.findViewById(R.id.text);
         emptyText.setText(R.string.empty_doctors);
         recyclerView = rootView.findViewById(R.id.list);
+        DoctorRepository doctorRepository = DoctorRepository.getInstance(getActivity());
+        doctorRepository.setListener(this);
         viewModel =
                 ViewModelProviders.of(this,
-                        new DoctorViewModel.Factory(getActivity()))
+                        new DoctorViewModel.Factory(doctorRepository))
                         .get(DoctorViewModel.class);
-        viewModel.getData().observe(getActivity(), peopleListUpdateObserver);
+        viewModel.getDummyData().observe(getActivity(), doctorListUpdateObserver);
         doctorAdapter = new DoctorAdapter(doctors);
+        doctorAdapter.setDeleteListener(this);
         recyclerView.setAdapter(doctorAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return rootView;
     }
 
-    Observer<ArrayList<Doctor>> peopleListUpdateObserver =
+    Observer<ArrayList<Doctor>> doctorListUpdateObserver =
         new Observer<ArrayList<Doctor>>() {
             @Override
             public void onChanged(ArrayList<Doctor> doctorArrayList) {
@@ -62,7 +66,7 @@ public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
                     emptyView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 } else {
-                    doctors.addAll(doctorArrayList);
+                    doctors = new ArrayList<>(doctorArrayList);
                     doctorAdapter = new DoctorAdapter(doctors);
                     recyclerView.setAdapter(doctorAdapter);
                     emptyView.setVisibility(View.GONE);
