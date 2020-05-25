@@ -26,6 +26,10 @@ public class DoctorViewModel extends ViewModel {
         return repository.fetchDoctors();
     }
 
+    public void deleteDoctor(Doctor deletedDoctor) {
+        repository.deleteDoctor(deletedDoctor);
+    }
+
     public static class Factory implements ViewModelProvider.Factory {
         private final Context context;
 

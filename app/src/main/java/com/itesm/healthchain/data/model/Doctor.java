@@ -35,4 +35,8 @@ public class Doctor {
     public boolean isActive() {
         return active;
     }
+
+    public void setIsActive(boolean active) {
+        this.active = active;
+    }
 }

@@ -8,9 +8,10 @@ import java.util.ArrayList;
 
 import androidx.lifecycle.MutableLiveData;
 
-public class DoctorRepository {
+public class DoctorRepository implements DoctorDeleteListener{
     private static volatile DoctorRepository instance;
     private DoctorNetworkDataSource doctorNetworkDataSource;
+    private DoctorDeleteListener listener;
 
     // private constructor : singleton access
     private DoctorRepository(final Context context) {
@@ -29,4 +30,20 @@ public class DoctorRepository {
         return doctorNetworkDataSource.getDoctors();
     }
 
+    public void deleteDoctor(Doctor doctor){
+        doctor.setIsActive(false);
+        doctorNetworkDataSource.updateDoctor(doctor);
+    }
+
+    public void setListener(DoctorDeleteListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onDelete(Doctor deletedDoctor) { }
+
+    @Override
+    public void onFailure() {
+        this.listener.onFailure();
+    }
 }

@@ -89,6 +89,7 @@
     <string name="title_doctors">Profesionales consultados </string>
     <string name="delete_doctor">Restringir información a este profesional</string>
     <string name="empty_doctors">No tienes agregado a ningún profesional</string>
+    <string name="delete_doctor_fail">Error al eliminar al doctor, intenta de nuevo.</string>
 
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>

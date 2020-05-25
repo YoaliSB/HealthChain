@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.DoctorAdapter;
+import com.itesm.healthchain.data.DoctorDeleteListener;
 import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class DoctorsFragment extends Fragment {
+public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
 
     private RecyclerView recyclerView;
     private DoctorAdapter doctorAdapter;
@@ -68,4 +70,14 @@ public class DoctorsFragment extends Fragment {
                 }
             }
         };
+
+    @Override
+    public void onDelete(Doctor deletedDoctor) {
+        viewModel.deleteDoctor(deletedDoctor);
+    }
+
+    @Override
+    public void onFailure() {
+        Toast.makeText(getContext(),getString(R.string.delete_doctor_fail), Toast.LENGTH_LONG).show();
+    }
 }
