@@ -18,8 +18,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.itesm.healthchain.nfc.NfcActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,10 +27,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity {
-    private static final String url = "https://health-chain-api.herokuapp.com/api/register";
+public class RegisterActivity extends NfcActivity {
+    private static final String registerUrl = "https://health-chain-api.herokuapp.com/api/register";
+    private static final String emergencyInfoUrl = "https://health-chain-api.herokuapp.com/api/user/emergency_info";
     EditText etname, etemail, etpass, etpass2;
     Button signupbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                 jsonBody.put("password", pass);
                 jsonBody.put("password_confirmation", pass2);
 
-                    JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url,
+                    JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, registerUrl,
                             jsonBody, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

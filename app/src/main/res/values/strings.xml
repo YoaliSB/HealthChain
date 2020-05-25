@@ -23,6 +23,20 @@
     <string name="name">Nombre</string>
     <string name="phone">Teléfono</string>
     <string name="pin">Pin</string>
+    <string name="create_emergency_instruction">Llena tu perfil de emergencia</string>
+    <string name="hint_name">José Hernández</string>
+    <string name="hint_name2">María Pérez</string>
+    <string name="hint_birthdate">dd/mm/yyyy</string>
+    <string name="hint_blood">A+</string>
+    <string name="hint_weight">75.0</string>
+    <string name="hint_weightUnit">kg</string>
+    <string name="hint_height">175</string>
+    <string name="hint_heightUnit">cm</string>
+    <string name="hint_hospital">Hospital ABC</string>
+    <string name="hint_ailments">Hipertensión, diabetes, etc.</string>
+    <string name="hint_allergies">Penicilina, mariscos, etc.</string>
+    <string name="hint_relationship">Madre</string>
+    <string name="hint_phone">5512345678</string>
     <string name="confirm_pwd">Confirmar Contraseña</string>
     <string name="login_error">Usuario y contraseña no válidos.</string>
     <string name="register_error">Error al registrar usuario.</string>
@@ -54,6 +68,9 @@
     <string name="label_hospital">Hospital de preferencia</string>
     <string name="label_ailments">Condiciones médicas conocidas</string>
     <string name="label_allergies">Alergias conocidas</string>
+    <string name="label_birthdate">Fecha de nacimiento</string>
+    <string name="label_phone">Teléfono</string>
+    <string name="label_relationship">Parentesco</string>
     <string name="content_phone">Llamar contacto de emergencia</string>
 
     <!-- Personal Edit Fragment -->
