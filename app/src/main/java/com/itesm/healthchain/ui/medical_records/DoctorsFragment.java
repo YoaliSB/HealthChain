@@ -9,13 +9,12 @@ import android.widget.Toast;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.DoctorAdapter;
-import com.itesm.healthchain.data.DoctorDeleteListener;
-import com.itesm.healthchain.data.DoctorRepository;
+import com.itesm.healthchain.data.doctors.DoctorDeleteListener;
+import com.itesm.healthchain.data.doctors.DoctorRepository;
 import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

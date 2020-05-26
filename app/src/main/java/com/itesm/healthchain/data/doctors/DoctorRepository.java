@@ -1,4 +1,4 @@
-package com.itesm.healthchain.data;
+package com.itesm.healthchain.data.doctors;
 
 import android.content.Context;
 

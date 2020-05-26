@@ -1,4 +1,4 @@
-package com.itesm.healthchain.data;
+package com.itesm.healthchain.data.doctors;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.itesm.healthchain.data.SharedPreferencesManager;
 import com.itesm.healthchain.data.model.Doctor;
 
 import org.json.JSONException;

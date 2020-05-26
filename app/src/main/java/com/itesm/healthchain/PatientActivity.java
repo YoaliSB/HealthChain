@@ -48,16 +48,17 @@ public class PatientActivity extends NfcActivity {
 
     @Override
     protected void onNfcWriteSuccess() {
-        PersonalData data = personalDataViewModel.getData().getValue();
-        String name = tagProfile.getContactName();
-        String phone = tagProfile.getContactPhone();
-        String relationship = tagProfile.getContactRelationship();
-        String preferredHospital = tagProfile.getHospital();
-        data.setContactName(name);
-        data.setContactPhone(phone);
-        data.setContactRelationship(relationship);
-        data.setHospital(preferredHospital);
-        personalDataViewModel.setData(data);
+//        PersonalData data = personalDataViewModel.getData().getValue();
+//        String name = tagProfile.getContactName();
+//        String phone = tagProfile.getContactPhone();
+//        String relationship = tagProfile.getContactRelationship();
+//        String preferredHospital = tagProfile.getHospital();
+//        data.setContactName(name);
+//        data.setContactPhone(phone);
+//        data.setContactRelationship(relationship);
+//        data.setHospital(preferredHospital);
+//        personalDataViewModel.setData(data);
+
         navController.navigate(R.id.navigation_personal);
     }
 

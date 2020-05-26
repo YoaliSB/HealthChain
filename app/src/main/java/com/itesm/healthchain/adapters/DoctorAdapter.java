@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.model.Doctor;
-import com.itesm.healthchain.data.DoctorDeleteListener;
+import com.itesm.healthchain.data.doctors.DoctorDeleteListener;
 
 import java.util.List;
 

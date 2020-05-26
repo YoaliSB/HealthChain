@@ -1,8 +1,6 @@
 package com.itesm.healthchain.ui.medical_records;
 
-import android.content.Context;
-
-import com.itesm.healthchain.data.DoctorRepository;
+import com.itesm.healthchain.data.doctors.DoctorRepository;
 import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.ArrayList;

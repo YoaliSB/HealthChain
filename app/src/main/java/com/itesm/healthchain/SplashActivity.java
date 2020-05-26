@@ -32,6 +32,16 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {// a thread in Android
             @Override
             public void run() {
+                PersonalData data = new PersonalData();
+                ArrayList<MedicalRecordEntry> entries = new ArrayList<>();
+                entries.add( new MedicalRecordEntry());
+                ArrayList<Prescription> list = new ArrayList<>();
+                list.add(new Prescription());
+                Patient patient = new Patient(data, entries, list);
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                String json = gson.toJson(patient);
+                Log.d("JSON", json);
+
                 if(repository.isLoggedIn()){
                     redirect(SharedPreferencesManager.getRole(getApplicationContext()));
                 } else {

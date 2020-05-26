@@ -58,6 +58,7 @@
 
     <!-- Personal Edit Fragment -->
     <string name="title_edit">Editar datos personales</string>
+    <string name="personal_edit_error">Hubo un error al actualizar tus datos, vuelve a intentarlo.</string>
 
     <!-- Main Records Fragment -->
     <string name="label_prescriptions">Recetas Médicas</string>
