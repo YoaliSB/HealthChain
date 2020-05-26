@@ -33,7 +33,6 @@ public class MedicalRecordsDetailFragment extends Fragment {
 
         final TextView doctor = root.findViewById(R.id.text_doctor);
         final TextView name = root.findViewById(R.id.text_name);
-        final TextView age = root.findViewById(R.id.text_age);
         final TextView sex = root.findViewById(R.id.text_sex);
         final TextView ta = root.findViewById(R.id.text_ta);
         final TextView fc = root.findViewById(R.id.text_fc);
@@ -43,8 +42,7 @@ public class MedicalRecordsDetailFragment extends Fragment {
         final TextView height = root.findViewById(R.id.text_height);
         final TextView imc = root.findViewById(R.id.text_bmi);
         final TextView observations = root.findViewById(R.id.text_observations);
-        final TextView ailments = root.findViewById(R.id.list_ailments);
-        final TextView allergies = root.findViewById(R.id.list_allergies);
+        final TextView diagnosis = root.findViewById(R.id.text_diagnosis);
         final RecyclerView prescriptionsList = root.findViewById(R.id.list_prescriptions);
         prescriptionItemAdapter = new PrescriptionItemAdapter();
         prescriptionsList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -52,9 +50,8 @@ public class MedicalRecordsDetailFragment extends Fragment {
 
         if (bundle != null) {
             MedicalRecordEntry entry = bundle.getParcelable("medicalRecord");
-            doctor.setText(entry.getDoctor());
             name.setText(entry.getName());
-            age.setText(entry.getAge());
+            doctor.setText(entry.getDoctor());
             sex.setText(entry.getSex());
             ta.setText(entry.getTa());
             fc.setText(entry.getFc());
@@ -64,8 +61,7 @@ public class MedicalRecordsDetailFragment extends Fragment {
             height.setText(entry.getHeight());
             imc.setText(entry.getImc());
             observations.setText(entry.getObservations());
-            ailments.setText(entry.getAilments());
-            allergies.setText(entry.getAllergies());
+            diagnosis.setText(entry.getDiagnostic());
             prescriptions = entry.getPrescription().getItems();
             prescriptionItemAdapter.setPrescriptionItems(prescriptions);
             prescriptionsList.setAdapter(prescriptionItemAdapter);

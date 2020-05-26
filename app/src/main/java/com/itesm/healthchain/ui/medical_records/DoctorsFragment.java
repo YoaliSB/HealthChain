@@ -68,10 +68,8 @@ public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
                     emptyView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 } else {
-                    doctors = new ArrayList<>(doctorArrayList);
-
                     // Remove inactive doctors
-                    Iterator<Doctor> itr = doctors.iterator();
+                    Iterator<Doctor> itr = doctorArrayList.iterator();
                     while (itr.hasNext()) {
                         Doctor dr = itr.next();
                         if (!dr.isActive()) {
@@ -79,8 +77,7 @@ public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
                         }
                     }
 
-                    doctorAdapter = new DoctorAdapter(doctors);
-                    recyclerView.setAdapter(doctorAdapter);
+                    doctorAdapter.addItems(doctorArrayList);
                     emptyView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                 }
