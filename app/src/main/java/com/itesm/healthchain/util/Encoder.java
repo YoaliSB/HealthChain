@@ -15,8 +15,16 @@ import java.util.Base64;
 /*
     USAGE
         Encoder encoder = Encoder.getEncoder();
+    For one instance
         String string = encoder.toString( new SomeClass() );
         SomeClass some = ( SomeClass ) encoder.fromString( string );
+    For arrays
+        SomeClass sc1 = new SomeClass();
+        SomeClass sc2 = new SomeClass();
+        SomeClass sc3 = new SomeClass();
+        SomeClass scArray[] = {sc1, sc2, sc3};
+        String string = encoder.toString( scArray );
+        SomeClass decodedArray[] = ( SomeClass[] ) encoder.fromString( string );
  */
 
 @RequiresApi(api = Build.VERSION_CODES.O)
