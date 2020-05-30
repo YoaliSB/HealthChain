@@ -2,7 +2,19 @@ package com.itesm.healthchain.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Base64;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +29,11 @@ public class Prescription implements Parcelable {
         this.items = items;
     }
 
-    public Prescription(){
-        // TODO: erase this
-        this.doctor = "Azucena Sotelo";
-        this.date = "20/04/2020";
-        this.items = new ArrayList<>();
-        items.add(new PrescriptionItem());
-        items.add(new PrescriptionItem());
+    public static Prescription createDummyData(){
+        ArrayList<PrescriptionItem> items = new ArrayList<>();
+        items.add(PrescriptionItem.createDummyItem());
+        items.add(PrescriptionItem.createDummyItem());
+        return new Prescription("Rogelio Flores Puerta", "05/05/2020", items);
     }
 
     protected Prescription(Parcel in) {
@@ -67,4 +77,26 @@ public class Prescription implements Parcelable {
         parcel.writeString(date);
         parcel.writeList(items);
     }
+
+    public static class PrescriptionTypeConverter implements JsonSerializer<Prescription>,
+            JsonDeserializer<Prescription> {
+
+        Gson gson = new Gson();
+
+        @Override
+        public JsonElement serialize(Prescription src, Type typeOfSrc, JsonSerializationContext context) {
+            return new JsonPrimitive(Base64.encodeToString(gson.toJson(src)
+                    .getBytes(StandardCharsets.UTF_8), Base64.NO_WRAP));
+        }
+
+        @Override
+        public Prescription deserialize(JsonElement json,
+                                        Type typeOfT,
+                                        JsonDeserializationContext context) throws JsonParseException {
+            return gson.fromJson(new String(Base64.decode(json.getAsString(),
+                    Base64.NO_WRAP),
+                    StandardCharsets.UTF_8), Prescription.class);
+        }
+    }
+
 }

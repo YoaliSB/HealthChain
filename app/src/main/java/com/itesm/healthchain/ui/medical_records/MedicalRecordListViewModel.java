@@ -26,7 +26,7 @@ public class MedicalRecordListViewModel extends ViewModel {
     public LiveData<List<MedicalRecordEntry>> getData() {
         // TODO: actually get data from repository
         ArrayList<MedicalRecordEntry> list = new ArrayList();
-        list.add(new MedicalRecordEntry());
+        list.add(MedicalRecordEntry.createDummyEntry());
         liveData.setValue(list);
         return liveData;
     }

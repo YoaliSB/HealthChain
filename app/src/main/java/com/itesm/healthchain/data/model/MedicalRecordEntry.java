@@ -2,7 +2,19 @@ package com.itesm.healthchain.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Base64;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 
 public class MedicalRecordEntry implements Parcelable {
@@ -40,22 +52,23 @@ public class MedicalRecordEntry implements Parcelable {
         this.prescription = prescription;
     }
 
-    public MedicalRecordEntry() {
+    public static MedicalRecordEntry createDummyEntry() {
         // TODO: erase this
-        this.doctor = "Rogelio Flores Puerta";
-        this.name = "Juanito Perez";
-        this.date = "05/05/2020";
-        this.sex = "Masculino";
-        this.ta = "120/80";
-        this.fc = 80;
-        this.fr = 16;
-        this.temp = 36.5;
-        this.weight = 75;
-        this.height = 172;
-        this.imc = calculateBMI();
-        this.observations = "Sin fiebre";
-        this.diagnostic = "Paciente presenta cuadro de resfriado común. Descanso por 3 días y mantenerse hidratado";
-        this.prescription = new Prescription();
+        String name = "Juanito Perez";
+        String doctor = "Rogelio Flores Puerta";
+        String date = "05/05/2020";
+        String sex = "Masculino";
+        String  ta = "120/80";
+        int fc = 80;
+        int fr = 16;
+        double temp = 36.5;
+        double  weight = 75;
+        double  height = 172;
+        String  observations = "Sin fiebre";
+        String  diagnostic = "Paciente presenta cuadro de resfriado común. Descanso por 3 días y mantenerse hidratado";
+        Prescription prescription = Prescription.createDummyData();
+        return new MedicalRecordEntry(name, doctor, date, sex, ta, fc, fr, temp, weight, height,
+                observations, diagnostic, prescription);
     }
 
     protected MedicalRecordEntry(Parcel in) {
@@ -175,5 +188,26 @@ public class MedicalRecordEntry implements Parcelable {
         parcel.writeString(diagnostic);
         parcel.writeParcelable(prescription, i);
 
+    }
+
+    public static class MedicalRecordEntryTypeConverter implements JsonSerializer<MedicalRecordEntry>,
+            JsonDeserializer<MedicalRecordEntry> {
+
+        Gson gson = new Gson();
+
+        @Override
+        public JsonElement serialize(MedicalRecordEntry src, Type typeOfSrc, JsonSerializationContext context) {
+            return new JsonPrimitive(Base64.encodeToString(gson.toJson(src)
+                    .getBytes(StandardCharsets.UTF_8), Base64.NO_WRAP));
+        }
+
+        @Override
+        public MedicalRecordEntry deserialize(JsonElement json,
+                                              Type typeOfT,
+                                              JsonDeserializationContext context) throws JsonParseException {
+            return gson.fromJson(new String(Base64.decode(json.getAsString(),
+                    Base64.NO_WRAP),
+                    StandardCharsets.UTF_8), MedicalRecordEntry.class);
+        }
     }
 }

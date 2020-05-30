@@ -34,20 +34,27 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 PersonalData data = new PersonalData();
                 ArrayList<MedicalRecordEntry> entries = new ArrayList<>();
-                entries.add( new MedicalRecordEntry());
+                entries.add( MedicalRecordEntry.createDummyEntry());
                 ArrayList<Prescription> list = new ArrayList<>();
-                list.add(new Prescription());
+                list.add(Prescription.createDummyData());
                 Patient patient = new Patient(data, entries, list);
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                Gson gson = new GsonBuilder()
+                        .registerTypeAdapter(Prescription.class, new Prescription.PrescriptionTypeConverter())
+                        .registerTypeAdapter(MedicalRecordEntry.class, new MedicalRecordEntry.MedicalRecordEntryTypeConverter())
+                        .setPrettyPrinting()
+                        .create();
                 String json = gson.toJson(patient);
                 Log.d("JSON", json);
+                Patient p2 = gson.fromJson(json, Patient.class);
 
-                if(repository.isLoggedIn()){
-                    redirect(SharedPreferencesManager.getRole(getApplicationContext()));
-                } else {
-                    Intent intent = new Intent( SplashActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
+//                if(repository.isLoggedIn()){
+//                    redirect(SharedPreferencesManager.getRole(getApplicationContext()));
+//                } else {
+//                    Intent intent = new Intent( SplashActivity.this, LoginActivity.class);
+//                    startActivity(intent);
+//                }
+                redirect("doctor");
+
                 finish();
             }
         },3000);

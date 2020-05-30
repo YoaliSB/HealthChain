@@ -10,7 +10,7 @@ public class MedicalRecordsViewModel extends ViewModel {
     private MutableLiveData<MedicalRecordEntry> mData;
 
     public MedicalRecordsViewModel() {
-        MedicalRecordEntry data = new MedicalRecordEntry();
+        MedicalRecordEntry data = MedicalRecordEntry.createDummyEntry();
         mData = new MutableLiveData<>();
         mData.setValue(data);
     }

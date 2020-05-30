@@ -14,10 +14,8 @@ public class PrescriptionItem implements Parcelable {
         this.date = date;
     }
 
-    public PrescriptionItem(){
-        this.name = "Redoxon";
-        this.dose = "Una tableta";
-        this.date = "25/04/2020";
+    public static PrescriptionItem createDummyItem(){
+        return new PrescriptionItem("Redoxon", "Una tableta", "25/04/2020");
     }
 
     protected PrescriptionItem(Parcel in) {
