@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_personal">
+
+    <!-- Login -->
+    <activity
+        android:id="@+id/navigation_login"
+        android:name="com.itesm.healthchain.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+
+    <!-- Personal -->
+    <fragment
+        android:id="@+id/navigation_personal"
+        android:name="com.itesm.healthchain.ui.personal_data.ParamedicDataFragment"
+        android:label="@string/title_paramedic_data"
+        tools:layout="@layout/personal_fragment" >
+    </fragment>
+
+    <!-- Settings -->
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.itesm.healthchain.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/settings_fragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="com.itesm.healthchain.ui.settings.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/about_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.itesm.healthchain.ui.settings.AccountSettingsFragment"
+        android:label="@string/edit_profile"
+        tools:layout="@layout/account_settings_fragment"/>
+
+    <!-- NFC -->
+    <fragment
+        android:id="@+id/navigation_nfc"
+        android:name="com.itesm.healthchain.nfc.NfcFragment"
+        android:label="@string/title_nfc"
+        tools:layout="@layout/nfc_screen">
+    </fragment>
+</navigation>

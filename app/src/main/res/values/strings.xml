@@ -5,9 +5,15 @@
     <string name="title_home">Principal</string>
     <string name="title_medical_records">Historial Médico</string>
     <string name="title_nfc">NFC</string>
-    <string name="title_personal_data">Mis Datos</string>
+    <string name="title_patient_data">Mis Datos</string>
+    <string name="title_paramedic_data">Información de emergencia</string>
     <string name="title_settings">Configuración</string>
     <string name="save">Guardar</string>
+
+    <!-- Shared Preferences -->
+    <string name="preferences_key">com.itesm.healthchain.preferences</string>
+    <string name="token_key">authentication_token</string>
+    <string name="role_key">user_role</string>
 
     <!-- Log In / Register Activity-->
     <string name="email">E-mail</string>
@@ -15,11 +21,30 @@
     <string name="login">Iniciar Sesión</string>
     <string name="register">Registrarse</string>
     <string name="name">Nombre</string>
+    <string name="full_name">Nombre completo</string>
     <string name="phone">Teléfono</string>
     <string name="pin">Pin</string>
+    <string name="create_emergency_instruction">Llena tu perfil de emergencia</string>
+    <string name="hint_name">José Hernández</string>
+    <string name="hint_name2">María Pérez</string>
+    <string name="hint_birthdate">dd/mm/yyyy</string>
+    <string name="hint_blood">A+</string>
+    <string name="hint_weight">75.0</string>
+    <string name="hint_weightUnit">kg</string>
+    <string name="hint_height">175</string>
+    <string name="hint_heightUnit">cm</string>
+    <string name="hint_hospital">Hospital ABC</string>
+    <string name="hint_ailments">Hipertensión, diabetes, etc.</string>
+    <string name="hint_allergies">Penicilina, mariscos, etc.</string>
+    <string name="hint_relationship">Madre</string>
+    <string name="hint_phone">5512345678</string>
     <string name="confirm_pwd">Confirmar Contraseña</string>
     <string name="login_error">Usuario y contraseña no válidos.</string>
     <string name="register_error">Error al registrar usuario.</string>
+    <string name="role_error">Error al iniciar sesión</string>
+    <string name="update_info_error">Error al actualizar la información</string>
+
+    <string name="logout_error">Error al cerrar sesión.</string>
 
     <!-- Doctor Main Fragment -->
     <string name="text_home">Principal</string>
@@ -33,7 +58,7 @@
     <string name="nfc_instructions">Acerque la tarjeta NFC al teléfono</string>
     <string name="no_nfc">No se detecta la tarjeta NFC</string>
     <string name="nfc_write_success">Se escribió la información correctamente en la tarjeta</string>
-    <string name="nfc_write_error">Hubo un error al escribir. Acerca la tarjeta al dispositivo</string>
+    <string name="nfc_write_error">Error al escribir. Acerca la tarjeta al dispositivo</string>
 
     <!-- Personal Data Fragment -->
     <string name="label_name">Nombre</string>
@@ -45,10 +70,14 @@
     <string name="label_hospital">Hospital de preferencia</string>
     <string name="label_ailments">Condiciones médicas conocidas</string>
     <string name="label_allergies">Alergias conocidas</string>
+    <string name="label_birthdate">Fecha de nacimiento</string>
+    <string name="label_phone">Teléfono</string>
+    <string name="label_relationship">Parentesco</string>
     <string name="content_phone">Llamar contacto de emergencia</string>
 
     <!-- Personal Edit Fragment -->
     <string name="title_edit">Editar datos personales</string>
+    <string name="personal_edit_error">Hubo un error al actualizar tus datos, vuelve a intentarlo.</string>
 
     <!-- Main Records Fragment -->
     <string name="label_prescriptions">Recetas Médicas</string>
@@ -64,9 +93,11 @@
     <string name="label_temp">TEMP</string>
     <string name="label_bmi">I.M.C.</string>
     <string name="label_observations">Observaciones</string>
+    <string name="label_diagnosis">Diagnóstico</string>
     <string name="label_prescription">Receta Médica</string>
     <string name="header_dose">Dosis</string>
     <string name="header_date">Fecha límite</string>
+    <string name="empty_records">Tu historial está vacío</string>
 
     <!-- Prescription Header -->
     <string name="prescription_name">Nombre</string>
@@ -79,6 +110,7 @@
     <string name="title_doctors">Profesionales consultados </string>
     <string name="delete_doctor">Restringir información a este profesional</string>
     <string name="empty_doctors">No tienes agregado a ningún profesional</string>
+    <string name="delete_doctor_fail">Error al eliminar al doctor, intenta de nuevo.</string>
 
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>
@@ -93,6 +125,8 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="password_changeSuccess">Cambio exitoso</string>
+    <string name="password_changeFail">No se pudo hacer el cambio</string>
 
     <!-- About Fragment -->
     <string name="about_text">Esta aplicación fue desarrollada por alumnos del Instituto Tecnológico

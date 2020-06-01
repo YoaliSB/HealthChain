@@ -5,16 +5,19 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_personal">
 
-    <!-- Personal -->
+    <!-- Login -->
+    <activity
+        android:id="@+id/navigation_login"
+        android:name="com.itesm.healthchain.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 
+    <!-- Personal -->
     <fragment
         android:id="@+id/navigation_personal"
-        android:name="com.itesm.healthchain.ui.personal_data.PersonalDataFragment"
-        android:label="@string/title_personal_data"
+        android:name="com.itesm.healthchain.ui.personal_data.PatientDataFragment"
+        android:label="@string/title_patient_data"
         tools:layout="@layout/personal_fragment" >
-        <action
-            android:id="@+id/action_navigation_personal_to_navigation_personal_edit"
-            app:destination="@id/navigation_personal_edit" />
     </fragment>
 
     <fragment
@@ -30,20 +33,17 @@
         android:name="com.itesm.healthchain.ui.medical_records.RecordsMainFragment"
         android:label="@string/title_medical_records"
         tools:layout="@layout/main_records_fragment" >
-        <action
-            android:id="@+id/action_navigation_records_main_to_navigation_medical_records"
-            app:destination="@id/navigation_medical_records" />
-        <action
-            android:id="@+id/action_navigation_records_main_to_navigation_prescriptions"
-            app:destination="@id/navigation_prescriptions" />
-        <action
-            android:id="@+id/action_navigation_records_main_to_navigation_doctors"
-            app:destination="@id/navigation_doctors" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_medical_records"
-        android:name="com.itesm.healthchain.ui.medical_records.MedicalRecordsFragment"
+        android:name="com.itesm.healthchain.ui.medical_records.MedicalRecordsListFragment"
+        android:label="@string/title_medical_records"
+        tools:layout="@layout/recyclerview_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_medical_record_detail"
+        android:name="com.itesm.healthchain.ui.medical_records.MedicalRecordsDetailFragment"
         android:label="@string/title_medical_records"
         tools:layout="@layout/medical_records_fragment"/>
 
@@ -85,15 +85,4 @@
         android:name="com.itesm.healthchain.ui.settings.AccountSettingsFragment"
         android:label="@string/edit_profile"
         tools:layout="@layout/account_settings_fragment"/>
-
-    <!-- NFC -->
-    <fragment
-        android:id="@+id/navigation_nfc"
-        android:name="com.itesm.healthchain.nfc.NfcFragment"
-        android:label="@string/title_nfc"
-        tools:layout="@layout/nfc_screen">
-        <action
-            android:id="@+id/action_navigation_nfc_to_navigation_personal2"
-            app:destination="@id/navigation_personal" />
-    </fragment>
 </navigation>

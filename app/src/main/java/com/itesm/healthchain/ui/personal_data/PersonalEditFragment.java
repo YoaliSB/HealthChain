@@ -6,9 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.models.PersonalData;
+import com.itesm.healthchain.data.model.PersonalData;
+import com.itesm.healthchain.data.personal.EditPersonalDataListener;
+import com.itesm.healthchain.data.personal.PersonalDataRepository;
 import com.itesm.healthchain.nfc.NfcActivity;
 
 import androidx.annotation.NonNull;
@@ -16,17 +19,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
-public class PersonalEditFragment extends Fragment {
+public class PersonalEditFragment extends Fragment implements EditPersonalDataListener {
 
-    private PersonalDataViewModel personalDataViewModel;
+    private PatientDataViewModel patientDataViewModel;
+    private PersonalDataRepository personalDataRepository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        personalDataViewModel =
-                ViewModelProviders.of(getActivity()).get(PersonalDataViewModel.class);
+        patientDataViewModel =
+                ViewModelProviders.of(this,
+                        new PatientDataViewModel.Factory(getActivity()))
+                        .get(PatientDataViewModel.class);
+        personalDataRepository = PersonalDataRepository.getInstance(getContext());
+        personalDataRepository.setEditPersonalDataListener(this);
         View root = inflater.inflate(R.layout.personal_edit_fragment, container, false);
 
         final TextView name = root.findViewById(R.id.text_name);
@@ -45,16 +51,16 @@ public class PersonalEditFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NfcActivity activity = (NfcActivity) getActivity();
-                activity.tagProfile.setContactName(contactName.getText().toString());
-                activity.tagProfile.setContactPhone(contactPhone.getText().toString());
-                activity.tagProfile.setContactRelationship(contactRelationship.getText().toString());
-                activity.tagProfile.setHospital(hospital.getText().toString());
-                activity.confirmTagWrite();
+                PersonalData data = patientDataViewModel.getData().getValue();
+                data.setContactName(contactName.getText().toString());
+                data.setContactPhone(contactPhone.getText().toString());
+                data.setContactRelationship(contactRelationship.getText().toString());
+                data.setHospital(hospital.getText().toString());
+                personalDataRepository.updatePersonalData(data);
             }
         });
 
-        personalDataViewModel.getData().observe(getViewLifecycleOwner(), new Observer<PersonalData>() {
+        patientDataViewModel.getData().observe(getViewLifecycleOwner(), new Observer<PersonalData>() {
             @Override
             public void onChanged(@Nullable PersonalData data) {
                     name.setText(data.getName());
@@ -71,5 +77,20 @@ public class PersonalEditFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    @Override
+    public void onEditFailure() {
+        Toast.makeText(getContext(), getString(R.string.personal_edit_error), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onEditSuccess(PersonalData data) {
+        NfcActivity activity = (NfcActivity) getActivity();
+        activity.tagProfile.setContactName(data.getContactName());
+        activity.tagProfile.setContactPhone(data.getContactPhone());
+        activity.tagProfile.setContactRelationship(data.getContactRelationship());
+        activity.tagProfile.setHospital(data.getHospital());
+        activity.confirmTagWrite();
     }
 }

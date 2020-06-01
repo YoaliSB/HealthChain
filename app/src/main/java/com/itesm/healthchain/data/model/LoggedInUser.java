@@ -5,19 +5,37 @@ package com.itesm.healthchain.data.model;
  */
 public class LoggedInUser {
 
-    private String userId;
-    private String displayName;
+    private String id;
+    private String name;
+    private String email;
+    private String role;
+    private String token;
 
-    public LoggedInUser(String userId, String displayName) {
-        this.userId = userId;
-        this.displayName = displayName;
+    public LoggedInUser(String id, String name, String email, String role, String token) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.role = role;
+        this.token = token;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getToken() {
+        return token;
     }
 }

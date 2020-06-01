@@ -1,13 +1,13 @@
-package com.itesm.healthchain.models;
+package com.itesm.healthchain.data.model;
 
 public class PersonalData {
 
-    private String id;
+    private String email;
     private String name;
     private String birthDate;
     private String blood;
-    private double weight;
-    private double height;
+    private String weight;
+    private String height;
     private String contactName;
     private String contactPhone;
     private String contactRelationship;
@@ -15,10 +15,10 @@ public class PersonalData {
     private String ailments;
     private String allergies;
 
-    public PersonalData(String id, String name, String birthDate, String blood, int weight, int height,
+    public PersonalData(String email, String name, String birthDate, String blood, String weight, String height,
                         String contactName, String contactPhone, String contactRelationship,
                         String hospital, String ailments, String allergies) {
-        this.id = id;
+        this.email = email;
         this.name = name;
         this.birthDate = birthDate;
         this.blood = blood;
@@ -33,12 +33,12 @@ public class PersonalData {
     }
 
     public PersonalData() {
-        this.id = "1";
+        this.email = "juanito@test.com";
         this.name = "Juanito Pérez Rodríguez";
-        this.birthDate = "27/03/1985";
+        this.birthDate = "27-03-1985";
         this.blood = "A+";
-        this.weight = 75;
-        this.height = 170;
+        this.weight = "75";
+        this.height = "170";
         this.contactName = "Elena Rodríguez Blanco";
         this.contactPhone = "5588996622";
         this.contactRelationship = "Madre";
@@ -48,12 +48,12 @@ public class PersonalData {
     }
 
     public PersonalData(TagProfile tagProfile){
-        this.id = tagProfile.getId();
+        this.email = tagProfile.getEmail();
         this.name = tagProfile.getName();
         this.birthDate = tagProfile.getBirthDate();
         this.blood = tagProfile.getBloodType();
-        this.weight = Double.parseDouble(tagProfile.getWeight());
-        this.height = Double.parseDouble(tagProfile.getHeight());
+        this.weight = tagProfile.getWeight();
+        this.height = tagProfile.getHeight();
         this.hospital = tagProfile.getHospital();
         this.ailments = tagProfile.getAilments();
         this.allergies = tagProfile.getAllergies();
@@ -62,8 +62,8 @@ public class PersonalData {
         this.contactRelationship = tagProfile.getContactRelationship();
     }
 
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
     public String getName() {
@@ -79,17 +79,11 @@ public class PersonalData {
     }
 
     public String getWeight() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(weight);
-        sb.append(" kg");
-        return sb.toString();
+        return weight;
     }
 
     public String getHeight() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(height);
-        sb.append(" cm");
-        return sb.toString();
+        return height;
     }
 
     public String getContactName() {
@@ -130,5 +124,9 @@ public class PersonalData {
 
     public void setHospital(String hospital) {
         this.hospital = hospital;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

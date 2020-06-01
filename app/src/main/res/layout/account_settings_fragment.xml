@@ -23,7 +23,7 @@
         tools:text="Juanito Rodriguez" />
 
     <EditText
-        android:id="@+id/text_email"
+        android:id="@+id/currentPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
@@ -35,29 +35,41 @@
         app:layout_constraintTop_toBottomOf="@+id/text_name" />
 
     <EditText
-        android:id="@+id/text_pwd"
+        android:id="@+id/newPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="textPassword"
         android:text="password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_email" />
+        app:layout_constraintTop_toBottomOf="@+id/currentPassword" />
+
+    <EditText
+        android:id="@+id/confNewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentPassword"
+        app:layout_constraintVertical_bias="0.019" />
 
     <Button
         android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        style="@style/DefaultButtons"
+        android:layout_marginTop="56dp"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/save"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/text_pwd"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/text_pwd"
-        app:layout_constraintTop_toBottomOf="@+id/text_pwd" />
+        app:layout_constraintEnd_toEndOf="@+id/newPassword"
+        app:layout_constraintStart_toStartOf="@+id/newPassword"
+        app:layout_constraintTop_toBottomOf="@+id/confNewPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

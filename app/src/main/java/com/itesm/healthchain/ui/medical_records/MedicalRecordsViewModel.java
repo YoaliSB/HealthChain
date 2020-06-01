@@ -1,22 +1,21 @@
 package com.itesm.healthchain.ui.medical_records;
 
-import com.itesm.healthchain.models.MedicalRecord;
-import com.itesm.healthchain.models.Prescription;
+import com.itesm.healthchain.data.model.MedicalRecordEntry;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class MedicalRecordsViewModel extends ViewModel {
-    private MutableLiveData<MedicalRecord> mData;
+    private MutableLiveData<MedicalRecordEntry> mData;
 
     public MedicalRecordsViewModel() {
-        MedicalRecord data = new MedicalRecord();
+        MedicalRecordEntry data = MedicalRecordEntry.createDummyEntry();
         mData = new MutableLiveData<>();
         mData.setValue(data);
     }
 
-    public LiveData<MedicalRecord> getData() {
+    public LiveData<MedicalRecordEntry> getData() {
         return mData;
     }
 }

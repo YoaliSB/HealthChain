@@ -3,15 +3,12 @@ package com.itesm.healthchain;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.itesm.healthchain.models.PersonalData;
-import com.itesm.healthchain.models.TagProfile;
+import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.nfc.NfcActivity;
+import com.itesm.healthchain.ui.personal_data.PatientDataViewModel;
 import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -43,24 +40,25 @@ public class PatientActivity extends NfcActivity {
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-//
+
         personalDataViewModel =
-                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
-        personalDataViewModel.setData(new PersonalData(new TagProfile()));
+                ViewModelProviders.of(this, new PatientDataViewModel.Factory(this))
+                        .get(PatientDataViewModel.class);
     }
 
     @Override
     protected void onNfcWriteSuccess() {
-        PersonalData data = personalDataViewModel.getData().getValue();
-        String name = tagProfile.getContactName();
-        String phone = tagProfile.getContactPhone();
-        String relationship = tagProfile.getContactRelationship();
-        String preferredHospital = tagProfile.getHospital();
-        data.setContactName(name);
-        data.setContactPhone(phone);
-        data.setContactRelationship(relationship);
-        data.setHospital(preferredHospital);
-        personalDataViewModel.setData(data);
+//        PersonalData data = personalDataViewModel.getData().getValue();
+//        String name = tagProfile.getContactName();
+//        String phone = tagProfile.getContactPhone();
+//        String relationship = tagProfile.getContactRelationship();
+//        String preferredHospital = tagProfile.getHospital();
+//        data.setContactName(name);
+//        data.setContactPhone(phone);
+//        data.setContactRelationship(relationship);
+//        data.setHospital(preferredHospital);
+//        personalDataViewModel.setData(data);
+
         navController.navigate(R.id.navigation_personal);
     }
 

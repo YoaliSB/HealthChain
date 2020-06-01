@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.models.TagProfile;
+import com.itesm.healthchain.data.model.TagProfile;
 
 import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +39,7 @@ public abstract class NfcActivity extends AppCompatActivity implements NfcWriteD
  //   protected boolean writeMode;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
         isWriting = false;

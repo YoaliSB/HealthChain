@@ -10,7 +10,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Parcelable;
-import com.itesm.healthchain.models.TagProfile;
+import com.itesm.healthchain.data.model.TagProfile;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

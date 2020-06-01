@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.models.PrescriptionItem;
+import com.itesm.healthchain.data.model.PrescriptionItem;
 
 import java.util.List;
 

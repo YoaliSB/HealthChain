@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class GenericAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<T> items;
+    protected List<T> items;
 
     public abstract RecyclerView.ViewHolder setViewHolder(ViewGroup parent);
 

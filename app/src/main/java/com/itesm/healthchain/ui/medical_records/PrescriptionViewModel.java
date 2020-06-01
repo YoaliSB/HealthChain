@@ -1,6 +1,6 @@
 package com.itesm.healthchain.ui.medical_records;
 
-import com.itesm.healthchain.models.Prescription;
+import com.itesm.healthchain.data.model.Prescription;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class PrescriptionViewModel extends ViewModel {
     }
 
     public void populateList(){
-        Prescription prescription = new Prescription();
+        Prescription prescription = Prescription.createDummyData();
         prescriptionArrayList = new ArrayList<>();
         prescriptionArrayList.add(prescription);
         prescriptionArrayList.add(prescription);
