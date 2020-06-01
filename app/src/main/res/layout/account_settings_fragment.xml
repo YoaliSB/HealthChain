@@ -28,8 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        android:text="juanito@mail.com"
+        android:inputType="textPassword"
+        android:text="Contraseña actual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_name" />
@@ -41,7 +41,7 @@
         android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="password"
+        android:text="new password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currentPassword" />
@@ -53,7 +53,7 @@
         android:layout_marginTop="172dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="password"
+        android:text="confirm new password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,5 +71,43 @@
         app:layout_constraintEnd_toEndOf="@+id/newPassword"
         app:layout_constraintStart_toStartOf="@+id/newPassword"
         app:layout_constraintTop_toBottomOf="@+id/confNewPassword" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Contraseña actual"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_name"
+        app:layout_constraintVertical_bias="0.132" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nueva contraseña"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentPassword"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Confirmar contraseña"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newPassword"
+        app:layout_constraintVertical_bias="0.071"
+        tools:layout_editor_absoluteX="99dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
