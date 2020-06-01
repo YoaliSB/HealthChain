@@ -15,7 +15,7 @@ public class PersonalData {
     private String ailments;
     private String allergies;
 
-    public PersonalData(String email, String name, String birthDate, String blood, int weight, int height,
+    public PersonalData(String email, String name, String birthDate, String blood, String weight, String height,
                         String contactName, String contactPhone, String contactRelationship,
                         String hospital, String ailments, String allergies) {
         this.email = email;
@@ -37,8 +37,8 @@ public class PersonalData {
         this.name = "Juanito Pérez Rodríguez";
         this.birthDate = "27-03-1985";
         this.blood = "A+";
-        this.weight = "75 kg";
-        this.height = "170 cm";
+        this.weight = "75";
+        this.height = "170";
         this.contactName = "Elena Rodríguez Blanco";
         this.contactPhone = "5588996622";
         this.contactRelationship = "Madre";

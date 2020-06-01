@@ -32,28 +32,28 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {// a thread in Android
             @Override
             public void run() {
-                PersonalData data = new PersonalData();
-                ArrayList<MedicalRecordEntry> entries = new ArrayList<>();
-                entries.add( MedicalRecordEntry.createDummyEntry());
-                ArrayList<Prescription> list = new ArrayList<>();
-                list.add(Prescription.createDummyData());
-                Patient patient = new Patient(data, entries, list);
-                Gson gson = new GsonBuilder()
-                        .registerTypeAdapter(Prescription.class, new Prescription.PrescriptionTypeConverter())
-                        .registerTypeAdapter(MedicalRecordEntry.class, new MedicalRecordEntry.MedicalRecordEntryTypeConverter())
-                        .setPrettyPrinting()
-                        .create();
-                String json = gson.toJson(patient);
-                Log.d("JSON", json);
-                Patient p2 = gson.fromJson(json, Patient.class);
+//                PersonalData data = new PersonalData();
+//                ArrayList<MedicalRecordEntry> entries = new ArrayList<>();
+//                entries.add( MedicalRecordEntry.createDummyEntry());
+//                ArrayList<Prescription> list = new ArrayList<>();
+//                list.add(Prescription.createDummyData());
+//                Patient patient = new Patient(data, entries, list);
+//                Gson gson = new GsonBuilder()
+//                        .registerTypeAdapter(Prescription.class, new Prescription.PrescriptionTypeConverter())
+//                        .registerTypeAdapter(MedicalRecordEntry.class, new MedicalRecordEntry.MedicalRecordEntryTypeConverter())
+//                        .setPrettyPrinting()
+//                        .create();
+//                String json = gson.toJson(patient);
+//                Log.d("JSON", json);
+//                Patient p2 = gson.fromJson(json, Patient.class);
 
-//                if(repository.isLoggedIn()){
-//                    redirect(SharedPreferencesManager.getRole(getApplicationContext()));
-//                } else {
-//                    Intent intent = new Intent( SplashActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-//                }
-                redirect("doctor");
+                if(repository.isLoggedIn()){
+                    redirect(SharedPreferencesManager.getRole(getApplicationContext()));
+                } else {
+                    Intent intent = new Intent( SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+//                redirect("doctor");
 
                 finish();
             }

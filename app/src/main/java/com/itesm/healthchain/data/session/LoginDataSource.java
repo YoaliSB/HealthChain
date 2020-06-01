@@ -25,6 +25,7 @@ public class LoginDataSource {
 
     private Context context;
     private static final String LOGIN = "https://health-chain-api.herokuapp.com/api/login";
+//    private static final String LOGIN = "https://en51dct0cvl9ag5.m.pipedream.net/api/login";
     private RequestQueue requestQueue;
     LoginStateListener loginStateListener;
 
@@ -66,7 +67,7 @@ public class LoginDataSource {
                 }
             }) {
                 @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
+                public Map<String, String> getHeaders() {
                         final Map<String, String> headers = new HashMap<>();
                         headers.put("Content-Type", "application/json");
                         return headers;

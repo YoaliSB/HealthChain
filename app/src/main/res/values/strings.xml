@@ -42,6 +42,7 @@
     <string name="login_error">Usuario y contraseña no válidos.</string>
     <string name="register_error">Error al registrar usuario.</string>
     <string name="role_error">Error al iniciar sesión</string>
+    <string name="update_info_error">Error al actualizar la información</string>
 
     <string name="logout_error">Error al cerrar sesión.</string>
 
@@ -57,7 +58,7 @@
     <string name="nfc_instructions">Acerque la tarjeta NFC al teléfono</string>
     <string name="no_nfc">No se detecta la tarjeta NFC</string>
     <string name="nfc_write_success">Se escribió la información correctamente en la tarjeta</string>
-    <string name="nfc_write_error">Hubo un error al escribir. Acerca la tarjeta al dispositivo</string>
+    <string name="nfc_write_error">Error al escribir. Acerca la tarjeta al dispositivo</string>
 
     <!-- Personal Data Fragment -->
     <string name="label_name">Nombre</string>

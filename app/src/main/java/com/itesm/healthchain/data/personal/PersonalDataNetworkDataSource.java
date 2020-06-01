@@ -26,6 +26,7 @@ import androidx.lifecycle.MutableLiveData;
 public class PersonalDataNetworkDataSource {
     private static final String MY_INFO = "https://health-chain-api.herokuapp.com/api/user/my_info";
     private static final String UPDATE_INFO = "https://health-chain-api.herokuapp.com/api/user/emergency_info";
+//    private static final String UPDATE_INFO = "https://en51dct0cvl9ag5.m.pipedream.net/api/user/emergency_info";
     private MutableLiveData<PersonalData> personalDataMutableLiveData = new MutableLiveData<>();
     private Context context;
     private RequestQueue requestQueue;
