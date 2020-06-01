@@ -39,9 +39,6 @@ public class UserRepository implements LoginStateListener, LogoutStateListener, 
 
     public void logout() {
         logoutDataSource.logout();
-        //TODO: Delete this
-        logoutListener.onLogoutSuccess();
-        this.onLogoutSuccess();
     }
 
     public void login(String username, String password) {
@@ -61,9 +58,8 @@ public class UserRepository implements LoginStateListener, LogoutStateListener, 
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.preferences_key),Context.MODE_PRIVATE);
         // TODO: Encrypted shared data
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(context.getString(R.string.token_key), user.getToken());
-        editor.apply();
+        SharedPreferencesManager.setToken(context, user.getToken());
+        SharedPreferencesManager.setRole(context, user.getRole());
 
         // Callback to activity for redirection
         loginListener.onLoginSuccess(user);

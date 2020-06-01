@@ -55,7 +55,7 @@ public class LogoutDataSource {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final Map<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authentication", SharedPreferencesManager.getToken(context));
+                headers.put("Authorization", SharedPreferencesManager.getToken(context));
                 return headers;
             }
         };

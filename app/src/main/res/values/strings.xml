@@ -58,6 +58,7 @@
 
     <!-- Personal Edit Fragment -->
     <string name="title_edit">Editar datos personales</string>
+    <string name="personal_edit_error">Hubo un error al actualizar tus datos, vuelve a intentarlo.</string>
 
     <!-- Main Records Fragment -->
     <string name="label_prescriptions">Recetas Médicas</string>
@@ -73,9 +74,11 @@
     <string name="label_temp">TEMP</string>
     <string name="label_bmi">I.M.C.</string>
     <string name="label_observations">Observaciones</string>
+    <string name="label_diagnosis">Diagnóstico</string>
     <string name="label_prescription">Receta Médica</string>
     <string name="header_dose">Dosis</string>
     <string name="header_date">Fecha límite</string>
+    <string name="empty_records">Tu historial está vacío</string>
 
     <!-- Prescription Header -->
     <string name="prescription_name">Nombre</string>
@@ -88,6 +91,7 @@
     <string name="title_doctors">Profesionales consultados </string>
     <string name="delete_doctor">Restringir información a este profesional</string>
     <string name="empty_doctors">No tienes agregado a ningún profesional</string>
+    <string name="delete_doctor_fail">Error al eliminar al doctor, intenta de nuevo.</string>
 
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>

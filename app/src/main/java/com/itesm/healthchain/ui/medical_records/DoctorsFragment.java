@@ -5,12 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itesm.healthchain.R;
-import com.itesm.healthchain.adapters.PersonAdapter;
-import com.itesm.healthchain.data.model.Person;
+import com.itesm.healthchain.adapters.DoctorAdapter;
+import com.itesm.healthchain.data.doctors.DoctorDeleteListener;
+import com.itesm.healthchain.data.doctors.DoctorRepository;
+import com.itesm.healthchain.data.model.Doctor;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,13 +24,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class DoctorsFragment extends Fragment {
+public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
 
     private RecyclerView recyclerView;
-    private PersonAdapter personAdapter;
-    private ArrayList<Person> doctors = new ArrayList<>();;
+    private DoctorAdapter doctorAdapter;
+    private ArrayList<Doctor> doctors = new ArrayList<>();
     private View emptyView;
-    PeopleViewModel viewModel;
+    DoctorViewModel viewModel;
 
     @Nullable
     @Override
@@ -40,29 +44,52 @@ public class DoctorsFragment extends Fragment {
         TextView emptyText = emptyView.findViewById(R.id.text);
         emptyText.setText(R.string.empty_doctors);
         recyclerView = rootView.findViewById(R.id.list);
-        viewModel = ViewModelProviders.of(getActivity()).get(PeopleViewModel.class);
-        viewModel.getPeopleMutableLiveData().observe(getActivity(), peopleListUpdateObserver);
-        personAdapter = new PersonAdapter(doctors);
-        recyclerView.setAdapter(personAdapter);
+        DoctorRepository doctorRepository = DoctorRepository.getInstance(getActivity());
+        doctorRepository.setListener(this);
+        viewModel =
+                ViewModelProviders.of(this,
+                        new DoctorViewModel.Factory(doctorRepository))
+                        .get(DoctorViewModel.class);
+        viewModel.getDummyData().observe(getActivity(), doctorListUpdateObserver);
+        doctorAdapter = new DoctorAdapter(doctors);
+        doctorAdapter.setDeleteListener(this);
+        recyclerView.setAdapter(doctorAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return rootView;
     }
 
-    Observer<ArrayList<Person>> peopleListUpdateObserver =
-        new Observer<ArrayList<Person>>() {
+    Observer<ArrayList<Doctor>> doctorListUpdateObserver =
+        new Observer<ArrayList<Doctor>>() {
             @Override
-            public void onChanged(ArrayList<Person> personArrayList) {
-                if (personArrayList.size() == 0) {
+            public void onChanged(ArrayList<Doctor> doctorArrayList) {
+                if (doctorArrayList.size() == 0) {
                     emptyView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 } else {
-                    doctors.addAll(personArrayList);
-                    personAdapter = new PersonAdapter(doctors);
-                    recyclerView.setAdapter(personAdapter);
+                    // Remove inactive doctors
+                    Iterator<Doctor> itr = doctorArrayList.iterator();
+                    while (itr.hasNext()) {
+                        Doctor dr = itr.next();
+                        if (!dr.isActive()) {
+                            itr.remove();
+                        }
+                    }
+
+                    doctorAdapter.addItems(doctorArrayList);
                     emptyView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                 }
             }
         };
+
+    @Override
+    public void onDelete(Doctor deletedDoctor) {
+        viewModel.deleteDoctor(deletedDoctor);
+    }
+
+    @Override
+    public void onFailure() {
+        Toast.makeText(getContext(),getString(R.string.delete_doctor_fail), Toast.LENGTH_LONG).show();
+    }
 }
