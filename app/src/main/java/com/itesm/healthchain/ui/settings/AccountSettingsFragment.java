@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,16 @@ public class AccountSettingsFragment extends Fragment implements PasswordChangeS
                 final String oldPss= oldPassword.getText().toString().trim();
                 final String newPss= newPassword.getText().toString().trim();
                 final String confPss= confNewPassword.getText().toString().trim();
+                if(TextUtils.isEmpty(newPss) || newPss.length() < 6)
+                {
+                    newPassword.setError("Tu contraseña debe ser de al menos 6 caracteres");
+                    return;
+                }
+                if(TextUtils.isEmpty(confPss) || !newPss.equals(confPss))
+                {
+                    confNewPassword.setError("Tu contraseña debe coincidir con la de arriba");
+                    return;
+                }
                 repository.updatePassword(oldPss, newPss);
             }
         });
