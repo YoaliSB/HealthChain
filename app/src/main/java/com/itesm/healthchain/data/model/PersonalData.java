@@ -6,8 +6,8 @@ public class PersonalData {
     private String name;
     private String birthDate;
     private String blood;
-    private double weight;
-    private double height;
+    private String weight;
+    private String height;
     private String contactName;
     private String contactPhone;
     private String contactRelationship;
@@ -35,10 +35,10 @@ public class PersonalData {
     public PersonalData() {
         this.email = "juanito@test.com";
         this.name = "Juanito Pérez Rodríguez";
-        this.birthDate = "27/03/1985";
+        this.birthDate = "27-03-1985";
         this.blood = "A+";
-        this.weight = 75;
-        this.height = 170;
+        this.weight = "75 kg";
+        this.height = "170 cm";
         this.contactName = "Elena Rodríguez Blanco";
         this.contactPhone = "5588996622";
         this.contactRelationship = "Madre";
@@ -52,8 +52,8 @@ public class PersonalData {
         this.name = tagProfile.getName();
         this.birthDate = tagProfile.getBirthDate();
         this.blood = tagProfile.getBloodType();
-        this.weight = Double.parseDouble(tagProfile.getWeight());
-        this.height = Double.parseDouble(tagProfile.getHeight());
+        this.weight = tagProfile.getWeight();
+        this.height = tagProfile.getHeight();
         this.hospital = tagProfile.getHospital();
         this.ailments = tagProfile.getAilments();
         this.allergies = tagProfile.getAllergies();
@@ -79,13 +79,11 @@ public class PersonalData {
     }
 
     public String getWeight() {
-        return weight +
-                " kg";
+        return weight;
     }
 
     public String getHeight() {
-        return height +
-                " cm";
+        return height;
     }
 
     public String getContactName() {

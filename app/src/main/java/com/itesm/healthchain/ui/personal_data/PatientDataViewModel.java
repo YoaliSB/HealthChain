@@ -2,7 +2,7 @@ package com.itesm.healthchain.ui.personal_data;
 
 import android.content.Context;
 
-import com.itesm.healthchain.data.PersonalDataRepository;
+import com.itesm.healthchain.data.personal.PersonalDataRepository;
 import com.itesm.healthchain.data.model.PersonalData;
 
 import androidx.annotation.NonNull;

@@ -1,6 +1,9 @@
 package com.itesm.healthchain.data.model;
 
-public class PrescriptionItem {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class PrescriptionItem implements Parcelable {
     private String name;
     private String dose;
     private String date;
@@ -11,11 +14,27 @@ public class PrescriptionItem {
         this.date = date;
     }
 
-    public PrescriptionItem(){
-        this.name = "Redoxon";
-        this.dose = "Una tableta";
-        this.date = "25/04/2020";
+    public static PrescriptionItem createDummyItem(){
+        return new PrescriptionItem("Redoxon", "Una tableta", "25/04/2020");
     }
+
+    protected PrescriptionItem(Parcel in) {
+        name = in.readString();
+        dose = in.readString();
+        date = in.readString();
+    }
+
+    public static final Creator<PrescriptionItem> CREATOR = new Creator<PrescriptionItem>() {
+        @Override
+        public PrescriptionItem createFromParcel(Parcel in) {
+            return new PrescriptionItem(in);
+        }
+
+        @Override
+        public PrescriptionItem[] newArray(int size) {
+            return new PrescriptionItem[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -27,5 +46,17 @@ public class PrescriptionItem {
 
     public String getDate() {
         return date;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(dose);
+        parcel.writeString(date);
     }
 }
