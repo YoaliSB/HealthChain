@@ -53,8 +53,6 @@ public class SplashActivity extends AppCompatActivity {
                     Intent intent = new Intent( SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
-//                redirect("doctor");
-
                 finish();
             }
         },3000);
