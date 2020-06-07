@@ -47,14 +47,12 @@ public class SplashActivity extends AppCompatActivity {
                 Log.d("JSON", json);
                 Patient p2 = gson.fromJson(json, Patient.class);
 
-//                if(repository.isLoggedIn()){
-//                    redirect(SharedPreferencesManager.getRole(getApplicationContext()));
-//                } else {
-//                    Intent intent = new Intent( SplashActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-//                }
-                redirect("doctor");
-
+                if(repository.isLoggedIn()){
+                    redirect(SharedPreferencesManager.getRole(getApplicationContext()));
+                } else {
+                    Intent intent = new Intent( SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
                 finish();
             }
         },3000);

@@ -33,7 +33,7 @@
     <!-- Doctor Main Fragment -->
     <string name="text_home">Principal</string>
     <string name="text_patients">Mis Pacientes</string>
-    <string name="text_new_entry">Nueva Consulta</string>
+    <string name="text_new_entry">Agregar Nuevo Paciente</string>
 
     <!-- Paramedic -->
     <string name="emergency_info">Información Paciente</string>
@@ -92,6 +92,10 @@
     <string name="delete_doctor">Restringir información a este profesional</string>
     <string name="empty_doctors">No tienes agregado a ningún profesional</string>
     <string name="delete_doctor_fail">Error al eliminar al doctor, intenta de nuevo.</string>
+
+    <!-- Patients Fragment -->
+    <string name="title_patients">Pacientes atendidos </string>
+    <string name="empty_patients">No tienes agregado a ningún paciente</string>
 
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>

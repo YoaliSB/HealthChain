@@ -54,7 +54,13 @@
     <!-- Doctor Home -->
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.itesm.healthchain.ui.home.HomeFragment"
+        android:name="com.itesm.healthchain.ui.doctor.DoctorMenuFragment"
         android:label="@string/text_home"
-        tools:layout="@layout/home_fragment"/>
+        tools:layout="@layout/dr_menu_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_patients"
+        android:name="com.itesm.healthchain.ui.doctor.PatientsFragment"
+        android:label="@string/title_patients"
+        tools:layout="@layout/recyclerview_fragment"/>
 </navigation>
