@@ -77,4 +77,5 @@ public class PatientsFragment extends Fragment implements PatientSelectListener{
         NavHostFragment.findNavController(this)
                 .navigate(R.id.navigation_patient_detail_menu, bundle);
     }
+
 }

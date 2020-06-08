@@ -83,5 +83,4 @@
         android:name="com.itesm.healthchain.ui.doctor.PatientDetailMenuFragment"
         android:label="@string/title_patients_detail_menu"
         tools:layout="@layout/patient_detail_menu"/>
-
 </navigation>
