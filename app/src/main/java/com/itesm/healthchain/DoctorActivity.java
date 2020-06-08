@@ -4,8 +4,11 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.itesm.healthchain.nfc.NfcActivity;
+import com.itesm.healthchain.ui.personal_data.PatientDataViewModel;
+import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 
 public class DoctorActivity extends NfcActivity {
     private NavController navController;
+    PersonalDataViewModel personalDataViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,10 +40,9 @@ public class DoctorActivity extends NfcActivity {
 
         navController.setGraph(R.navigation.doctor_navigation);
 
-        // Testing
-//        PersonalDataViewModel personalDataViewModel =
-//                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
-//        personalDataViewModel.setData(new PersonalData(new TagProfile()));
+        personalDataViewModel =
+                ViewModelProviders.of(this, new PatientDataViewModel.Factory(this))
+                        .get(PatientDataViewModel.class);
 
     }
 }

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.model.PatientInfo;
+import com.itesm.healthchain.ui.doctor.PatientSelectListener;
 
 import java.util.List;
 
@@ -15,8 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PatientAdapter extends GenericAdapter {
 
+    PatientSelectListener selectListener;
+
     public PatientAdapter(List items) {
         super(items);
+    }
+
+    public void setSelectListener(PatientSelectListener selectListener) {
+        this.selectListener = selectListener;
     }
 
     @Override
@@ -27,10 +34,15 @@ public class PatientAdapter extends GenericAdapter {
 
     @Override
     public void onBindData(RecyclerView.ViewHolder viewHolder, Object val) {
-        PatientInfo patient = (PatientInfo) val;
-
+        final PatientInfo patient = (PatientInfo) val;
         PatientAdapterViewHolder patientAdapterViewHolder = (PatientAdapterViewHolder) viewHolder;
         patientAdapterViewHolder.name.setText(patient.getName());
+        patientAdapterViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectListener.onSelect(patient);
+            }
+        });
     }
 
     class PatientAdapterViewHolder extends RecyclerView.ViewHolder {

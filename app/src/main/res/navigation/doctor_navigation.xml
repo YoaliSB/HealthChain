@@ -12,7 +12,14 @@
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
 
-    <!-- Medical Records -->
+    <!-- Patient Detail -->
+    <fragment
+        android:id="@+id/navigation_personal"
+        android:name="com.itesm.healthchain.ui.doctor.DoctorPatientDataFragment"
+        android:label="@string/text_patient_info"
+        tools:layout="@layout/personal_fragment"/>
+
+
     <fragment
         android:id="@+id/navigation_medical_records"
         android:name="com.itesm.healthchain.ui.medical_records.MedicalRecordsDetailFragment"
@@ -63,4 +70,12 @@
         android:name="com.itesm.healthchain.ui.doctor.PatientsFragment"
         android:label="@string/title_patients"
         tools:layout="@layout/recyclerview_fragment"/>
+
+    <!-- Patient Details -->
+    <fragment
+        android:id="@+id/navigation_patient_detail_menu"
+        android:name="com.itesm.healthchain.ui.doctor.PatientDetailMenuFragment"
+        android:label="@string/title_patients_detail_menu"
+        tools:layout="@layout/patient_detail_menu"/>
+
 </navigation>

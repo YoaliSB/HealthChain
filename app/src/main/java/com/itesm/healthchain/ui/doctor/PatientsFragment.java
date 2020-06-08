@@ -18,10 +18,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PatientsFragment extends Fragment {
+public class PatientsFragment extends Fragment implements PatientSelectListener{
 
     private RecyclerView recyclerView;
     private PatientAdapter patientAdapter;
@@ -43,6 +44,7 @@ public class PatientsFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.list);
         PatientRepository patientRepository = PatientRepository.getInstance(getActivity());
         patientAdapter = new PatientAdapter(patients);
+        patientAdapter.setSelectListener(this);
         viewModel =
                 ViewModelProviders.of(this,
                         new PatientsViewModel.Factory(patientRepository))
@@ -67,4 +69,12 @@ public class PatientsFragment extends Fragment {
                     recyclerView.setVisibility(View.VISIBLE);
                 }
             };
+
+    @Override
+    public void onSelect(PatientInfo selectedPatient) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("patient", selectedPatient);
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.navigation_patient_detail_menu, bundle);
+    }
 }

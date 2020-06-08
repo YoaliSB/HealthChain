@@ -2,7 +2,11 @@ package com.itesm.healthchain.data.personal;
 
 import android.content.Context;
 
+import com.itesm.healthchain.data.model.MedicalRecordEntry;
 import com.itesm.healthchain.data.model.PersonalData;
+import com.itesm.healthchain.data.model.Prescription;
+
+import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -10,6 +14,7 @@ public class PersonalDataRepository implements EditPersonalDataListener{
     private static volatile PersonalDataRepository instance;
     private PersonalDataNetworkDataSource personalDataNetworkDataSource;
     private EditPersonalDataListener editPersonalDataListener;
+    private String email = "";
 
     // private constructor : singleton access
     private PersonalDataRepository(final Context context) {
@@ -26,6 +31,14 @@ public class PersonalDataRepository implements EditPersonalDataListener{
 
     public MutableLiveData<PersonalData> fetchPersonalData() {
         personalDataNetworkDataSource.fetchPersonalData();
+        return personalDataNetworkDataSource.getPersonalData();
+    }
+
+    public MutableLiveData<PersonalData> fetchPersonalDataForDoctor(String email) {
+        if (!this.email.equals(email)) {
+            this.email = email;
+            personalDataNetworkDataSource.fetchPersonalDataForDoctor(email);
+        }
         return personalDataNetworkDataSource.getPersonalData();
     }
 
