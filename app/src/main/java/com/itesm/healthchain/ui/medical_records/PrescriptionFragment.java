@@ -38,18 +38,23 @@ public class PrescriptionFragment extends Fragment {
         emptyView = rootView.findViewById(R.id.empty);
         expandableListView = rootView.findViewById(R.id.prescription_list);
         listDataHeader = new ArrayList<>();
+        viewModel =
+                ViewModelProviders.of(getActivity(),
+                        new PrescriptionViewModel.Factory(getActivity()))
+                        .get(PrescriptionViewModel.class);
         viewModel = ViewModelProviders.of(getActivity()).get(PrescriptionViewModel.class);
-        viewModel.getPrescriptionMutableLiveData().observe(getActivity(), prescriptionListUpdateObserver);
+        viewModel.getData().observe(getActivity(), prescriptionListUpdateObserver);
 
         return rootView;
     }
 
 
-    Observer<ArrayList<Prescription>> prescriptionListUpdateObserver =
-        new Observer<ArrayList<Prescription>>() {
+    Observer<List<Prescription>> prescriptionListUpdateObserver =
+        new Observer<List<Prescription>>() {
             @Override
-            public void onChanged(ArrayList<Prescription> prescriptionArrayList) {
-                listDataHeader.addAll(prescriptionArrayList);
+            public void onChanged(List<Prescription> prescriptionArrayList) {
+                if(prescriptionArrayList != null)
+                    listDataHeader.addAll(prescriptionArrayList);
 
                 if (listDataHeader.size() <= 0) {
                     expandableListView.setVisibility(View.GONE);

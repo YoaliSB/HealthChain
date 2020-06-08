@@ -91,6 +91,7 @@ public class PersonalEditFragment extends Fragment implements EditPersonalDataLi
         activity.tagProfile.setContactPhone(data.getContactPhone());
         activity.tagProfile.setContactRelationship(data.getContactRelationship());
         activity.tagProfile.setHospital(data.getHospital());
+        patientDataViewModel.setData(data);
         activity.confirmTagWrite();
     }
 }

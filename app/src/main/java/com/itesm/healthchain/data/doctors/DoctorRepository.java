@@ -3,6 +3,7 @@ package com.itesm.healthchain.data.doctors;
 import android.content.Context;
 
 import com.itesm.healthchain.data.model.Doctor;
+import com.itesm.healthchain.data.patients.PatientRepository;
 
 import java.util.ArrayList;
 

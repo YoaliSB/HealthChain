@@ -10,15 +10,15 @@
         android:id="@+id/btn_patients"
         style="@style/MainButtons"
         android:text="@string/text_patients"
-        app:layout_constraintBottom_toTopOf="@+id/btn_new_entry"
+        app:layout_constraintBottom_toTopOf="@+id/btn_new_patient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_new_entry"
+        android:id="@+id/btn_new_patient"
         style="@style/MainButtons"
-        android:text="@string/text_new_entry"
+        android:text="@string/text_new_patient"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

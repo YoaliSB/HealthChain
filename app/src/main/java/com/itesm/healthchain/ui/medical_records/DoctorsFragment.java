@@ -46,12 +46,12 @@ public class DoctorsFragment extends Fragment implements DoctorDeleteListener {
         recyclerView = rootView.findViewById(R.id.list);
         DoctorRepository doctorRepository = DoctorRepository.getInstance(getActivity());
         doctorRepository.setListener(this);
+        doctorAdapter = new DoctorAdapter(doctors);
         viewModel =
                 ViewModelProviders.of(this,
                         new DoctorViewModel.Factory(doctorRepository))
                         .get(DoctorViewModel.class);
         viewModel.getDummyData().observe(getActivity(), doctorListUpdateObserver);
-        doctorAdapter = new DoctorAdapter(doctors);
         doctorAdapter.setDeleteListener(this);
         recyclerView.setAdapter(doctorAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

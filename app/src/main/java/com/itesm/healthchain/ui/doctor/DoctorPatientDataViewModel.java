@@ -1,10 +1,11 @@
-package com.itesm.healthchain.ui.personal_data;
+package com.itesm.healthchain.ui.doctor;
 
 import android.content.Context;
 
 import com.itesm.healthchain.data.model.Patient;
-import com.itesm.healthchain.data.personal.PersonalDataRepository;
 import com.itesm.healthchain.data.model.PersonalData;
+import com.itesm.healthchain.data.personal.PersonalDataRepository;
+import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.arch.core.util.Function;
@@ -13,22 +14,30 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public class PatientDataViewModel extends PersonalDataViewModel {
+public class DoctorPatientDataViewModel extends PersonalDataViewModel {
     PersonalDataRepository repository;
+    String email = "";
 
-    public PatientDataViewModel(Context context) {
+    public DoctorPatientDataViewModel(Context context) {
         super();
         this.repository = PersonalDataRepository.getInstance(context);
     }
 
     @Override
     public LiveData<PersonalData> getData() {
-        return Transformations.map(repository.fetchPatient(), new Function<Patient, PersonalData>() {
+        return Transformations.map(repository.subscribeForPatient(), new Function<Patient, PersonalData>() {
             @Override
             public PersonalData apply(Patient input) {
                 return input.getEmergencyInfo();
             }
         });
+    }
+
+    public void fetchPersonalData(String email) {
+        if(!this.email.equals(email)) {
+            this.email = email;
+            repository.fetchPersonalDataForDoctor(email);
+        }
     }
 
     public static class Factory implements ViewModelProvider.Factory {
@@ -41,7 +50,7 @@ public class PatientDataViewModel extends PersonalDataViewModel {
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new PatientDataViewModel(context);
+            return (T) new DoctorPatientDataViewModel(context);
         }
     }
 }

@@ -12,13 +12,17 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.itesm.healthchain.data.SharedPreferencesManager;
+import com.itesm.healthchain.data.model.MedicalRecordEntry;
 import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
+import com.itesm.healthchain.data.model.Prescription;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import androidx.lifecycle.MutableLiveData;
@@ -26,8 +30,8 @@ import androidx.lifecycle.MutableLiveData;
 public class PersonalDataNetworkDataSource {
     private static final String MY_INFO = "https://health-chain-api.herokuapp.com/api/user/my_info";
     private static final String UPDATE_INFO = "https://health-chain-api.herokuapp.com/api/user/emergency_info";
-//    private static final String UPDATE_INFO = "https://en51dct0cvl9ag5.m.pipedream.net/api/user/emergency_info";
-    private MutableLiveData<PersonalData> personalDataMutableLiveData = new MutableLiveData<>();
+    private static final String PATIENT_INFO = "https://health-chain-api.herokuapp.com/api/doctor/show_user";
+    private MutableLiveData<Patient> patientDataMutableLiveData = new MutableLiveData<>();
     private Context context;
     private RequestQueue requestQueue;
     private EditPersonalDataListener editPersonalDataListener;
@@ -39,22 +43,21 @@ public class PersonalDataNetworkDataSource {
         gson = new Gson();
     }
 
-    public void fetchPersonalData() {
+    public void fetchPatient() {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, MY_INFO, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("PERSONAL DATA", response.toString());
-                        PersonalData data = new PersonalData();
+                        Patient data = null;
                         // TODO: parse complete patient object, change viewmdels
                         try {
                             data = gson.fromJson(String.valueOf(response.getJSONObject("user")
-                                    .getJSONObject("_patient_info")
-                                    .getJSONObject("emergencyInfo")), PersonalData.class);
+                                    .getJSONObject("_patient_info")), Patient.class);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        personalDataMutableLiveData.postValue(data);
+                        patientDataMutableLiveData.postValue(data);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -75,8 +78,8 @@ public class PersonalDataNetworkDataSource {
         requestQueue.add(request);
     }
 
-    public MutableLiveData<PersonalData> getPersonalData() {
-        return personalDataMutableLiveData;
+    public MutableLiveData<Patient> getPatient() {
+        return patientDataMutableLiveData;
     }
 
     public void updatePersonalData(final PersonalData data) {
@@ -93,14 +96,54 @@ public class PersonalDataNetworkDataSource {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("EDIT PERSONAL DATA", response.toString());
-                        personalDataMutableLiveData.postValue(data);
                         editPersonalDataListener.onEditSuccess(data);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("PERSONAL DATA", error.toString());
+                Log.d("EDIT PERSONAL DATA", error.toString());
                 editPersonalDataListener.onEditFailure();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>(super.getHeaders());
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization",
+                        SharedPreferencesManager.getToken(context));
+                // TODO: on auth failure send back to login
+                return headers;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    public void fetchPatientForDoctor(String email) {
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("email", email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, PATIENT_INFO, jsonBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("PATIENT DATA", response.toString());
+                        Patient data = null;
+                        try {
+                            data = gson.fromJson(String.valueOf(response.getJSONObject("user")
+                                    .getJSONObject("_patient_info")),  Patient.class);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        patientDataMutableLiveData.postValue(data);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("PATIENT DATA", error.toString());
+                patientDataMutableLiveData.postValue(Patient.getDummyPatient());
             }
         }) {
             @Override

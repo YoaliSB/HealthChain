@@ -46,7 +46,7 @@ public class MedicalRecordsListFragment extends Fragment implements MedicalRecor
         emptyText.setText(R.string.empty_records);
         recyclerView = rootView.findViewById(R.id.list);
         viewModel =
-                ViewModelProviders.of(this,
+                ViewModelProviders.of(getActivity(),
                         new MedicalRecordListViewModel.Factory(getActivity()))
                         .get(MedicalRecordListViewModel.class);
         viewModel.getData().observe(getActivity(), recordListUpdateObserver);
