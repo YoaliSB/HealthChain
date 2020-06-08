@@ -49,7 +49,7 @@
     <!-- Doctor Main Fragment -->
     <string name="text_home">Principal</string>
     <string name="text_patients">Mis pacientes</string>
-    <string name="text_new_patient">Agregar nuevo naciente</string>
+    <string name="text_new_patient">Agregar nuevo paciente</string>
 
     <!-- Paramedic -->
     <string name="emergency_info">Información Paciente</string>

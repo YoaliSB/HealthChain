@@ -13,6 +13,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.itesm.healthchain.data.SharedPreferencesManager;
 import com.itesm.healthchain.data.model.MedicalRecordEntry;
+import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.model.Prescription;
 
@@ -30,9 +31,7 @@ public class PersonalDataNetworkDataSource {
     private static final String MY_INFO = "https://health-chain-api.herokuapp.com/api/user/my_info";
     private static final String UPDATE_INFO = "https://health-chain-api.herokuapp.com/api/user/emergency_info";
     private static final String PATIENT_INFO = "https://health-chain-api.herokuapp.com/api/doctor/show_user";
-    private MutableLiveData<PersonalData> personalDataMutableLiveData = new MutableLiveData<>();
-    private MutableLiveData<List<Prescription>> prescriptionsMutableLiveData = new MutableLiveData<>();
-    private MutableLiveData<List<MedicalRecordEntry>> medicalRecordMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<Patient> patientDataMutableLiveData = new MutableLiveData<>();
     private Context context;
     private RequestQueue requestQueue;
     private EditPersonalDataListener editPersonalDataListener;
@@ -44,26 +43,21 @@ public class PersonalDataNetworkDataSource {
         gson = new Gson();
     }
 
-    public void fetchPersonalData() {
+    public void fetchPatient() {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, MY_INFO, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("PERSONAL DATA", response.toString());
-                        PersonalData data = new PersonalData();
-                        List<Prescription> prescriptions = new ArrayList<>();
-                        List<MedicalRecordEntry> medicalRecord = new ArrayList<>();
+                        Patient data = null;
                         // TODO: parse complete patient object, change viewmdels
                         try {
                             data = gson.fromJson(String.valueOf(response.getJSONObject("user")
-                                    .getJSONObject("_patient_info")
-                                    .getJSONObject("emergencyInfo")), PersonalData.class);
+                                    .getJSONObject("_patient_info")), Patient.class);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        personalDataMutableLiveData.postValue(data);
-                        prescriptionsMutableLiveData.postValue(prescriptions);
-                        medicalRecordMutableLiveData.postValue(medicalRecord);
+                        patientDataMutableLiveData.postValue(data);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -84,16 +78,8 @@ public class PersonalDataNetworkDataSource {
         requestQueue.add(request);
     }
 
-    public MutableLiveData<PersonalData> getPersonalData() {
-        return personalDataMutableLiveData;
-    }
-
-    public MutableLiveData<List<Prescription>> getPrescriptions() {
-        return prescriptionsMutableLiveData;
-    }
-
-    public MutableLiveData<List<MedicalRecordEntry>> getMedicalRecord() {
-        return medicalRecordMutableLiveData;
+    public MutableLiveData<Patient> getPatient() {
+        return patientDataMutableLiveData;
     }
 
     public void updatePersonalData(final PersonalData data) {
@@ -110,7 +96,6 @@ public class PersonalDataNetworkDataSource {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("EDIT PERSONAL DATA", response.toString());
-                        personalDataMutableLiveData.postValue(data);
                         editPersonalDataListener.onEditSuccess(data);
                     }
                 }, new Response.ErrorListener() {
@@ -133,37 +118,32 @@ public class PersonalDataNetworkDataSource {
         requestQueue.add(request);
     }
 
-    public void fetchPersonalDataForDoctor(String email) {
+    public void fetchPatientForDoctor(String email) {
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("email", email);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, PATIENT_INFO, jsonBody,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, PATIENT_INFO, jsonBody,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("PATIENT DATA", response.toString());
-                        PersonalData data = new PersonalData();
-                        List<Prescription> prescriptions = new ArrayList<>();
-                        List<MedicalRecordEntry> medicalRecord = new ArrayList<>();
-                        // TODO: parse complete patient object, change viewmdels
+                        Patient data = null;
                         try {
                             data = gson.fromJson(String.valueOf(response.getJSONObject("user")
-                                    .getJSONObject("_patient_info")
-                                    .getJSONObject("emergencyInfo")), PersonalData.class);
+                                    .getJSONObject("_patient_info")),  Patient.class);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        personalDataMutableLiveData.postValue(data);
-                        prescriptionsMutableLiveData.postValue(prescriptions);
-                        medicalRecordMutableLiveData.postValue(medicalRecord);
+                        patientDataMutableLiveData.postValue(data);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("PATIENT DATA", error.toString());
+                patientDataMutableLiveData.postValue(Patient.getDummyPatient());
             }
         }) {
             @Override

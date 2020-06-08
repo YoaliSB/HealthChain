@@ -1,38 +1,50 @@
 package com.itesm.healthchain.ui.medical_records;
 
+import android.content.Context;
+
+import com.itesm.healthchain.data.model.MedicalRecordEntry;
+import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.Prescription;
+import com.itesm.healthchain.data.personal.PersonalDataRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.NonNull;
+import androidx.arch.core.util.Function;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 public class PrescriptionViewModel extends ViewModel {
+    private PersonalDataRepository repository;
 
-    MutableLiveData<ArrayList<Prescription>> prescriptionLiveData;
-    ArrayList<Prescription> prescriptionArrayList;
 
-    public PrescriptionViewModel() {
-        prescriptionLiveData = new MutableLiveData<>();
-
-        // call your Rest API in init method
-        init();
+    public PrescriptionViewModel(Context context) {
+        this.repository = PersonalDataRepository.getInstance(context);
     }
 
-    public MutableLiveData<ArrayList<Prescription>> getPrescriptionMutableLiveData() {
-        return prescriptionLiveData;
+    public LiveData<List<Prescription>> getData() {
+        return Transformations.map(repository.subscribeForPatient(), new Function<Patient, List<Prescription>>() {
+            @Override
+            public List<Prescription> apply(Patient input) {
+                return input.getPrescriptions();
+            }
+        });
     }
 
-    public void init(){
-        populateList();
-        prescriptionLiveData.setValue(prescriptionArrayList);
+    public static class Factory implements ViewModelProvider.Factory {
+        private final Context context;
+
+        public Factory(Context context) {
+            this.context = context;
+        }
+
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            return (T) new PrescriptionViewModel(context);
+        }
     }
 
-    public void populateList(){
-        Prescription prescription = Prescription.createDummyData();
-        prescriptionArrayList = new ArrayList<>();
-        prescriptionArrayList.add(prescription);
-        prescriptionArrayList.add(prescription);
-        prescriptionArrayList.add(prescription);
-    }
 }

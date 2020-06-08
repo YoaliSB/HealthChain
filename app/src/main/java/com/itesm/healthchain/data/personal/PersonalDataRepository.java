@@ -2,11 +2,8 @@ package com.itesm.healthchain.data.personal;
 
 import android.content.Context;
 
-import com.itesm.healthchain.data.model.MedicalRecordEntry;
+import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
-import com.itesm.healthchain.data.model.Prescription;
-
-import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -29,17 +26,17 @@ public class PersonalDataRepository implements EditPersonalDataListener{
         return instance;
     }
 
-    public MutableLiveData<PersonalData> fetchPersonalData() {
-        personalDataNetworkDataSource.fetchPersonalData();
-        return personalDataNetworkDataSource.getPersonalData();
+    public MutableLiveData<Patient> fetchPatient() {
+        personalDataNetworkDataSource.fetchPatient();
+        return personalDataNetworkDataSource.getPatient();
     }
 
-    public MutableLiveData<PersonalData> fetchPersonalDataForDoctor(String email) {
-        if (!this.email.equals(email)) {
-            this.email = email;
-            personalDataNetworkDataSource.fetchPersonalDataForDoctor(email);
-        }
-        return personalDataNetworkDataSource.getPersonalData();
+    public void fetchPersonalDataForDoctor(String email) {
+        personalDataNetworkDataSource.fetchPatientForDoctor(email);
+    }
+
+    public MutableLiveData<Patient> subscribeForPatient() {
+        return personalDataNetworkDataSource.getPatient();
     }
 
     public void updatePersonalData(PersonalData data) {

@@ -73,7 +73,7 @@ public class PatientsFragment extends Fragment implements PatientSelectListener{
     @Override
     public void onSelect(PatientInfo selectedPatient) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("patient", selectedPatient);
+        bundle.putString("email", selectedPatient.getEmail());
         NavHostFragment.findNavController(this)
                 .navigate(R.id.navigation_patient_detail_menu, bundle);
     }

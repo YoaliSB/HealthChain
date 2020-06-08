@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.itesm.healthchain.R;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -31,16 +32,19 @@ public class PatientDetailMenuFragment extends Fragment implements View.OnClickL
         newEntryButton.setOnClickListener(this);
 
         personalDataViewModel =
-                ViewModelProviders.of(this,
+                ViewModelProviders.of(getActivity(),
                         new DoctorPatientDataViewModel.Factory(getActivity()))
                         .get(DoctorPatientDataViewModel.class);
 
         Bundle bundle = getArguments();
 
         if (bundle != null) {
-            personalDataViewModel.setEmail(bundle.getString("email"));
+            // Fire network request
+            String email = bundle.getString("email");
+            if (email != null) {
+                personalDataViewModel.fetchPersonalData(email);
+            }
         }
-
         return root;
     }
 

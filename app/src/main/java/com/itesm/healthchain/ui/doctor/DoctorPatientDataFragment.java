@@ -18,7 +18,7 @@ public class DoctorPatientDataFragment extends PersonalDataFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         personalDataViewModel =
-                ViewModelProviders.of(this,
+                ViewModelProviders.of(getActivity(),
                         new DoctorPatientDataViewModel.Factory(getActivity()))
                         .get(DoctorPatientDataViewModel.class);
 

@@ -32,19 +32,10 @@ public class PersonalData {
         this.allergies =allergies;
     }
 
-    public PersonalData() {
-        this.email = "juanito@test.com";
-        this.name = "Juanito Pérez Rodríguez";
-        this.birthDate = "27-03-1985";
-        this.blood = "A+";
-        this.weight = "75";
-        this.height = "170";
-        this.contactName = "Elena Rodríguez Blanco";
-        this.contactPhone = "5588996622";
-        this.contactRelationship = "Madre";
-        this.hospital = "Hospital Español";
-        this.ailments = "Diabetes tipo 1, fumador";
-        this.allergies = "Ninguna";
+    public static PersonalData getDummyData() {
+        return new PersonalData( "juanito@test.com", "Juanito Pérez Rodríguez", "27-03-1985", "A+",
+                "75", "170", "Elena Rodríguez Blanco", "5588996622", "Madre", "Hospital Español",
+                "Diabetes tipo 1, fumador", "Ninguna");
     }
 
     public PersonalData(TagProfile tagProfile){
