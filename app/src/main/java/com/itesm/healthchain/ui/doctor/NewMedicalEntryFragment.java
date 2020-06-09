@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -119,6 +120,7 @@ public class NewMedicalEntryFragment extends Fragment implements EditMedicalReco
             @Override
                  public void onPositiveButtonClick(Long selection) {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                    sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
                     Date date = new Date(selection);
                     datePickerOpener.setText(sdf.format(date));
                   }
