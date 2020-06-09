@@ -2,6 +2,7 @@ package com.itesm.healthchain.ui.doctor;
 
 import android.content.Context;
 
+import com.itesm.healthchain.data.model.MedicalRecordEntry;
 import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.personal.PatientDataRepository;
@@ -38,6 +39,10 @@ public class DoctorPatientDataViewModel extends PersonalDataViewModel {
             this.email = email;
             repository.fetchPersonalDataForDoctor(email);
         }
+    }
+
+    public void updateMedicalRecord(MedicalRecordEntry newEntry) {
+        repository.updateMedicalRecord(email, newEntry);
     }
 
     public static class Factory implements ViewModelProvider.Factory {

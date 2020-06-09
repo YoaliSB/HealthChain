@@ -8,18 +8,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.adapters.PrescriptionItemAdapter;
 import com.itesm.healthchain.data.SharedPreferencesManager;
-import com.itesm.healthchain.data.medical_record.MedicalRecordRepository;
 import com.itesm.healthchain.data.model.MedicalRecordEntry;
-import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.model.Prescription;
 import com.itesm.healthchain.data.model.PrescriptionItem;
+import com.itesm.healthchain.data.personal.EditMedicalRecordListener;
 import com.itesm.healthchain.data.personal.PatientDataRepository;
 
 import java.text.ParseException;
@@ -34,13 +34,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class NewMedicalEntryFragment extends Fragment {
+public class NewMedicalEntryFragment extends Fragment implements EditMedicalRecordListener {
     private PrescriptionItemAdapter prescriptionItemAdapter;
     private DoctorPatientDataViewModel patientDataViewModel;
-    private MedicalRecordRepository medicalRecordRepository;
 
     TextView doctor;
     TextView name;
@@ -73,7 +73,7 @@ public class NewMedicalEntryFragment extends Fragment {
                         new DoctorPatientDataViewModel.Factory(getActivity()))
                         .get(DoctorPatientDataViewModel.class);
 
-        medicalRecordRepository = MedicalRecordRepository.getInstance(getActivity());
+        PatientDataRepository.getInstance(getActivity()).setEditMedicalRecordListener(this);
 
         doctor = root.findViewById(R.id.text_doctor);
         name = root.findViewById(R.id.text_name);
@@ -118,7 +118,9 @@ public class NewMedicalEntryFragment extends Fragment {
         datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
                  public void onPositiveButtonClick(Long selection) {
-                      datePickerOpener.setText(datePicker.getHeaderText());
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                    Date date = new Date(selection);
+                    datePickerOpener.setText(sdf.format(date));
                   }
         });
 
@@ -135,13 +137,6 @@ public class NewMedicalEntryFragment extends Fragment {
                 String prescriptionName = prescriptionNameView.getText().toString();
                 String prescriptionDose = prescriptionDoseView.getText().toString();
                 String prescriptionDate = datePickerOpener.getText().toString();
-                try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                    Date date = sdf.parse(prescriptionDate);
-                    prescriptionDate = sdf.format(date);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
 
                 if(!prescriptionName.isEmpty() && !prescriptionDate.isEmpty() && !prescriptionDate.isEmpty()) {
                     PrescriptionItem item = new PrescriptionItem(prescriptionName, prescriptionDose, prescriptionDate);
@@ -157,16 +152,7 @@ public class NewMedicalEntryFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MedicalRecordEntry newEntry = getNewEntry();
-                Patient currentPatient = PatientDataRepository.getInstance(getActivity()).subscribeForPatient().getValue();
-                List<MedicalRecordEntry> medicalRecord = null;
-                if (currentPatient != null) {
-                    medicalRecord = currentPatient.getMedicalRecord();
-                    List<Prescription> prescriptions = currentPatient.getPrescriptions();
-                    medicalRecord.add(newEntry);
-                    prescriptions.add(newEntry.getPrescription());
-                    medicalRecordRepository.updateMedicalRecord("", medicalRecord, prescriptions);
-                }
+                patientDataViewModel.updateMedicalRecord(getNewEntry());
             }
         });
 
@@ -192,4 +178,15 @@ public class NewMedicalEntryFragment extends Fragment {
                 Double.parseDouble(strHeight), strObservations, strDiagnosis, newPrescription);
     }
 
+    @Override
+    public void onEditRecordFailure() {
+        Toast.makeText(getContext(), getString(R.string.error_update_record), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onEditRecordSuccess(String email) {
+        Bundle bundle = new Bundle();
+        bundle.putString("email", email);
+        NavHostFragment.findNavController(this).navigate(R.id.navigation_patient_detail_menu, bundle);
+    }
 }

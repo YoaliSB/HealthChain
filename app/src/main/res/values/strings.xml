@@ -122,6 +122,7 @@
     <string name="text_patient_info">Información general del paciente</string>
     <string name="text_new_record_entry">Crear nueva consulta</string>
     <string name="title_patients_detail_menu">Información médica del paciente</string>
+    <string name="error_update_record">Error al actualizar el historial médico, vuelve a intentar.</string>
 
     <!-- Settings Fragment -->
     <string name="edit_profile">Editar Perfil</string>

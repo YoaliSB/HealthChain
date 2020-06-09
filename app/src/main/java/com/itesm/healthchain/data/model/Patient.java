@@ -44,4 +44,9 @@ public class Patient {
         }
         return prescriptions;
     }
+
+    public void addMedicalRecordEntry(MedicalRecordEntry newEntry) {
+        medicalRecord.add(newEntry);
+        prescriptions.add(newEntry.getPrescription());
+    }
 }
