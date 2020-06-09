@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="4dp"
+    android:paddingStart="20dp"
     android:paddingEnd="4dp"
     android:paddingTop="6dp">
 
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/prescription_name"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textStyle="bold" />
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/prescription_dose"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textStyle="bold" />
 
     <TextView
@@ -30,6 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/prescription_date"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textStyle="bold" />
 </LinearLayout>

@@ -61,7 +61,7 @@ public class PatientDetailMenuFragment extends Fragment implements View.OnClickL
                 replaceFragment(R.id.navigation_prescriptions);
                 break;
             case R.id.btn_new_entry:
-                replaceFragment(R.id.navigation_doctors);
+                replaceFragment(R.id.navigation_new_medical_entry);
         }
     }
 

@@ -2,10 +2,9 @@ package com.itesm.healthchain.ui.medical_records;
 
 import android.content.Context;
 
-import com.itesm.healthchain.data.model.MedicalRecordEntry;
 import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.Prescription;
-import com.itesm.healthchain.data.personal.PersonalDataRepository;
+import com.itesm.healthchain.data.personal.PatientDataRepository;
 
 import java.util.List;
 
@@ -17,11 +16,11 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 public class PrescriptionViewModel extends ViewModel {
-    private PersonalDataRepository repository;
+    private PatientDataRepository repository;
 
 
     public PrescriptionViewModel(Context context) {
-        this.repository = PersonalDataRepository.getInstance(context);
+        this.repository = PatientDataRepository.getInstance(context);
     }
 
     public LiveData<List<Prescription>> getData() {

@@ -3,27 +3,24 @@ package com.itesm.healthchain.ui.medical_records;
 import android.content.Context;
 
 import com.itesm.healthchain.data.model.Patient;
-import com.itesm.healthchain.data.model.PersonalData;
-import com.itesm.healthchain.data.personal.PersonalDataRepository;
+import com.itesm.healthchain.data.personal.PatientDataRepository;
 import com.itesm.healthchain.data.model.MedicalRecordEntry;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 public class MedicalRecordListViewModel extends ViewModel {
-    private PersonalDataRepository repository;
+    private PatientDataRepository repository;
 
 
     public MedicalRecordListViewModel(Context context) {
-        this.repository = PersonalDataRepository.getInstance(context);
+        this.repository = PatientDataRepository.getInstance(context);
     }
 
     public LiveData<List<MedicalRecordEntry>> getData() {

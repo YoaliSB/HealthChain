@@ -15,11 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MedicalRecordAdapter extends GenericAdapter {
+public class MedicalRecordAdapter extends GenericAdapter<MedicalRecordEntry> {
 
     private MedicalRecordEntrySelectListener selectListener;
 
-    public MedicalRecordAdapter(List items) {
+    public MedicalRecordAdapter(List<MedicalRecordEntry> items) {
         super(items);
     }
 
@@ -34,8 +34,7 @@ public class MedicalRecordAdapter extends GenericAdapter {
     }
 
     @Override
-    public void onBindData(final RecyclerView.ViewHolder viewHolder, Object val) {
-        final MedicalRecordEntry entry = (MedicalRecordEntry) val;
+    public void onBindData(final RecyclerView.ViewHolder viewHolder, final MedicalRecordEntry entry) {
         MedicalRecordAdapterViewHolder medicalRecordAdapterViewHolder = (MedicalRecordAdapterViewHolder) viewHolder;
         medicalRecordAdapterViewHolder.doctor.setText(entry.getDoctor());
         medicalRecordAdapterViewHolder.date.setText(entry.getDate());

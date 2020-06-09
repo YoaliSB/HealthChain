@@ -60,6 +60,7 @@ public class UserRepository implements LoginStateListener, LogoutStateListener, 
         // TODO: Encrypted shared data
         SharedPreferencesManager.setToken(context, user.getToken());
         SharedPreferencesManager.setRole(context, user.getRole());
+        SharedPreferencesManager.setName(context, user.getName());
 
         // Callback to activity for redirection
         loginListener.onLoginSuccess(user);
@@ -74,6 +75,7 @@ public class UserRepository implements LoginStateListener, LogoutStateListener, 
     public void onLogoutSuccess() {
         SharedPreferencesManager.setToken(context, null);
         SharedPreferencesManager.setRole(context, null);
+        SharedPreferencesManager.setName(context, null);
         logoutListener.onLogoutSuccess();
     }
 
