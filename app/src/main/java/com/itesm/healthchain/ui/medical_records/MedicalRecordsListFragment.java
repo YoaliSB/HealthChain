@@ -28,7 +28,6 @@ public class MedicalRecordsListFragment extends Fragment implements MedicalRecor
 
     private RecyclerView recyclerView;
     private MedicalRecordAdapter medicalRecordAdapter;
-    private ArrayList<MedicalRecordEntry> entries = new ArrayList<>();;
     private View emptyView;
     private MedicalRecordListViewModel viewModel;
     private MedicalRecordEntrySelectListener listener = this;
@@ -49,11 +48,11 @@ public class MedicalRecordsListFragment extends Fragment implements MedicalRecor
                 ViewModelProviders.of(getActivity(),
                         new MedicalRecordListViewModel.Factory(getActivity()))
                         .get(MedicalRecordListViewModel.class);
-        viewModel.getData().observe(getActivity(), recordListUpdateObserver);
-        medicalRecordAdapter = new MedicalRecordAdapter(entries);
+        medicalRecordAdapter = new MedicalRecordAdapter(new ArrayList());
         medicalRecordAdapter.setSelectListener(listener);
         recyclerView.setAdapter(medicalRecordAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        viewModel.getData().observe(getActivity(), recordListUpdateObserver);
 
         return rootView;
     }
@@ -66,8 +65,7 @@ public class MedicalRecordsListFragment extends Fragment implements MedicalRecor
                     emptyView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 } else {
-                    entries.addAll(medicalRecordEntries);
-                    medicalRecordAdapter = new MedicalRecordAdapter(entries);
+                    medicalRecordAdapter.addItems(medicalRecordEntries);
                     medicalRecordAdapter.setSelectListener(listener);
                     recyclerView.setAdapter(medicalRecordAdapter);
                     emptyView.setVisibility(View.GONE);

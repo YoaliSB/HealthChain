@@ -12,32 +12,29 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.itesm.healthchain.data.SharedPreferencesManager;
-import com.itesm.healthchain.data.model.MedicalRecordEntry;
 import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
-import com.itesm.healthchain.data.model.Prescription;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import androidx.lifecycle.MutableLiveData;
 
-public class PersonalDataNetworkDataSource {
+public class PatientDataNetworkDataSource {
     private static final String MY_INFO = "https://health-chain-api.herokuapp.com/api/user/my_info";
     private static final String UPDATE_INFO = "https://health-chain-api.herokuapp.com/api/user/emergency_info";
-    private static final String PATIENT_INFO = "https://health-chain-api.herokuapp.com/api/doctor/show_user";
+    private static final String GET_PATIENT_INFO = "https://health-chain-api.herokuapp.com/api/doctor/show_user";
+
     private MutableLiveData<Patient> patientDataMutableLiveData = new MutableLiveData<>();
     private Context context;
     private RequestQueue requestQueue;
     private EditPersonalDataListener editPersonalDataListener;
     private Gson gson;
 
-    public PersonalDataNetworkDataSource(Context context) {
+    public PatientDataNetworkDataSource(Context context) {
         this.context = context;
         requestQueue = Volley.newRequestQueue(context);
         gson = new Gson();
@@ -125,7 +122,7 @@ public class PersonalDataNetworkDataSource {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, PATIENT_INFO, jsonBody,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, GET_PATIENT_INFO, jsonBody,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

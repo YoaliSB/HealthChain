@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
-import com.itesm.healthchain.data.personal.PersonalDataRepository;
+import com.itesm.healthchain.data.personal.PatientDataRepository;
 import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
 import androidx.annotation.NonNull;
@@ -15,12 +15,12 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 public class DoctorPatientDataViewModel extends PersonalDataViewModel {
-    PersonalDataRepository repository;
+    PatientDataRepository repository;
     String email = "";
 
     public DoctorPatientDataViewModel(Context context) {
         super();
-        this.repository = PersonalDataRepository.getInstance(context);
+        this.repository = PatientDataRepository.getInstance(context);
     }
 
     @Override

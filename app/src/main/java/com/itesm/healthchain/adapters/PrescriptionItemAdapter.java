@@ -32,6 +32,11 @@ public class PrescriptionItemAdapter extends RecyclerView.Adapter<RecyclerView.V
         return new PrescriptionItemAdapterViewHolder(view);
     }
 
+    public void addItem(PrescriptionItem prescriptionItem) {
+        prescriptionItems.add(prescriptionItem);
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         PrescriptionItem prescriptionItem = prescriptionItems.get(position);

@@ -14,10 +14,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class DoctorAdapter extends GenericAdapter {
+public class DoctorAdapter extends GenericAdapter<Doctor> {
 
     private DoctorDeleteListener deleteListener;
-    public DoctorAdapter(List items) {
+    public DoctorAdapter(List<Doctor> items) {
         super(items);
     }
 
@@ -28,8 +28,7 @@ public class DoctorAdapter extends GenericAdapter {
     }
 
     @Override
-    public void onBindData(RecyclerView.ViewHolder viewHolder, Object val) {
-        final Doctor doctor = (Doctor) val;
+    public void onBindData(RecyclerView.ViewHolder viewHolder, final Doctor doctor) {
         DoctorAdapterViewHolder doctorAdapterViewHolder = (DoctorAdapterViewHolder) viewHolder;
         doctorAdapterViewHolder.name.setText(doctor.getName());
         doctorAdapterViewHolder.desc.setText(doctor.getDesc());

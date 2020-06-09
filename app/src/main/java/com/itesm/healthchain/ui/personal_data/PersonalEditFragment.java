@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.personal.EditPersonalDataListener;
-import com.itesm.healthchain.data.personal.PersonalDataRepository;
+import com.itesm.healthchain.data.personal.PatientDataRepository;
 import com.itesm.healthchain.nfc.NfcActivity;
 
 import androidx.annotation.NonNull;
@@ -23,7 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 public class PersonalEditFragment extends Fragment implements EditPersonalDataListener {
 
     private PatientDataViewModel patientDataViewModel;
-    private PersonalDataRepository personalDataRepository;
+    private PatientDataRepository patientDataRepository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,8 +31,8 @@ public class PersonalEditFragment extends Fragment implements EditPersonalDataLi
                 ViewModelProviders.of(this,
                         new PatientDataViewModel.Factory(getActivity()))
                         .get(PatientDataViewModel.class);
-        personalDataRepository = PersonalDataRepository.getInstance(getContext());
-        personalDataRepository.setEditPersonalDataListener(this);
+        patientDataRepository = PatientDataRepository.getInstance(getContext());
+        patientDataRepository.setEditPersonalDataListener(this);
         View root = inflater.inflate(R.layout.personal_edit_fragment, container, false);
 
         final TextView name = root.findViewById(R.id.text_name);
@@ -56,7 +56,7 @@ public class PersonalEditFragment extends Fragment implements EditPersonalDataLi
                 data.setContactPhone(contactPhone.getText().toString());
                 data.setContactRelationship(contactRelationship.getText().toString());
                 data.setHospital(hospital.getText().toString());
-                personalDataRepository.updatePersonalData(data);
+                patientDataRepository.updatePersonalData(data);
             }
         });
 

@@ -3,7 +3,7 @@ package com.itesm.healthchain.ui.personal_data;
 import android.content.Context;
 
 import com.itesm.healthchain.data.model.Patient;
-import com.itesm.healthchain.data.personal.PersonalDataRepository;
+import com.itesm.healthchain.data.personal.PatientDataRepository;
 import com.itesm.healthchain.data.model.PersonalData;
 
 import androidx.annotation.NonNull;
@@ -14,11 +14,11 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 public class PatientDataViewModel extends PersonalDataViewModel {
-    PersonalDataRepository repository;
+    PatientDataRepository repository;
 
     public PatientDataViewModel(Context context) {
         super();
-        this.repository = PersonalDataRepository.getInstance(context);
+        this.repository = PatientDataRepository.getInstance(context);
     }
 
     @Override

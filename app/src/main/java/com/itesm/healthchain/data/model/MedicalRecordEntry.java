@@ -16,6 +16,9 @@ import com.google.gson.JsonSerializer;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class MedicalRecordEntry implements Parcelable {
     private String name;
@@ -23,8 +26,8 @@ public class MedicalRecordEntry implements Parcelable {
     private String date;
     private String sex;
     private String ta;
-    private int fc;
-    private int fr;
+    private String fc;
+    private String fr;
     private double temp;
     private double weight;
     private double height;
@@ -33,8 +36,8 @@ public class MedicalRecordEntry implements Parcelable {
     private String diagnostic;
     private Prescription prescription;
 
-    public MedicalRecordEntry(String name, String doctor, String date, String sex, String ta, int fc,
-                              int fr, double temp, double weight, double height, String observations,
+    public MedicalRecordEntry(String name, String doctor, String date, String sex, String ta, String fc,
+                              String fr, double temp, double weight, double height, String observations,
                               String diagnostic, Prescription prescription) {
         this.name = name;
         this.doctor = doctor;
@@ -59,8 +62,8 @@ public class MedicalRecordEntry implements Parcelable {
         String date = "05/05/2020";
         String sex = "Masculino";
         String  ta = "120/80";
-        int fc = 80;
-        int fr = 16;
+        String fc = "80";
+        String fr = "16";
         double temp = 36.5;
         double  weight = 75;
         double  height = 172;
@@ -71,14 +74,30 @@ public class MedicalRecordEntry implements Parcelable {
                 observations, diagnostic, prescription);
     }
 
+    public static MedicalRecordEntry prefillEntry(PersonalData data, String doctorName) {
+        return new MedicalRecordEntry(data.getName(),
+                doctorName,
+                new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()),
+                "",
+                "",
+                "",
+                "",
+                36.5,
+                Double.parseDouble(data.getWeight()),
+                Double.parseDouble(data.getHeight()),
+                "",
+                "",
+                null);
+    }
+
     protected MedicalRecordEntry(Parcel in) {
         name = in.readString();
         doctor = in.readString();
         date = in.readString();
         sex = in.readString();
         ta = in.readString();
-        fc = in.readInt();
-        fr = in.readInt();
+        fc = in.readString();
+        fr = in.readString();
         temp = in.readDouble();
         weight = in.readDouble();
         height = in.readDouble();
@@ -133,21 +152,15 @@ public class MedicalRecordEntry implements Parcelable {
     }
 
     public String getTemp() {
-        return temp + " C";
+        return temp + "";
     }
 
     public String getWeight() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(weight);
-        sb.append(" kg");
-        return sb.toString();
+        return weight + "";
     }
 
     public String getHeight() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(height);
-        sb.append(" cm");
-        return sb.toString();
+        return height + "";
     }
 
     public String getImc() {
@@ -178,8 +191,8 @@ public class MedicalRecordEntry implements Parcelable {
         parcel.writeString(date);
         parcel.writeString(sex);
         parcel.writeString(ta);
-        parcel.writeInt(fc);
-        parcel.writeInt(fr);
+        parcel.writeString(fc);
+        parcel.writeString(fr);
         parcel.writeDouble(temp);
         parcel.writeDouble(weight);
         parcel.writeDouble(height);

@@ -19,7 +19,6 @@
         android:label="@string/text_patient_info"
         tools:layout="@layout/personal_fragment"/>
 
-
     <fragment
         android:id="@+id/navigation_medical_records"
         android:name="com.itesm.healthchain.ui.medical_records.MedicalRecordsListFragment"
@@ -37,6 +36,13 @@
         android:name="com.itesm.healthchain.ui.medical_records.PrescriptionFragment"
         android:label="@string/label_prescriptions"
         tools:layout="@layout/prescriptions_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_new_medical_entry"
+        android:name="com.itesm.healthchain.ui.doctor.NewMedicalEntryFragment"
+        android:label="@string/text_new_record_entry"
+        tools:layout="@layout/new_medical_entry_fragment"/>
+
 
     <!-- Settings -->
 

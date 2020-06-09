@@ -65,6 +65,8 @@ public class PrescriptionFragment extends Fragment {
                 }
                 expandableListAdapter = new PrescriptionAdapter(getContext(), listDataHeader);
                 expandableListView.setAdapter(expandableListAdapter);
+                expandableListView.expandGroup(0);
+
             }
         };
 }

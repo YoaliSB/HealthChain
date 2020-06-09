@@ -7,40 +7,40 @@ import com.itesm.healthchain.data.model.PersonalData;
 
 import androidx.lifecycle.MutableLiveData;
 
-public class PersonalDataRepository implements EditPersonalDataListener{
-    private static volatile PersonalDataRepository instance;
-    private PersonalDataNetworkDataSource personalDataNetworkDataSource;
+public class PatientDataRepository implements EditPersonalDataListener{
+    private static volatile PatientDataRepository instance;
+    private PatientDataNetworkDataSource patientDataNetworkDataSource;
     private EditPersonalDataListener editPersonalDataListener;
     private String email = "";
 
     // private constructor : singleton access
-    private PersonalDataRepository(final Context context) {
-        personalDataNetworkDataSource = new PersonalDataNetworkDataSource(context);
-        personalDataNetworkDataSource.setEditPersonalDataListener(this);
+    private PatientDataRepository(final Context context) {
+        patientDataNetworkDataSource = new PatientDataNetworkDataSource(context);
+        patientDataNetworkDataSource.setEditPersonalDataListener(this);
     }
 
-    public static PersonalDataRepository getInstance(Context context) {
+    public static PatientDataRepository getInstance(Context context) {
         if (instance == null) {
-            instance = new PersonalDataRepository(context);
+            instance = new PatientDataRepository(context);
         }
         return instance;
     }
 
     public MutableLiveData<Patient> fetchPatient() {
-        personalDataNetworkDataSource.fetchPatient();
-        return personalDataNetworkDataSource.getPatient();
+        patientDataNetworkDataSource.fetchPatient();
+        return patientDataNetworkDataSource.getPatient();
     }
 
     public void fetchPersonalDataForDoctor(String email) {
-        personalDataNetworkDataSource.fetchPatientForDoctor(email);
+        patientDataNetworkDataSource.fetchPatientForDoctor(email);
     }
 
     public MutableLiveData<Patient> subscribeForPatient() {
-        return personalDataNetworkDataSource.getPatient();
+        return patientDataNetworkDataSource.getPatient();
     }
 
     public void updatePersonalData(PersonalData data) {
-        personalDataNetworkDataSource.updatePersonalData(data);
+        patientDataNetworkDataSource.updatePersonalData(data);
     }
 
     public void setEditPersonalDataListener(EditPersonalDataListener editPersonalDataListener) {

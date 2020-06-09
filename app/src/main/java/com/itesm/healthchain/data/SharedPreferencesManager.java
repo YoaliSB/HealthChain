@@ -24,6 +24,15 @@ public class SharedPreferencesManager {
         editor.apply();
     }
 
+    public static void setName(Context context, String name) {
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preferences_key), Context.MODE_PRIVATE);
+        // TODO: Encrypted shared data, clean up
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(context.getString(R.string.name_key), name);
+        editor.apply();
+    }
+
     public static String getToken(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(
                 context.getString(R.string.preferences_key), Context.MODE_PRIVATE);
@@ -34,5 +43,11 @@ public class SharedPreferencesManager {
         SharedPreferences preferences = context.getSharedPreferences(
                 context.getString(R.string.preferences_key), Context.MODE_PRIVATE);
         return preferences.getString(context.getString(R.string.role_key), "");
+    }
+
+    public static String getName(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(
+                context.getString(R.string.preferences_key), Context.MODE_PRIVATE);
+        return preferences.getString(context.getString(R.string.name_key), "");
     }
 }

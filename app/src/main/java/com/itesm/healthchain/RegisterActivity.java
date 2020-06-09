@@ -20,7 +20,7 @@ import com.itesm.healthchain.data.model.LoggedInUser;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.model.TagProfile;
 import com.itesm.healthchain.data.personal.EditPersonalDataListener;
-import com.itesm.healthchain.data.personal.PersonalDataRepository;
+import com.itesm.healthchain.data.personal.PatientDataRepository;
 import com.itesm.healthchain.data.session.LoginStateListener;
 import com.itesm.healthchain.data.session.UserRepository;
 import com.itesm.healthchain.nfc.NfcActivity;
@@ -36,7 +36,7 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
     private static final String registerUrl = "https://health-chain-api.herokuapp.com/api/register";
 
     UserRepository userRepository;
-    PersonalDataRepository personalDataRepository;
+    PatientDataRepository patientDataRepository;
 
     EditText etname, etemail, etpass, etpass2;
     Button signupbtn;
@@ -59,8 +59,8 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
 
         userRepository = new UserRepository(getApplicationContext());
         userRepository.setLoginListener(this);
-        personalDataRepository = PersonalDataRepository.getInstance(getApplicationContext());
-        personalDataRepository.setEditPersonalDataListener(this);
+        patientDataRepository = PatientDataRepository.getInstance(getApplicationContext());
+        patientDataRepository.setEditPersonalDataListener(this);
 
         // TESTING
 //        etname.setText("José Alberto Jurado");
@@ -188,7 +188,7 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
                         hospital, ailments, allergies,
                         contactName, contactPhone, contactRelationship);
                 PersonalData personalData = new PersonalData(tagProfile);
-                personalDataRepository.updatePersonalData(personalData);
+                patientDataRepository.updatePersonalData(personalData);
             }
         });
     }
