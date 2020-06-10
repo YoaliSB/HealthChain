@@ -1,11 +1,13 @@
 package com.itesm.healthchain.ui.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.itesm.healthchain.EmailActivity;
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.session.LogoutStateListener;
 import com.itesm.healthchain.data.session.UserRepository;
@@ -22,9 +24,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
         View aboutBtn = root.findViewById(R.id.btn_info);
         View editBtn = root.findViewById(R.id.btn_edit_profile);
         View logoutBtn = root.findViewById(R.id.btn_logout);
+        View quejaBtn = root.findViewById(R.id.btn_email);
         aboutBtn.setOnClickListener(this);
         editBtn.setOnClickListener(this);
         logoutBtn.setOnClickListener(this);
+        quejaBtn.setOnClickListener(this);
         return root;
     }
 
@@ -37,6 +41,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
             case R.id.btn_edit_profile:
                 replaceFragment(R.id.navigation_account);
                 break;
+            case R.id.btn_email:
+                startActivity(new Intent(getActivity(), EmailActivity.class));
             case R.id.btn_logout:
                 UserRepository repository = new UserRepository(getActivity());
                 repository.setLogoutListener(this);

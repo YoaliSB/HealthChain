@@ -117,7 +117,7 @@
     <!-- Patients Fragment -->
     <string name="title_patients">Pacientes atendidos </string>
     <string name="empty_patients">No tienes agregado a ningún paciente</string>
-    
+
     <!-- Patients Detail Menu -->
     <string name="text_patient_info">Información general del paciente</string>
     <string name="text_new_record_entry">Crear nueva consulta</string>
