@@ -1,5 +1,7 @@
 package com.itesm.healthchain.data.model;
 
+import android.nfc.Tag;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -67,6 +69,21 @@ public class TagProfile implements Serializable {
         this.contactName = contactName;
         this.contactPhone = contactPhone;
         this.contactRelationship = contactRelationship;
+    }
+
+    public TagProfile(PersonalData data){
+        this.email = data.getEmail();
+        this.name = data.getName();
+        this.birthDate = data.getBirthDate();
+        this.bloodType = data.getBlood();
+        this.weight = data.getWeight();
+        this.height = data.getHeight();
+        this.hospital = data.getHospital();
+        this.ailments = data.getAilments();
+        this.allergies = data.getAllergies();
+        this.contactName = data.getContactName();
+        this.contactPhone = data.getContactPhone();
+        this.contactRelationship = data.getContactRelationship();
     }
 
     public JSONObject toJson() throws JSONException {

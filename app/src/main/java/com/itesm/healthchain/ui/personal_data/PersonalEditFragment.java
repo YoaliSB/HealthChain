@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.itesm.healthchain.R;
 import com.itesm.healthchain.data.model.PersonalData;
+import com.itesm.healthchain.data.model.TagProfile;
 import com.itesm.healthchain.data.personal.EditPersonalDataListener;
 import com.itesm.healthchain.data.personal.PatientDataRepository;
 import com.itesm.healthchain.nfc.NfcActivity;
@@ -87,10 +88,7 @@ public class PersonalEditFragment extends Fragment implements EditPersonalDataLi
     @Override
     public void onEditSuccess(PersonalData data) {
         NfcActivity activity = (NfcActivity) getActivity();
-        activity.tagProfile.setContactName(data.getContactName());
-        activity.tagProfile.setContactPhone(data.getContactPhone());
-        activity.tagProfile.setContactRelationship(data.getContactRelationship());
-        activity.tagProfile.setHospital(data.getHospital());
+        activity.tagProfile = new TagProfile(data);
         patientDataViewModel.setData(data);
         activity.confirmTagWrite();
     }
