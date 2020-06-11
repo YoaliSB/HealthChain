@@ -93,6 +93,7 @@ public class DoctorNetworkDataSource {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("POST DOCTORS", response.toString());
+                        getDoctors().postValue(getDoctors().getValue());
                     }
                 }, new Response.ErrorListener() {
             @Override
