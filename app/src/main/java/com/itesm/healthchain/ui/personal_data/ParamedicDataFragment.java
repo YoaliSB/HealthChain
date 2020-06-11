@@ -26,34 +26,27 @@ public class ParamedicDataFragment extends PersonalDataFragment {
         editButton2.setVisibility(View.GONE);
 
         final View nfcScreen = root.findViewById(R.id.nfc_screen);
-        // TODO: Delete this
-        nfcScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                personalDataViewModel.setData(new PersonalData(new TagProfile()));
-            }
-        });
         personalDataViewModel.getData().observe(getViewLifecycleOwner(), new Observer<PersonalData>() {
             @Override
             public void onChanged(@Nullable PersonalData data) {
-            if (data == null) {
-                nfcScreen.setVisibility(View.VISIBLE);
-                fields.setVisibility(View.GONE);
-            } else {
-                name.setText(data.getName());
-                age.setText(data.getBirthDate());
-                blood.setText(data.getBlood());
-                weight.setText(data.getWeight());
-                height.setText(data.getHeight());
-                contactName.setText(data.getContactName());
-                contactPhone.setText(data.getContactPhone());
-                contactRelationship.setText(data.getContactRelationship());
-                hospital.setText(data.getHospital());
-                ailments.setText(data.getAilments());
-                allergies.setText(data.getAllergies());
-                nfcScreen.setVisibility(View.GONE);
-                fields.setVisibility(View.VISIBLE);
-            }
+                if (data == null) {
+                    nfcScreen.setVisibility(View.VISIBLE);
+                    fields.setVisibility(View.GONE);
+                } else {
+                    name.setText(data.getName());
+                    age.setText(data.getBirthDate());
+                    blood.setText(data.getBlood());
+                    weight.setText(data.getWeight());
+                    height.setText(data.getHeight());
+                    contactName.setText(data.getContactName());
+                    contactPhone.setText(data.getContactPhone());
+                    contactRelationship.setText(data.getContactRelationship());
+                    hospital.setText(data.getHospital());
+                    ailments.setText(data.getAilments());
+                    allergies.setText(data.getAllergies());
+                    nfcScreen.setVisibility(View.GONE);
+                    fields.setVisibility(View.VISIBLE);
+                }
             }
         });
         return root;

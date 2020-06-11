@@ -49,7 +49,7 @@ public class PatientsFragment extends Fragment implements PatientSelectListener{
                 ViewModelProviders.of(this,
                         new PatientsViewModel.Factory(patientRepository))
                         .get(PatientsViewModel.class);
-        viewModel.getDummyData().observe(getActivity(), patientListUpdateObserver);
+        viewModel.getData().observe(getActivity(), patientListUpdateObserver);
         recyclerView.setAdapter(patientAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

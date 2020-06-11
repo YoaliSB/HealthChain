@@ -20,7 +20,7 @@ public class PersonalDataFragment extends Fragment {
 
     protected PersonalDataViewModel personalDataViewModel;
     protected View root;
-    TextView name, age, blood, weight, height, contactName, contactPhone, contactRelationship, hospital, ailments, allergies;
+    protected TextView name, age, blood, weight, height, contactName, contactPhone, contactRelationship, hospital, ailments, allergies;
     protected View editButton, editButton2;
     protected View fields, nfcScreen;
     private View phoneButton;

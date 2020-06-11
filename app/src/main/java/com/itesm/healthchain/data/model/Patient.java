@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Patient {
     private PersonalData emergencyInfo;
-    private List<MedicalRecordEntry> medicalRecord = new ArrayList<>();
-    private List<Prescription> prescriptions = new ArrayList<>();
+    private List<MedicalRecordEntry> medicalRecord;
+    private List<Prescription> prescriptions;
 
     public Patient(PersonalData emergencyInfo,
                    List<MedicalRecordEntry> medicalRecord,
@@ -46,7 +46,7 @@ public class Patient {
     }
 
     public void addMedicalRecordEntry(MedicalRecordEntry newEntry) {
-        medicalRecord.add(newEntry);
-        prescriptions.add(newEntry.getPrescription());
+        getMedicalRecord().add(newEntry);
+        getPrescriptions().add(newEntry.getPrescription());
     }
 }

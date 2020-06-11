@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.nfc.NfcActivity;
+import com.itesm.healthchain.ui.personal_data.ParamedicDataViewModel;
 import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
 import androidx.appcompat.widget.Toolbar;
@@ -50,8 +51,8 @@ public class ParamedicActivity extends NfcActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        PersonalDataViewModel personalDataViewModel =
-                ViewModelProviders.of(this).get(PersonalDataViewModel.class);
+        ParamedicDataViewModel personalDataViewModel =
+                ViewModelProviders.of(this).get(ParamedicDataViewModel.class);
         personalDataViewModel.setData(new PersonalData(super.tagProfile));
         navController.navigate(R.id.navigation_personal);
     }

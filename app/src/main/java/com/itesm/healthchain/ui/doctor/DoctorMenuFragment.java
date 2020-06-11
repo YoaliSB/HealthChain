@@ -30,6 +30,9 @@ public class DoctorMenuFragment extends Fragment  implements View.OnClickListene
             case R.id.btn_patients:
                 replaceFragment(R.id.navigation_patients);
                 break;
+            case R.id.btn_new_patient:
+                replaceFragment(R.id.navigation_nfc);
+                break;
         }
     }
 
