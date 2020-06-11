@@ -51,7 +51,7 @@ public class PersonalEditFragment extends Fragment implements EditPersonalDataLi
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PersonalData data = patientDataViewModel.getData().getValue();
+                PersonalData data = patientDataViewModel.getCurrentData().getValue();
                 data.setContactName(contactName.getText().toString());
                 data.setContactPhone(contactPhone.getText().toString());
                 data.setContactRelationship(contactRelationship.getText().toString());
