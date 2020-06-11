@@ -18,7 +18,6 @@ public class PatientDataFragment extends PersonalDataFragment {
                 ViewModelProviders.of(this,
                         new PatientDataViewModel.Factory(getActivity()))
                         .get(PatientDataViewModel.class);
-
         super.onCreateView(inflater, container, savedInstanceState);
         nfcScreen.setVisibility(View.GONE);
         fields.setVisibility(View.VISIBLE);

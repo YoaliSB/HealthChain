@@ -4,20 +4,27 @@ public class Doctor {
     private String id;
     private String name;
     private String desc;
-    private boolean active;
+    private int active;
 
-    public Doctor(String id, String name, String desc, boolean hasAccess) {
+    public Doctor(String id, String name, String desc, int hasAccess) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.active = hasAccess;
     }
 
+    public Doctor(String id, String name, String desc, boolean hasAccess) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.active = hasAccess ? 1 : 0;
+    }
+
     public Doctor() {
         this.id = "1";
         this.name = "Kenyiro Tsuru";
         this.desc = "Pediatra";
-        this.active = true;
+        this.active = 1;
     }
 
     public String getId() {
@@ -33,10 +40,14 @@ public class Doctor {
     }
 
     public boolean isActive() {
-        return active;
+        if (active == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void setIsActive(boolean active) {
-        this.active = active;
+        this.active = active ? 1 : 0;
     }
 }

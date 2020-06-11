@@ -10,13 +10,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.itesm.healthchain.data.SharedPreferencesManager;
 import com.itesm.healthchain.data.model.Doctor;
+import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PatientInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,10 +32,12 @@ public class PatientNetworkDataSource {
     private MutableLiveData<ArrayList<PatientInfo>> patientMutableLiveData = new MutableLiveData<ArrayList<PatientInfo>>();
     private Context context;
     private RequestQueue requestQueue;
+    private Gson gson;
 
     public PatientNetworkDataSource(Context context) {
         this.context = context;
         requestQueue = Volley.newRequestQueue(context);
+        gson = new Gson();
     }
 
     public void fetchPatients() {
@@ -42,6 +48,12 @@ public class PatientNetworkDataSource {
                         Log.d("PATIENTS", response.toString());
                         ArrayList<PatientInfo> patients = new ArrayList<>();
                         // TODO: parse list of patients and update viewModel
+                        Type type = new TypeToken<ArrayList<PatientInfo>>() {}.getType();
+                        try {
+                            patients = gson.fromJson(String.valueOf(response.getJSONArray("my_patients")), type);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         patientMutableLiveData.postValue(patients);
                     }
                 }, new Response.ErrorListener() {
