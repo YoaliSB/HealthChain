@@ -20,13 +20,6 @@ public class Doctor {
         this.active = hasAccess ? 1 : 0;
     }
 
-    public Doctor() {
-        this.id = "1";
-        this.name = "Kenyiro Tsuru";
-        this.desc = "Pediatra";
-        this.active = 1;
-    }
-
     public String getId() {
         return id;
     }
