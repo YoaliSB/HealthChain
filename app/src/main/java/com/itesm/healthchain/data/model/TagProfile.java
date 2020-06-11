@@ -50,20 +50,6 @@ public class TagProfile implements Serializable {
         this.contactName = "";
         this.contactPhone = "";
         this.contactRelationship = "";
-
-        //Testing
-        this.email = "triplett@test.com";
-        this.name = "Brandon Triplett";
-        this.birthDate = "27/03/1985";
-        this.bloodType = "B+";
-        this.weight = "75";
-        this.height = "170";
-        this.contactName = "Elena Rodríguez Blanco";
-        this.contactPhone = "5588996622";
-        this.contactRelationship = "Madre";
-        this.hospital = "Hospital Español";
-        this.ailments = "Diabetes tipo 1, fumador";
-        this.allergies = "Ninguna";
     }
 
     public TagProfile(String email, String name, String birthDate, String bloodType, String weight, String height,
