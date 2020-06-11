@@ -183,7 +183,7 @@ public class PatientDataNetworkDataSource {
             JSONArray prescrips = new JSONArray(strPrescriptions);
             content.put("medicalRecord", record);
             content.put("prescriptions", prescrips);
-            jsonBody.put("email", "david@email.com");
+            jsonBody.put("email", email);
             jsonBody.put("content", content);
         } catch (JSONException e) {
             e.printStackTrace();
