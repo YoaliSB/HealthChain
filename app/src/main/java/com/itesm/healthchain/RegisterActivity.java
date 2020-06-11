@@ -1,5 +1,6 @@
 package com.itesm.healthchain;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
@@ -137,7 +138,7 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
         final String name = etname.getText().toString().trim();
         final String email = etemail.getText().toString().trim();
 
-        setContentView(R.layout.create_emergency_profile);
+        setContentView(R.layout.personal_create_fragment);
 
         etFullName = findViewById(R.id.field_name);
         etBirthDate = findViewById(R.id.field_birthdate);
@@ -198,6 +199,7 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
         isWriting = true;
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onNewIntent(Intent intent){
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {

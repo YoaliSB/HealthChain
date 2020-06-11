@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/text_age"
-        style="@style/DefaultText"
+        style="@style/EditText"
         app:layout_constraintBottom_toBottomOf="@+id/label_age"
         app:layout_constraintStart_toEndOf="@+id/label_age"
         app:layout_constraintTop_toTopOf="@+id/label_age" />
@@ -57,7 +57,7 @@
 
     <TextView
         android:id="@+id/text_blood"
-        style="@style/DefaultText"
+        style="@style/EditText"
         app:layout_constraintBottom_toBottomOf="@+id/label_blood"
         app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toEndOf="@+id/label_blood"
@@ -78,7 +78,7 @@
 
     <TextView
         android:id="@+id/text_weight"
-        style="@style/DefaultText"
+        style="@style/EditText"
         app:layout_constraintBottom_toBottomOf="@+id/label_weight"
         app:layout_constraintStart_toEndOf="@+id/label_weight"
         app:layout_constraintTop_toTopOf="@+id/label_weight"
@@ -109,7 +109,7 @@
 
     <TextView
         android:id="@+id/text_height"
-        style="@style/DefaultText"
+        style="@style/EditText"
         app:layout_constraintBottom_toBottomOf="@+id/label_height"
         app:layout_constraintStart_toEndOf="@+id/label_height"
         app:layout_constraintTop_toTopOf="@+id/label_height"
@@ -206,7 +206,7 @@
 
     <TextView
         android:id="@+id/list_ailments"
-        style="@style/DefaultText"
+        style="@style/EditText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/label_ailments"
@@ -221,7 +221,7 @@
 
     <TextView
         android:id="@+id/list_allergies"
-        style="@style/DefaultText"
+        style="@style/EditText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/label_ailments"

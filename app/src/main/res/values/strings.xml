@@ -64,7 +64,7 @@
 
     <!-- Personal Data Fragment -->
     <string name="label_name">Nombre</string>
-    <string name="label_age">Edad</string>
+    <string name="label_age">Fecha de nacimiento</string>
     <string name="label_blood">Tipo de sangre</string>
     <string name="label_weight">Peso</string>
     <string name="label_height">Altura</string>
