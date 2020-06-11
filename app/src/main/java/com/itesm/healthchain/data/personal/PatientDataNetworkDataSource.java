@@ -11,12 +11,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.itesm.healthchain.data.SharedPreferencesManager;
 import com.itesm.healthchain.data.model.MedicalRecordEntry;
 import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.model.Prescription;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,7 +44,11 @@ public class PatientDataNetworkDataSource {
     public PatientDataNetworkDataSource(Context context) {
         this.context = context;
         requestQueue = Volley.newRequestQueue(context);
-        gson = new Gson();
+        gson = new GsonBuilder()
+            .registerTypeAdapter(Prescription.class, new Prescription.PrescriptionTypeConverter())
+            .registerTypeAdapter(MedicalRecordEntry.class, new MedicalRecordEntry.MedicalRecordEntryTypeConverter())
+            .setPrettyPrinting()
+            .create();
     }
 
     public void fetchPatient() {
@@ -173,8 +179,8 @@ public class PatientDataNetworkDataSource {
         JSONObject jsonBody = new JSONObject();
         JSONObject content = new JSONObject();
         try {
-            JSONObject record = new JSONObject(strRecord);
-            JSONObject prescrips = new JSONObject(strPrescriptions);
+            JSONArray record = new JSONArray(strRecord);
+            JSONArray prescrips = new JSONArray(strPrescriptions);
             content.put("medicalRecord", record);
             content.put("prescriptions", prescrips);
             jsonBody.put("email", email);
