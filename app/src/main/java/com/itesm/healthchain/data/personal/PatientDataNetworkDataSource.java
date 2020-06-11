@@ -32,7 +32,7 @@ public class PatientDataNetworkDataSource {
     private static final String MY_INFO = "https://health-chain-api.herokuapp.com/api/user/my_info";
     private static final String UPDATE_INFO = "https://health-chain-api.herokuapp.com/api/user/emergency_info";
     private static final String GET_PATIENT_INFO = "https://health-chain-api.herokuapp.com/api/doctor/show_user";
-    private static final String UPDATE_MEDICAL_RECORD = "https://health-chain-api.herokuapp.com//api/doctor/update_user";
+    private static final String UPDATE_MEDICAL_RECORD = "https://health-chain-api.herokuapp.com/api/doctor/update_user";
 
     private MutableLiveData<Patient> patientDataMutableLiveData = new MutableLiveData<>();
     private Context context;
@@ -183,7 +183,7 @@ public class PatientDataNetworkDataSource {
             JSONArray prescrips = new JSONArray(strPrescriptions);
             content.put("medicalRecord", record);
             content.put("prescriptions", prescrips);
-            jsonBody.put("email", email);
+            jsonBody.put("email", "david@email.com");
             jsonBody.put("content", content);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -200,9 +200,9 @@ public class PatientDataNetworkDataSource {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("EDIT MEDICAL RECORD", error.toString());
-                //editMedicalRecordListener.onEditRecordFailure();
-                patientDataMutableLiveData.postValue(currentPatient);
-                editMedicalRecordListener.onEditRecordSuccess(email);
+                editMedicalRecordListener.onEditRecordFailure();
+//                patientDataMutableLiveData.postValue(currentPatient);
+//                editMedicalRecordListener.onEditRecordSuccess(email);
             }
         }) {
             @Override
