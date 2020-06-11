@@ -116,6 +116,17 @@ public class NewMedicalEntryFragment extends Fragment implements EditMedicalReco
             }
         });
 
+        //TESTING
+//        sex.setText("M");
+//        ta.setText("120/80");
+//        fc.setText("80");
+//        fr.setText("15");
+//        observations.setText("Escurrimiento nasal");
+//        diagnosis.setText("Gripe común");
+//        prescriptionNameView.setText("Antiviral");
+//        prescriptionDoseView.setText("1 cap c/ 8 hrs");
+
+
         datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
                  public void onPositiveButtonClick(Long selection) {

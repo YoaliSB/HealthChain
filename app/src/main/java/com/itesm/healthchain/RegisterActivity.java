@@ -68,8 +68,8 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
         patientDataRepository.setEditPersonalDataListener(this);
 
         // TESTING
-//        etname.setText("José Alberto Jurado");
-//        etemail.setText("b06@test.com");
+//        etname.setText("Ana Farfán");
+//        etemail.setText("p05@test.com");
 //        etpass.setText("123456");
 //        etpass2.setText("123456");
 
@@ -164,16 +164,16 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
         etFullName.setText(name);
 
         // TESTING
-//        etBirthDate.setText("27-02-1998");
-//        etBloodType.setText("A+");
-//        etWeight.setText("72");
-//        etHeight.setText("175");
-//        etHospital.setText("Hospital Ángeles");
-//        etAilments.setText("");
-//        etAllergies.setText("Rinitis alérgica");
-//        etContactName.setText("Miriam Hernández");
-//        etContactPhone.setText("5543710806");
-//        etContactRelationship.setText("Madre");
+//        etBirthDate.setText("23-12-1964");
+//        etBloodType.setText("O-");
+//        etWeight.setText("74");
+//        etHeight.setText("159");
+//        etHospital.setText("Star Médica");
+//        etAilments.setText("Autismo");
+//        etAllergies.setText("Ninguna");
+//        etContactName.setText("Vanessa Guzmán");
+//        etContactPhone.setText("5564313497");
+//        etContactRelationship.setText("Esposa");
 
         submitProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
