@@ -69,6 +69,7 @@ public class UserRepository implements LoginStateListener, LogoutStateListener, 
         SharedPreferencesManager.setToken(context, user.getToken());
         SharedPreferencesManager.setRole(context, user.getRole());
         SharedPreferencesManager.setName(context, user.getName());
+        SharedPreferencesManager.setEmail(context, user.getEmail());
 
         // Callback to activity for redirection
         loginListener.onLoginSuccess(user);

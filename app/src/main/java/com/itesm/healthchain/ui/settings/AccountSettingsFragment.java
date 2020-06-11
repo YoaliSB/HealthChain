@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itesm.healthchain.R;
+import com.itesm.healthchain.data.SharedPreferencesManager;
 import com.itesm.healthchain.data.session.PasswordChangeStateListener;
 import com.itesm.healthchain.data.session.UserRepository;
 
@@ -33,6 +34,8 @@ public class AccountSettingsFragment extends Fragment implements PasswordChangeS
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.account_settings_fragment, container, false);
         Button saveBtn = root.findViewById(R.id.save_btn);
+        final TextView name = root.findViewById(R.id.text_name);
+        name.setText(SharedPreferencesManager.getName(getActivity()));
         final TextView oldPassword = root.findViewById(R.id.currentPassword);
         final TextView newPassword = root.findViewById(R.id.newPassword);
         final TextView confNewPassword = root.findViewById(R.id.confNewPassword);

@@ -16,6 +16,7 @@
     <string name="token_key">authentication_token</string>
     <string name="role_key">user_role</string>
     <string name="name_key">user_name</string>
+    <string name="email_key">user_email</string>
 
     <!-- Log In / Register Activity-->
     <string name="email">E-mail</string>
