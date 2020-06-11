@@ -60,12 +60,14 @@
         <TextView
             android:id="@+id/label_blood"
             style="@style/DefaultLabel"
-            android:layout_marginStart="36dp"
+            android:layout_marginStart="20dp"
             android:text="@string/label_blood"
-            app:layout_constraintBottom_toBottomOf="@+id/label_age"
-            app:layout_constraintStart_toEndOf="@+id/text_age"
-            app:layout_constraintTop_toTopOf="@+id/label_age"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_age"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/text_blood"
@@ -79,12 +81,13 @@
         <TextView
             android:id="@+id/label_weight"
             style="@style/DefaultLabel"
+            android:layout_marginStart="20dp"
             android:text="@string/label_weight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/label_age"
-            app:layout_constraintTop_toBottomOf="@+id/label_age"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_blood"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -96,13 +99,25 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
+            android:id="@+id/label_weightUnit"
+            style="@style/DefaultLabel"
+            android:text="@string/hint_weightUnit"
+            android:layout_marginStart="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/label_weight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/text_weight"
+            app:layout_constraintTop_toTopOf="@+id/label_weight"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
             android:id="@+id/label_height"
             style="@style/DefaultLabel"
             android:text="@string/label_height"
+            android:layout_marginStart="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/label_weight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/label_blood"
+            app:layout_constraintStart_toEndOf="@id/label_weightUnit"
             app:layout_constraintTop_toTopOf="@+id/label_weight"
             app:layout_constraintVertical_bias="1.0" />
 
@@ -113,6 +128,18 @@
             app:layout_constraintStart_toEndOf="@+id/label_height"
             app:layout_constraintTop_toTopOf="@+id/label_height"
             app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/label_heightUnit"
+            style="@style/DefaultLabel"
+            android:text="@string/hint_heightUnit"
+            android:layout_marginStart="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/label_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/text_height"
+            app:layout_constraintTop_toTopOf="@+id/label_height"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/label_hospital"

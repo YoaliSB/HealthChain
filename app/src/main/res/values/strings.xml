@@ -64,7 +64,7 @@
 
     <!-- Personal Data Fragment -->
     <string name="label_name">Nombre</string>
-    <string name="label_age">Edad</string>
+    <string name="label_age">Fecha de nacimiento</string>
     <string name="label_blood">Tipo de sangre</string>
     <string name="label_weight">Peso</string>
     <string name="label_height">Altura</string>
@@ -117,7 +117,7 @@
     <!-- Patients Fragment -->
     <string name="title_patients">Pacientes atendidos </string>
     <string name="empty_patients">No tienes agregado a ningún paciente</string>
-    
+
     <!-- Patients Detail Menu -->
     <string name="text_patient_info">Información general del paciente</string>
     <string name="text_new_record_entry">Crear nueva consulta</string>
@@ -149,5 +149,11 @@
         \n José Alberto Jurado Hdez.	A01336656
         \n Yoali Sotomayor Baqueiro 	A01650536
         \n Kenyiro Tsuru González 		A01651095 </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="asunto">Asunto:</string>
+    <string name="para">Para:</string>
+    <string name="mensaje">Mensaje:</string>
+    <string name="enviar">Enviar</string>
 
 </resources>

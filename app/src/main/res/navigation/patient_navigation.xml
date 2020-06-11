@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_navigation_settings_to_navigation_account"
             app:destination="@id/navigation_account" />
+        <action
+            android:id="@+id/action_navigation_settings_to_navigation_email"
+            app:destination="@id/navigation_email" />
     </fragment>
 
     <fragment
@@ -85,4 +88,10 @@
         android:name="com.itesm.healthchain.ui.settings.AccountSettingsFragment"
         android:label="@string/edit_profile"
         tools:layout="@layout/account_settings_fragment"/>
+
+    <fragment
+        android:id="@+id/navigation_email"
+        android:name="com.itesm.healthchain.ui.settings.EmailFragment"
+        android:label="Mandar queja"
+        tools:layout="@layout/fragment_email"/>
 </navigation>

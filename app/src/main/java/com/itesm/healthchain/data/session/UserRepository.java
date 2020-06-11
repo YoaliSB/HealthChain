@@ -53,6 +53,14 @@ public class UserRepository implements LoginStateListener, LogoutStateListener, 
         this.logoutListener = logoutStateListener;
     }
 
+    public void setInfoAsCompleted(){
+        loginDataSource.updateInfoAsCompleted();
+    }
+
+    public boolean infoIsCompleted(){
+        return loginDataSource.infoIsCompleted();
+    }
+
     @Override
     public void onLoginSuccess(LoggedInUser user) {
         SharedPreferences sharedPref = context.getSharedPreferences(
