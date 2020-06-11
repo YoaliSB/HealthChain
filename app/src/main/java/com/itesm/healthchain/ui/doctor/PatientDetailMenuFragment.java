@@ -41,7 +41,7 @@ public class PatientDetailMenuFragment extends Fragment implements View.OnClickL
         if (bundle != null) {
             // Fire network request
             String email = bundle.getString("email");
-            if (email != null) {
+            if (!email.isEmpty()) {
                 personalDataViewModel.fetchPersonalData(email);
             }
         }

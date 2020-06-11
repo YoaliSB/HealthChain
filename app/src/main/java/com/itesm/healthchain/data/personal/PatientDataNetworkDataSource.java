@@ -11,12 +11,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.itesm.healthchain.data.SharedPreferencesManager;
 import com.itesm.healthchain.data.model.MedicalRecordEntry;
 import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.model.Prescription;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +32,7 @@ public class PatientDataNetworkDataSource {
     private static final String MY_INFO = "https://health-chain-api.herokuapp.com/api/user/my_info";
     private static final String UPDATE_INFO = "https://health-chain-api.herokuapp.com/api/user/emergency_info";
     private static final String GET_PATIENT_INFO = "https://health-chain-api.herokuapp.com/api/doctor/show_user";
-    private static final String UPDATE_MEDICAL_RECORD = "https://health-chain-api.herokuapp.com//api/doctor/update_user";
+    private static final String UPDATE_MEDICAL_RECORD = "https://health-chain-api.herokuapp.com/api/doctor/update_user";
 
     private MutableLiveData<Patient> patientDataMutableLiveData = new MutableLiveData<>();
     private Context context;
@@ -42,7 +44,11 @@ public class PatientDataNetworkDataSource {
     public PatientDataNetworkDataSource(Context context) {
         this.context = context;
         requestQueue = Volley.newRequestQueue(context);
-        gson = new Gson();
+        gson = new GsonBuilder()
+            .registerTypeAdapter(Prescription.class, new Prescription.PrescriptionTypeConverter())
+            .registerTypeAdapter(MedicalRecordEntry.class, new MedicalRecordEntry.MedicalRecordEntryTypeConverter())
+            .setPrettyPrinting()
+            .create();
     }
 
     public void fetchPatient() {
@@ -173,11 +179,11 @@ public class PatientDataNetworkDataSource {
         JSONObject jsonBody = new JSONObject();
         JSONObject content = new JSONObject();
         try {
-            JSONObject record = new JSONObject(strRecord);
-            JSONObject prescrips = new JSONObject(strPrescriptions);
+            JSONArray record = new JSONArray(strRecord);
+            JSONArray prescrips = new JSONArray(strPrescriptions);
             content.put("medicalRecord", record);
             content.put("prescriptions", prescrips);
-            jsonBody.put("email", email);
+            jsonBody.put("email", "david@email.com");
             jsonBody.put("content", content);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -194,9 +200,9 @@ public class PatientDataNetworkDataSource {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("EDIT MEDICAL RECORD", error.toString());
-                //editMedicalRecordListener.onEditRecordFailure();
-                patientDataMutableLiveData.postValue(currentPatient);
-                editMedicalRecordListener.onEditRecordSuccess(email);
+                editMedicalRecordListener.onEditRecordFailure();
+//                patientDataMutableLiveData.postValue(currentPatient);
+//                editMedicalRecordListener.onEditRecordSuccess(email);
             }
         }) {
             @Override
