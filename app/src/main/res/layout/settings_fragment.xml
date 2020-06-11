@@ -9,7 +9,10 @@
     <LinearLayout
         android:id="@+id/btn_edit_profile"
         style="@style/SettingsLayouts"
-        app:layout_constraintStart_toStartOf="@+id/btn_info"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.327"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -46,10 +49,31 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btn_logout"
+        android:id="@+id/btn_email"
         style="@style/SettingsLayouts"
         app:layout_constraintStart_toStartOf="@+id/btn_info"
         app:layout_constraintTop_toBottomOf="@+id/btn_info">
+
+        <ImageView
+            android:id="@+id/icon_email"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mail"
+            tools:layout_editor_absoluteX="45dp"
+            tools:layout_editor_absoluteY="290dp" />
+
+        <TextView
+            android:id="@+id/text_email"
+            style="@style/SettingsButtons"
+            android:text="Quejas o comentarios" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_logout"
+        style="@style/SettingsLayouts"
+        app:layout_constraintStart_toStartOf="@+id/btn_email"
+        app:layout_constraintTop_toBottomOf="@+id/btn_email">
 
         <ImageView
             android:id="@+id/icon_logout"
@@ -63,18 +87,6 @@
             android:id="@+id/text_logout"
             style="@style/SettingsButtons"
             android:text="@string/logout" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btn_email"
-        style="@style/SettingsLayouts"
-        app:layout_constraintStart_toStartOf="@+id/btn_logout"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logout">
-
-        <TextView
-            android:id="@+id/text_email"
-            style="@style/SettingsButtons"
-            android:text="Mandar correo de queja" />
     </LinearLayout>
 
 
