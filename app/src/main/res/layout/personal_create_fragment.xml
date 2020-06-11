@@ -18,35 +18,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/text_name"
+    <EditText
+        android:id="@+id/field_name"
         style="@style/DefaultText"
+        android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/label_name"
-        app:layout_constraintStart_toEndOf="@+id/label_name"
-        app:layout_constraintTop_toTopOf="@+id/label_name" />
+        app:layout_constraintStart_toEndOf="@+id/label_name" />
 
     <TextView
         android:id="@+id/label_age"
         style="@style/DefaultLabel"
+        android:layout_marginTop="20dp"
         android:text="@string/label_age"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/label_name"
-        app:layout_constraintTop_toBottomOf="@+id/text_name"
+        app:layout_constraintTop_toBottomOf="@+id/label_name"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/text_age"
+    <EditText
+        android:id="@+id/field_birthdate"
         style="@style/EditText"
+        android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/label_age"
-        app:layout_constraintStart_toEndOf="@+id/label_age"
-        app:layout_constraintTop_toTopOf="@+id/label_age" />
+        app:layout_constraintStart_toEndOf="@+id/label_age" />
 
     <TextView
         android:id="@+id/label_blood"
         style="@style/DefaultLabel"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="@string/label_blood"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,19 +57,21 @@
         app:layout_constraintTop_toBottomOf="@+id/label_age"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/text_blood"
+    <EditText
+        android:id="@+id/field_blood"
         style="@style/EditText"
+        android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/label_blood"
         app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toEndOf="@+id/label_blood"
-        app:layout_constraintTop_toTopOf="@+id/label_blood"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintTop_toBottomOf="@+id/label_age"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/label_weight"
         style="@style/DefaultLabel"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="@string/label_weight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,12 +80,13 @@
         app:layout_constraintTop_toBottomOf="@+id/label_blood"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/text_weight"
+    <EditText
+        android:id="@+id/field_weight"
         style="@style/EditText"
+        android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/label_weight"
         app:layout_constraintStart_toEndOf="@+id/label_weight"
-        app:layout_constraintTop_toTopOf="@+id/label_weight"
+        app:layout_constraintTop_toBottomOf="@+id/label_blood"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -91,7 +96,7 @@
         android:layout_marginStart="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/label_weight"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/text_weight"
+        app:layout_constraintStart_toEndOf="@+id/field_weight"
         app:layout_constraintTop_toTopOf="@+id/label_weight"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -107,12 +112,13 @@
         app:layout_constraintTop_toTopOf="@+id/label_weight"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/text_height"
+    <EditText
+        android:id="@+id/field_height"
         style="@style/EditText"
+        android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/label_height"
         app:layout_constraintStart_toEndOf="@+id/label_height"
-        app:layout_constraintTop_toTopOf="@+id/label_height"
+        app:layout_constraintTop_toBottomOf="@+id/label_blood"
         app:layout_constraintVertical_bias="0" />
 
     <TextView
@@ -123,7 +129,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/label_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/text_height"
+        app:layout_constraintStart_toEndOf="@+id/field_height"
         app:layout_constraintTop_toTopOf="@+id/label_height"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -152,27 +158,29 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/text_contact_name"
+            android:id="@+id/field_contactName"
             style="@style/EditText"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:hint="@string/label_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_contact" />
 
         <EditText
-            android:id="@+id/text_contact_phone"
+            android:id="@+id/field_contactPhone"
             style="@style/EditText"
-            android:layout_marginStart="0dp"
-            app:layout_constraintStart_toStartOf="@+id/text_contact_name"
-            app:layout_constraintTop_toBottomOf="@+id/text_contact_name" />
+            android:hint="@string/label_phone"
+            app:layout_constraintStart_toStartOf="@+id/field_contactName"
+            app:layout_constraintTop_toBottomOf="@+id/field_contactName" />
 
         <EditText
-            android:id="@+id/text_contact_relationship"
+            android:id="@+id/field_contactRelationship"
             style="@style/EditText"
             android:layout_marginStart="72dp"
-            app:layout_constraintBottom_toBottomOf="@+id/text_contact_phone"
-            app:layout_constraintStart_toEndOf="@+id/text_contact_phone"
-            app:layout_constraintTop_toTopOf="@+id/text_contact_phone"
+            android:hint="@string/label_relationship"
+            app:layout_constraintBottom_toBottomOf="@+id/field_contactPhone"
+            app:layout_constraintStart_toEndOf="@+id/field_contactPhone"
+            app:layout_constraintTop_toTopOf="@+id/field_contactPhone"
             app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -190,7 +198,7 @@
         app:layout_constraintVertical_bias="0" />
 
     <EditText
-        android:id="@+id/text_hospital"
+        android:id="@+id/field_hospital"
         style="@style/EditText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
@@ -202,10 +210,10 @@
         style="@style/DefaultLabel"
         android:text="@string/label_ailments"
         app:layout_constraintStart_toStartOf="@+id/label_hospital"
-        app:layout_constraintTop_toBottomOf="@+id/text_hospital" />
+        app:layout_constraintTop_toBottomOf="@+id/field_hospital" />
 
-    <TextView
-        android:id="@+id/list_ailments"
+    <EditText
+        android:id="@+id/field_ailments"
         style="@style/EditText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
@@ -217,10 +225,10 @@
         style="@style/DefaultLabel"
         android:text="@string/label_allergies"
         app:layout_constraintStart_toStartOf="@+id/label_hospital"
-        app:layout_constraintTop_toBottomOf="@+id/list_ailments" />
+        app:layout_constraintTop_toBottomOf="@+id/field_ailments" />
 
-    <TextView
-        android:id="@+id/list_allergies"
+    <EditText
+        android:id="@+id/field_allergies"
         style="@style/EditText"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
@@ -228,7 +236,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_allergies" />
 
     <Button
-        android:id="@+id/save_btn"
+        android:id="@+id/button_submitEmergency"
         style="@style/DefaultButtons"
         android:backgroundTint="@color/colorAccent"
         android:layout_marginBottom="40dp"
