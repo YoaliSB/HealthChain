@@ -61,6 +61,13 @@ public class LoginActivity extends AppCompatActivity implements LoginStateListen
     private void redirect(String role) {
         switch (role) {
             case "user":
+//                if(repository.infoIsCompleted()){
+//                    startActivity(new Intent(LoginActivity.this,
+//                            PatientActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+//                } else {
+//                    startActivity(new Intent(LoginActivity.this,
+//                            RegisterActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+//                }
                 startActivity(new Intent(LoginActivity.this,
                         PatientActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 break;

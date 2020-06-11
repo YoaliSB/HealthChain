@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.itesm.healthchain.data.model.LoggedInUser;
+import com.itesm.healthchain.data.model.Patient;
 import com.itesm.healthchain.data.model.PersonalData;
 import com.itesm.healthchain.data.model.TagProfile;
 import com.itesm.healthchain.data.personal.EditPersonalDataListener;
@@ -25,6 +26,7 @@ import com.itesm.healthchain.data.personal.PatientDataRepository;
 import com.itesm.healthchain.data.session.LoginStateListener;
 import com.itesm.healthchain.data.session.UserRepository;
 import com.itesm.healthchain.nfc.NfcActivity;
+import com.itesm.healthchain.ui.personal_data.PersonalDataViewModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +40,8 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
 
     UserRepository userRepository;
     PatientDataRepository patientDataRepository;
+
+    PersonalDataViewModel personalDataViewModel;
 
     EditText etname, etemail, etpass, etpass2;
     Button signupbtn;
@@ -68,6 +72,10 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
 //        etemail.setText("b06@test.com");
 //        etpass.setText("123456");
 //        etpass2.setText("123456");
+
+//        if(userRepository.isLoggedIn()){
+//            preparePersonalData();
+//        }
 
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,6 +236,7 @@ public class RegisterActivity extends NfcActivity implements LoginStateListener,
 
     @Override
     public void onEditSuccess(PersonalData editedData) {
+        userRepository.setInfoAsCompleted();
         isWriting = true;
         prepareNfcWriting();
     }

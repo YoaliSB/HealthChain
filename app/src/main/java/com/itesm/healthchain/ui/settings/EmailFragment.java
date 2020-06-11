@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import com.itesm.healthchain.R;
 
-public class EmailFragment extends Fragment {
+public class EmailFragment extends Fragment implements View.OnClickListener{
     private EditText mEditTextTo;
     private EditText mEditTextSubject;
     private EditText mEditTextMessage;
@@ -28,14 +28,14 @@ public class EmailFragment extends Fragment {
         mEditTextMessage = root.findViewById(R.id.edit_text_message);
 
         Button buttonSend = root.findViewById(R.id.button_send);
-        buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendMail();
-            }
-        });
+        buttonSend.setOnClickListener(this);
 
-        return inflater.inflate(R.layout.fragment_email, container, false);
+        return root;
+    }
+
+    @Override
+    public void onClick(View view) {
+        sendMail();
     }
 
     private void sendMail(){

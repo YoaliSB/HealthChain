@@ -43,6 +43,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
                 break;
             case R.id.btn_email:
                 replaceFragment(R.id.navigation_email);
+                break;
             case R.id.btn_logout:
                 UserRepository repository = new UserRepository(getActivity());
                 repository.setLogoutListener(this);
